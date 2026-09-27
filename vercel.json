@@ -3,6 +3,11 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/news/ftc-auto-dealer-price-transparency-guidance",
+      "destination": "/news",
+      "permanent": true
+    },
+    {
       "source": "/news/amazon-prime-refunds-expanded-ftc-settlement",
       "destination": "/news/amazon-prime-refunds-200-automatic-october-2026",
       "permanent": true
