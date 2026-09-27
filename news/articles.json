@@ -5,7 +5,7 @@
     "description": "Agency seeks evidence about ad tools and impersonation scams. No new platform rule has taken effect.",
     "author": "David Chen",
     "date_published": "2026-09-25T12:53:36-04:00",
-    "date_modified": "2026-09-25T12:53:36-04:00",
+    "date_modified": "2026-09-26T07:33:28-04:00",
     "body": [
       "The Federal Trade Commission is asking whether online platforms should face new obligations when their advertising tools help spread ads that impersonate businesses or government agencies. It has opened an advance notice of proposed rulemaking, not adopted a new rule.",
       "The agency's September 24 notice focuses on ad-optimization services offered by social networks, search engines and digital marketplaces. It seeks evidence about how those tools select audiences and shape the delivery of ads, what platforms do to vet advertisers, and whether changes to the existing Impersonation Rule or a separate rule are warranted. Measures under consideration include advertiser screening, monitoring, removing confirmed scam ads and action against offending advertisers.",
@@ -27,39 +27,12 @@
     ]
   },
   {
-    "slug": "amazon-prime-refunds-expanded-ftc-settlement",
-    "title": "More Amazon Prime subscribers qualify for automatic refunds under revised FTC settlement",
-    "description": "A revised settlement expands automatic refunds starting October 1; eligible consumers will not have to file a claim.",
-    "author": "David Chen",
-    "date_published": "2026-09-25T12:53:36-04:00",
-    "date_modified": "2026-09-25T12:53:36-04:00",
-    "body": [
-      "The Federal Trade Commission says a revised court order will expand refunds to more consumers under its settlement with Amazon over Prime enrollment and cancellation practices. The maximum total payment to an eligible consumer rises from $51 to $200, though that does not mean everyone will receive $200.",
-      "The agency announced September 17 that people who used 11 to 20 Prime benefits during a one-year period, previously outside the initial refund group, will become eligible for automatic payments beginning October 1, 2026. Under the revised order, future payments will not require a consumer to file a claim or complete paperwork. Amazon will distribute them by electronic payment or mailed check, according to the FTC.",
-      "The original settlement required up to $1.5 billion for consumer redress and a $1 billion civil penalty. The FTC says Amazon had issued more than $845 million in redress by September 2026. A further payment of up to $149 to some consumers who already received refunds is conditional: it would begin by April 2027 if accepted payments have not reached a required threshold by February 2027. It is not a payment scheduled for every prior recipient.",
-      "The FTC says it is not contacting consumers about these Amazon refunds and that nobody from Amazon will ask for money to obtain one. A message demanding a fee or personal information to release a payment is not part of this redress process.",
-      "If a refund arrives, Financialist's debt-payoff calculator can help compare applying that money to balances under snowball and avalanche strategies. The tool is optional and does not affect eligibility for the settlement."
-    ],
-    "sources": [
-      {
-        "label": "FTC September 17 announcement on revised Amazon refunds",
-        "url": "https://www.ftc.gov/news-events/news/press-releases/2026/09/ftc-announces-additional-payments-consumers-stemming-ftcs-amazon-prime-settlement"
-      }
-    ],
-    "internal_links": [
-      {
-        "label": "Debt payoff calculator",
-        "path": "/tools/debt-payoff-calculator"
-      }
-    ]
-  },
-  {
     "slug": "san-carlos-apache-disaster-tax-deadline-september-28",
     "title": "September 28 tax deadline approaches for eligible San Carlos Apache Tribe disaster area taxpayers",
     "description": "Eligible taxpayers in the San Carlos Apache Tribe disaster area have a September 28 deadline for many postponed filings and payments.",
     "author": "James Park",
     "date_published": "2026-09-25T12:53:36-04:00",
-    "date_modified": "2026-09-25T12:53:36-04:00",
+    "date_modified": "2026-09-26T07:33:28-04:00",
     "body": [
       "Taxpayers covered by IRS disaster relief for severe storms and flooding in the San Carlos Apache Tribe area face a September 28 deadline for many postponed federal tax filings and payments. The relief is limited to eligible affected taxpayers; it is not a nationwide extension.",
       "According to the IRS, qualifying individuals who live in the covered area and businesses whose principal place of business is there can use the postponement. Others whose records needed to meet a deadline are in the covered area can also qualify. The IRS lists additional categories, including eligible relief workers. The postponed window generally covers specified deadlines originally falling on or after October 10, 2025, and before September 28, 2026.",
@@ -86,7 +59,7 @@
     "description": "Proposed multistate settlement offers potential cash restitution and debt relief for eligible Credit Acceptance borrowers.",
     "author": "James Park",
     "date_published": "2026-09-25T12:53:36-04:00",
-    "date_modified": "2026-09-25T12:53:36-04:00",
+    "date_modified": "2026-09-26T07:33:28-04:00",
     "body": [
       "Hawaii has joined a proposed multistate settlement with auto lender Credit Acceptance Corporation over allegations involving unaffordable loans and add-on products. The consent judgment still needs court approval in participating states, so the proposed relief should not be described as money already paid to every borrower.",
       "In a September 23 announcement, Hawaii's Office of Consumer Protection said the nationwide settlement could provide up to $60 million in cash restitution and up to $634 million in debt forgiveness, with up to $15 million going to settling attorneys general. Those are nationwide maximums or prospective amounts, not a per-person payout. Hawaii expects eligible borrowers in the state to receive nearly $115,000 in direct payments in total and nearly $830,000 in debt relief in total, some of which the office says may already have been provided.",
@@ -113,7 +86,7 @@
     "description": "Forty-four states reached an agreement with Labcorp over patient data held by a medical debt collector.",
     "author": "David Chen",
     "date_published": "2026-09-25T12:53:36-04:00",
-    "date_modified": "2026-09-25T12:53:36-04:00",
+    "date_modified": "2026-09-26T07:33:28-04:00",
     "body": [
       "A coalition of 44 state attorneys general has reached an approximately $2.3 million settlement with Labcorp over a 2019 data breach at a medical debt collector that handled Labcorp patient information. The agreement focuses on how the laboratory company oversees vendors holding sensitive patient data; the state announcement does not describe this $2.3 million as a consumer refund fund.",
       "Delaware Attorney General Kathy Jennings announced the settlement September 24. The debt collector was Retrieval-Masters Creditors Bureau, doing business as American Medical Collection Agency, or AMCA. The breach potentially exposed information about more than 27.5 million people nationwide, including 10.2 million Labcorp patients, according to the Delaware announcement. \"Potentially exposed\" does not mean every person's data was misused.",
@@ -139,28 +112,159 @@
     ]
   },
   {
-    "slug": "ftc-auto-dealer-price-transparency-guidance",
-    "title": "FTC tells auto dealers advertised prices must include mandatory fees",
-    "description": "FTC staff guidance says advertised vehicle prices should include mandatory dealer fees.",
+    "slug": "nano-banc-depositors-sunwest-fdic-september-2026",
+    "title": "Nano Banc deposits transfer to Sunwest after California closure",
+    "description": "What customers can use this weekend and when the only branch reopens.",
     "author": "James Park",
-    "date_published": "2026-09-25T12:53:36-04:00",
-    "date_modified": "2026-09-25T12:53:36-04:00",
+    "date_published": "2026-09-26T07:04:15-04:00",
+    "date_modified": "2026-09-26T07:33:28-04:00",
     "body": [
-      "An automobile's advertised price should be the price a consumer can actually pay to purchase it, excluding only government-required charges, according to price-transparency guidance published by Federal Trade Commission staff. The September 15 FAQs explain the agency's interpretation of existing FTC Act obligations rather than announcing a new loan rate or a blanket cap on dealer fees.",
-      "The guidance addresses document fees, rebates, discounts, optional add-ons, negotiations and vehicles still in transit. The central distinction is between a charge a buyer may decline and one the dealer requires to complete the sale. A mandatory dealer fee omitted from an advertised price can make the ad misleading even when the fee eventually appears in paperwork.",
-      "The FTC says it previously wrote to 97 auto groups urging dealers to review advertisements and warns it continues to sue dealers accused of advertising one price and charging a higher one through undisclosed fees. Consumers can report a suspected violation to ReportFraud.ftc.gov and should include the dealership and details of the discrepancy, the agency says.",
-      "The price of the car and the cost of financing it are related but distinct. A buyer comparing offers should request an itemized out-the-door price and review the amount financed, annual percentage rate, loan length and any add-ons before signing. A longer loan can reduce a monthly payment while raising the overall amount paid. Financialist's debt-payoff calculator can help model a balance repayment strategy, but does not calculate an auto loan's total financing cost."
+      "Nano Banc customers can continue using checks, ATMs and debit cards this weekend after California regulators closed the Irvine bank on Friday. The FDIC says Sunwest Bank of Sandy, Utah has agreed to assume substantially all Nano Banc deposits and buy some of its assets. Customers automatically become Sunwest depositors; the deposits Sunwest assumes remain FDIC-insured.",
+      "The FDIC says Nano Banc's only branch is scheduled to reopen Monday, September 28, under Sunwest during normal business hours. Checks written on Nano Banc accounts will continue to be processed, and loan customers should keep making their payments as usual. The agency says customers have immediate access to their deposits; they do not have to open a new account to make their assumed deposits available.",
+      "Nano Banc reported $686 million in deposits and $736 million in total assets as of June 30, according to the FDIC. Sunwest is buying approximately $476 million of assets; the FDIC will retain the rest for later disposition. The agency's preliminary estimate of the cost to the Deposit Insurance Fund is about $114 million. That is an estimated fund cost, not an amount charged to Nano Banc depositors; the estimate could change when assets are sold.",
+      "A bank closure often brings phishing attempts. Rather than follow a text claiming an urgent account migration, customers can use the FDIC's original notice for its official contact information and the bank's verified channels. FDIC deposit insurance coverage depends on account ownership and institution, not just an account balance. Financialist's bank-fees guide covers a different issue, overdraft rules, for people reviewing banking costs."
     ],
     "sources": [
       {
-        "label": "FTC September 15 auto-price guidance announcement",
-        "url": "https://www.ftc.gov/news-events/news/press-releases/2026/09/ftc-publishes-price-transparency-faqs-auto-dealers"
+        "label": "FDIC September 25 Nano Banc closure notice",
+        "url": "https://www.fdic.gov/news/press-releases/2026/sunwest-bank-assumes-all-deposits-and-certain-assets-nano-banc-irvine"
       }
     ],
     "internal_links": [
       {
-        "label": "Debt payoff calculator",
-        "path": "/tools/debt-payoff-calculator"
+        "label": "Bank fees and overdraft rules",
+        "path": "/bank-fees"
+      }
+    ]
+  },
+  {
+    "slug": "maryland-2027-aca-premium-rates-subsidies",
+    "title": "Maryland approves 2027 ACA rates: 14.6% average increase before subsidies",
+    "description": "Regulator figures show why a market average and a household bill differ.",
+    "author": "David Chen",
+    "date_published": "2026-09-26T07:04:15-04:00",
+    "date_modified": "2026-09-26T07:33:28-04:00",
+    "body": [
+      "Maryland approved 2027 health insurance premium rates on Friday. The state insurance regulator says unsubsidized individual Affordable Care Act plan premiums will rise 14.6% on average. That is a statewide market average, not a prediction of what every Maryland household will pay: a plan's price, the member's age and any subsidy can change the bill.",
+      "Maryland's published example makes the variation concrete. For a 40-year-old in the Baltimore metro area looking at the lowest-cost off-exchange silver plans, the listed monthly unsubsidized change ranges from $9 for an Optimum Choice HMO (from $342 to $350, as rounded in the regulator table) to $89 for a CareFirst PPO (from $585 to $674). These are sample plan figures, not statewide averages or quotes for a specific reader. An off-exchange example also does not show financial assistance available through Maryland Health Connection.",
+      "The Maryland Insurance Administration says roughly 70% of Maryland Health Connection users and 55% of the overall individual market receive a premium subsidy. The state has its own assistance program for eligible residents with household incomes below 400% of the federal poverty level. Those eligible for assistance may see a different net premium change from the 14.6% unsubsidized figure. The regulator says individual market enrollment stands at about 274,000, down from 294,000 last year.",
+      "Small-group premiums for employers with no more than 50 full-time employees are approved to rise 10.2% on average. That is below carriers' 13.1% requested increase. The regulator reports rising hospital and prescription costs as main drivers and puts the separate individual dental-market average increase at 3.0%.",
+      "Consumers should read their renewal notice and compare actual 2027 plans and assistance eligibility when enrollment opens. A health premium is not the same as a medical bill: Financialist's medical-debt guide explains ways to check and contest charges after care, not how ACA subsidies are calculated."
+    ],
+    "sources": [
+      {
+        "label": "Maryland Insurance Administration September 25 rate approval",
+        "url": "https://insurance.maryland.gov/Pages/newscenter/Maryland-Insurance-Administration-Approves-2027-Affordable-Care-Act-Premium-Rates.aspx"
+      }
+    ],
+    "internal_links": [
+      {
+        "label": "Medical bill and debt guide",
+        "path": "/medical-debt"
+      }
+    ]
+  },
+  {
+    "slug": "irs-mobile-app-tax-records-notices-2026",
+    "title": "IRS adds account notices and tax records to free mobile app",
+    "description": "Official app adds selected account features; watch for tax-account lookalikes.",
+    "author": "James Park",
+    "date_published": "2026-09-26T07:04:15-04:00",
+    "date_modified": "2026-09-26T07:33:28-04:00",
+    "body": [
+      "The IRS launched a renamed mobile app Friday, extending the older IRS2Go service with access to some Individual Online Account features. The agency says taxpayers can now use the free IRS app to view available balances, selected notices and tax transcripts, check refund or amended-return status and review payment activity. An account-specific feature may require secure sign-in; an app download by itself does not display private records.",
+      "Existing IRS2Go users do not need to download a separate replacement. The agency says normal app updates will deliver the new version for users with automatic updates enabled. The app is available in the Apple App Store and Google Play, and IRS.gov provides verified links. The IRS says the app does not replace the full website or its Business Tax Account and Tax Pro Account services. This first release extends selected individual features only.",
+      "For taxpayers with an approaching filing or payment deadline, the balance and payment-history features could be useful, but the app does not change the legal due date or automatically pay a balance. The IRS also says users may access an Identity Protection PIN through the app. Readers should not take a text message or search ad offering tax-account access as proof that an app is official: the IRS warns it will not request sensitive financial information through an unsolicited text, email or pop-up.",
+      "The September 28 disaster tax deadline for eligible San Carlos Apache Tribe-area taxpayers remains a separate IRS relief rule. Financialist's existing deadline report explains who is covered; the new app neither extends that window nor determines eligibility."
+    ],
+    "sources": [
+      {
+        "label": "IRS September 25 app launch announcement",
+        "url": "https://www.irs.gov/newsroom/irs-launches-new-mobile-app-expanding-digital-services-for-taxpayers"
+      }
+    ],
+    "internal_links": [
+      {
+        "label": "San Carlos Apache-area deadline report",
+        "path": "/news/san-carlos-apache-disaster-tax-deadline-september-28"
+      }
+    ]
+  },
+  {
+    "slug": "michigan-uppco-2026-rate-hike-attorney-general",
+    "title": "Michigan attorney general challenges UPPCO electric rate hike",
+    "description": "A proposed 15.6% residential increase is not approved; state advocates a smaller increase.",
+    "author": "James Park",
+    "date_published": "2026-09-26T07:05:53-04:00",
+    "date_modified": "2026-09-26T07:33:28-04:00",
+    "body": [
+      "Michigan's attorney general is asking regulators to cut a proposed Upper Peninsula Power Company electric rate hike. UPPCO seeks an additional $17.3 million in annual revenue, which the attorney general says would mean a 15.6% average increase for residential customers. Neither the company request nor the attorney general's counterproposal is an approved new customer rate.",
+      "In testimony filed jointly with the Citizens Utility Board of Michigan, Attorney General Dana Nessel argued Friday that any increase should be no more than $9.9 million, a cut of roughly 42% from the request. The attorney general also opposed UPPCO's requested return on equity increase from 9.86% to 10.55%, proposing instead 9.47%. These percentages concern the utility's allowed return, not the rate printed on a household bill.",
+      "Another household-level dispute is the residential fixed monthly charge. Nessel said the proposed $15 charge should be reduced to $10.87. A fixed charge applies even when a household uses less electricity, so its size can matter to customers who conserve power. The attorney general also objected to a proposed storm-restoration expense tracker that, she says, could lead to adjustments between the normal public rate cases. The Michigan Public Service Commission will decide the case.",
+      "UPPCO serves approximately 53,000 Upper Peninsula customers, according to the attorney general's office. A 15.6% average residential increase is not a quote for a particular home: usage, rate design and whatever the commission ultimately approves will determine that amount. Financialist's money-rights hub addresses other household expenses, including bank fees and medical bills; it does not calculate UPPCO electric charges. Customers should use their utility's rate documents and the commission's final order for bill-specific figures."
+    ],
+    "sources": [
+      {
+        "label": "Michigan Attorney General September 25 UPPCO testimony",
+        "url": "https://www.michigan.gov/ag/news/press-releases/2026/09/25/ag-nessel-fights-for-a-reduction-of-uppcos-rate-hike-request"
+      }
+    ],
+    "internal_links": [
+      {
+        "label": "Money-rights guides",
+        "path": "/money-rights"
+      }
+    ]
+  },
+  {
+    "slug": "michigan-generator-deposit-refund-lawsuit-2026",
+    "title": "Michigan sues generator sellers over customer deposits",
+    "description": "State alleges customers paid deposits but did not receive generators or refunds.",
+    "author": "David Chen",
+    "date_published": "2026-09-26T07:05:53-04:00",
+    "date_modified": "2026-09-26T07:33:28-04:00",
+    "body": [
+      "Michigan's attorney general filed a consumer-protection lawsuit seeking refunds for customers who allegedly paid deposits for home generators they never received. The case names Triple Circle, Double Circle, Goodrich Enterprise and Brad Scott, who, according to the state, were associated with two former Generator Supercenter franchise locations. The allegations have not been decided by a court, and a lawsuit is not a restitution payment.",
+      "The state says the franchises continued accepting thousands of dollars in deposits even as they were nearing closure. Its complaint alleges some customers never received generators or refunds, including customers who cancelled orders. The filing also alleges that business revenue, including consumer deposits, was used for personal purchases. Michigan filed the case in Kent County Circuit Court on September 8 and announced Friday that the defendants had been served this week.",
+      "According to the attorney general's account, the two franchise businesses were formed under agreements in late 2020 and the franchisor terminated those agreements in April 2024. The state seeks restitution and monetary damages for affected customers, an injunction and civil fines. It has not announced a claims deadline or an approved distribution amount.",
+      "Michigan residents who believe they are affected can contact the attorney general's Consumer Protection Team through the state website rather than pay a third party promising access to a refund. Documents such as the contract, deposit receipt, cancellation request and correspondence may help establish an individual claim. Financialist's Michigan debt guide is about collection rules, not this lawsuit, but can help readers facing separate bills while a disputed deposit remains unpaid."
+    ],
+    "sources": [
+      {
+        "label": "Michigan Attorney General September 25 lawsuit announcement",
+        "url": "https://www.michigan.gov/ag/news/press-releases/2026/09/25/ag-nessel-files-lawsuit-against-generator-franchise-owner-for-failing-to-issue-refunds-of-deposits"
+      }
+    ],
+    "internal_links": [
+      {
+        "label": "Michigan debt guide",
+        "path": "/debt/michigan"
+      }
+    ]
+  },
+  {
+    "slug": "new-york-storm-price-gouging-complaint-2026",
+    "title": "New York warns of storm price gouging: what to document",
+    "description": "State alert explains the emergency-pricing standard and what a useful complaint records.",
+    "author": "David Chen",
+    "date_published": "2026-09-26T14:43:24-04:00",
+    "date_modified": "2026-09-26T14:43:24-04:00",
+    "body": [
+      "New York's attorney general issued a consumer alert Saturday as a severe coastal storm was expected to bring heavy rain, wind and possible flooding to New York City, the Hudson Valley and Long Island. The warning concerns the price of essential goods and services during an emergency, not every price increase after a storm.",
+      "The attorney general's office says New York law bars businesses from taking unfair advantage by charging an unconscionably excessive price for goods or services vital to health, safety or welfare during an emergency. The state says the law covers New York vendors, including those selling online. Whether a particular charge breaks the law depends on its circumstances; the alert does not set a flat percentage threshold or make every expensive hotel room, generator or repair job a violation.",
+      "For a report, the office asks consumers to note the specific price increase, date and location. Save a receipt and take a photo of an advertised price where possible. A before-and-after price comparison can help an investigator understand the complaint, though the office decides whether to investigate and whether the legal standard is met. New Yorkers can submit a complaint through the attorney general's official website or call the number in its alert.",
+      "The office says violations may carry penalties of up to $25,000 per violation. That is a potential civil penalty on a business, not a consumer refund amount or a guarantee that a complaint will produce payment. Anyone hiring a storm-repair contractor should also get the full price and work scope in writing before paying a deposit. Financialist's New York debt guide explains separate rules for collecting a bill; it is not a guide to storm price-gouging complaints."
+    ],
+    "sources": [
+      {
+        "label": "New York Attorney General September 26 consumer alert",
+        "url": "https://ag.ny.gov/press-release/2026/attorney-general-james-warns-new-yorkers-about-price-gouging-during-severe"
+      }
+    ],
+    "internal_links": [
+      {
+        "label": "New York debt guide",
+        "path": "/debt/new-york"
       }
     ]
   }
