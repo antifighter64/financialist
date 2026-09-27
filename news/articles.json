@@ -1,5 +1,147 @@
 [
   {
+    "slug": "new-york-polymarket-lawsuit-prediction-markets-2026",
+    "title": "New York Wants to Shut Polymarket Down: What the Lawsuit Actually Says",
+    "description": "New York sued Polymarket, alleging unlicensed gambling and seeking a shutdown, penalties and restitution. The allegations are contested, not a court ruling or an approved refund.",
+    "author": "James Park",
+    "body": [
+      "New York has sued Polymarket US, asking a court to stop what the state calls an unlicensed gambling operation. The September 24 complaint also seeks penalties, forfeiture of alleged illegal gains and restitution for harmed users. A lawsuit is not a judgment. No restitution program or claim form for Polymarket users has been announced in the state release.",
+      "The New York attorney general says Polymarket's prediction markets let people stake money on uncertain outcomes, including sports events. The state argues this amounts to gambling that requires a New York license and says the platform is available to users aged 18 to 20 despite a 21-year minimum for mobile sports betting. Those are the state's allegations, not facts a court has resolved.",
+      "Prediction-market operators have argued that certain event contracts fall under federal derivatives oversight instead of state gambling rules. The CFTC has separately sued New York over a state prediction-market enforcement dispute involving another operator, so the legal boundary is contested. That federal suit does not itself decide Polymarket's case. Users should not assume a platform is either lawful or unlawful nationwide from this New York filing alone.",
+      "New Yorkers considering any event contract should check what entity offers it, their state's applicable rules, the risk of losing the stake, and whether the offer is an investment product or a wager. Anyone claiming an immediate Polymarket restitution payout based on this filing is getting ahead of the court case. The attorney general's release links the official complaint and its misconduct-reporting process; use that source rather than an unsolicited refund message."
+    ],
+    "sources": [
+      {
+        "label": "New York Attorney General September 24 Polymarket lawsuit announcement",
+        "url": "https://ag.ny.gov/press-release/2026/attorney-general-james-and-governor-hochul-announce-lawsuit-against-polymarket"
+      },
+      {
+        "label": "CFTC April 24 New York prediction-market jurisdiction lawsuit (separate operator/dispute)",
+        "url": "https://www.cftc.gov/PressRoom/PressReleases/9218-26"
+      }
+    ],
+    "internal_links": [
+      {
+        "label": "Financialist money-rights guides",
+        "path": "/money-rights"
+      }
+    ],
+    "date_published": "2026-09-27T07:08:41-04:00",
+    "date_modified": "2026-09-27T07:08:41-04:00"
+  },
+  {
+    "slug": "colorado-2027-health-insurance-premiums-assistance",
+    "title": "Colorado Health Premiums Rise 10% for 2027, but Subsidized Bills Tell Another Story",
+    "description": "Colorado approved an average 10% individual-market premium rise for 2027. State assistance may limit the average net increase for aided shoppers; your bill depends on plan and eligibility.",
+    "author": "James Park",
+    "body": [
+      "Colorado's insurance regulator has approved an average 10% premium increase in the individual health insurance market for plan year 2027. That is the statewide average before each household's plan choice and financial assistance are applied, not a 10% increase for every person buying coverage.",
+      "The Colorado Division of Insurance says its rate review reduced proposed premiums by an estimated $42.1 million across the upcoming plan year. It separately estimates an average $20 monthly net premium increase for financially assisted customers from 2026 to 2027 under Colorado Premium Assistance. Without that support, the regulator estimates the average increase for that group would exceed three times as much, around $69 monthly. These are agency estimates for a group, not household price quotes.",
+      "The regulator reports an average 14% increase for the small-group market, which serves participating employers, and shows individual-market increases ranging from 5.9% to 15.5% across its nine rating areas. A consumer may see a different change based on location, age, insurer, plan and subsidy. An increase in the sticker price and an increase after aid are different measures.",
+      "Colorado says marketplace open enrollment begins November 1, 2026, and plans from a new individual-market insurer, Colorado Access, will be offered. Before renewing, compare the 2027 premium after actual aid, deductible, provider network and prescription coverage, not only a statewide rate headline. Financialist's Maryland ACA report covers a different state's filings; those figures should not be applied to Colorado."
+    ],
+    "sources": [
+      {
+        "label": "Colorado Division of Insurance September 22 approved-rate announcement",
+        "url": "https://content.govdelivery.com/accounts/CODORA/bulletins/42c0779"
+      }
+    ],
+    "internal_links": [
+      {
+        "label": "Maryland's separate 2027 ACA rate decision",
+        "path": "/news/maryland-2027-aca-premium-rates-subsidies"
+      }
+    ],
+    "date_published": "2026-09-27T07:08:41-04:00",
+    "date_modified": "2026-09-27T07:08:41-04:00"
+  },
+  {
+    "slug": "amazon-prime-refunds-200-automatic-october-2026",
+    "title": "Amazon Prime Refunds Expand to $200; More Checks Start October 1",
+    "description": "A revised FTC-Amazon order raises the Prime refund cap to $200 and adds automatic payments starting October 1, 2026. Who may be included and how to avoid refund scams.",
+    "author": "David Chen",
+    "body": [
+      "More former and current Prime customers may receive refunds without filing a new claim beginning October 1 under a revised federal court order. The FTC says the maximum total payment rises from $51 to $200 and Amazon must distribute future payments automatically. A $200 cap is not a promise of a $200 check to every subscriber.",
+      "The revision expands automatic payments to people who used between 11 and 20 Prime benefits in a one-year period after enrollment; those people were outside the earlier phases. Amazon will make payments electronically through Venmo or PayPal or mail checks, the FTC says. Customers should not need to respond to a new claim notice or complete additional forms to receive these future payments.",
+      "There may also be a later top-up for people who already received and accepted a settlement refund. If accepted payments do not reach the required threshold by February 2027, the FTC says those consumers could get up to $149 more, bringing their total up to $200; that supplemental round would start by April 2027. The condition matters: it is not an unconditional additional payment today.",
+      "The FTC says it is not contacting consumers about these Amazon refunds and warns that anyone claiming to be the agency and asking for payment is likely a scam. Amazon will not ask customers to pay a fee to receive a refund. Check the September 17 FTC release for the revised terms. Its separate refund-program FAQ still described an older $51 cap when checked September 27, so the newer court-order announcement controls this update; readers should watch for that older FAQ to be revised."
+    ],
+    "sources": [
+      {
+        "label": "FTC September 17 revised Prime refund order announcement",
+        "url": "https://www.ftc.gov/news-events/news/press-releases/2026/09/ftc-announces-additional-payments-consumers-stemming-ftcs-amazon-prime-settlement"
+      },
+      {
+        "label": "FTC Amazon refund-program FAQ (older cap shown September 27)",
+        "url": "https://www.ftc.gov/enforcement/refunds/amazon-refunds"
+      }
+    ],
+    "internal_links": [
+      {
+        "label": "Protect your credit reports from fraud",
+        "path": "/credit-reports"
+      }
+    ],
+    "date_published": "2026-09-27T07:08:41-04:00",
+    "date_modified": "2026-09-27T07:08:41-04:00"
+  },
+  {
+    "slug": "generic-drug-price-settlement-claim-deadline-2027",
+    "title": "Bought a Generic Drug Years Ago? Check This $96 Million Settlement Before March 8",
+    "description": "A multistate generic-drug settlement has a March 8, 2027 claim deadline. Check the covered drugs, 2009-2019 purchase window and eligibility before filing.",
+    "author": "James Park",
+    "body": [
+      "People who bought certain generic prescription drugs from May 2009 through December 2019 may be eligible for compensation from multistate antitrust settlements. The claim deadline is March 8, 2027, according to the New York attorney general. Coverage depends on the particular drug, purchase period and the official settlement rules; buying any generic medicine is not enough.",
+      "New York and Connecticut attorneys general describe settlements totaling approximately $96 million with several drug manufacturers. Connecticut says a federal court granted preliminary approval to a plan for distributing consumer funds. Preliminary approval and an open claims window do not mean a particular person will receive a specific payment. The individual amount depends on valid claims and the settlement process.",
+      "To check eligibility, use the official settlement website linked from a state attorney general's announcement and review the covered-drug list and instructions. New York's announcement directs consumers to AGGenericDrugs.com. Do not enter prescription or payment information into a lookalike site reached through an unsolicited message. The state notices also give a telephone contact for questions.",
+      "The purchase window is long enough that receipts may be hard to find. Read the administrator's actual proof requirements before assuming a claim is impossible or guaranteed. A pharmacist's statement, insurance record or old receipt may help reconstruct a purchase, but the administrator decides whether evidence satisfies the settlement terms. This claim is separate from disputing a current medical bill; Financialist's medical-debt guide explains that other process."
+    ],
+    "sources": [
+      {
+        "label": "New York Attorney General consumer claim announcement",
+        "url": "https://ag.ny.gov/press-release/2026/attorney-general-james-encourages-new-yorkers-claim-compensation-inflated"
+      },
+      {
+        "label": "Connecticut Attorney General preliminary-approval and purchase-window notice",
+        "url": "https://portal.ct.gov/ag/press-releases/2026-press-releases/attorney-general-tong-urges-consumers-to-claim-compensation-for-inflated-generic-drug-prices"
+      }
+    ],
+    "internal_links": [
+      {
+        "label": "Medical bills and collection help",
+        "path": "/medical-debt"
+      }
+    ],
+    "date_published": "2026-09-27T07:08:41-04:00",
+    "date_modified": "2026-09-27T07:08:41-04:00"
+  },
+  {
+    "slug": "maryland-hospital-facility-fee-refunds-umms-2026",
+    "title": "Paid a Surprise Maryland Hospital Fee? Some UMMS Patients Are Getting Refunds",
+    "description": "A Maryland settlement will return $2.25 million in outpatient facility fees to eligible UMMS patients. Who qualifies, when checks are expected and what the state says.",
+    "author": "David Chen",
+    "body": [
+      "Some Maryland patients who paid out of pocket for outpatient facility fees at University of Maryland Medical System clinics may receive checks under a $2.25 million restitution agreement announced by the state attorney general. The eligible services were provided before July 1, 2021, and refunds are expected over the next six months. Patients do not have to guess from the size of a past hospital bill whether they qualify.",
+      "The agreement concerns fees charged by certain hospital clinics when a patient could have received the same clinic service at a non-hospital facility owned or operated by a UMMS affiliate without the facility fee. Maryland's Consumer Protection Division alleged patients were not adequately told they would be charged. UMMS denied that the notice was inadequate but agreed to pay $2,251,781.52 in restitution. This is a settlement, not a finding that every UMMS outpatient fee was unlawful.",
+      "The state says eligible patients should expect a refund check from UMMS during the next six months. Its announcement does not provide an individual refund amount, a claims form or a complete list of covered clinics. Do not pay someone to 'unlock' a check. Patients with questions can use the phone number in the attorney general's original announcement; verify it there rather than relying on an unsolicited call or message.",
+      "A facility fee is separate from what a clinician may charge for a visit. If a bill seems wrong, ask for an itemized bill and the facility's written explanation. Financialist's medical-debt guide covers reviewing bills and assistance before paying, but it cannot determine eligibility for this particular restitution program."
+    ],
+    "sources": [
+      {
+        "label": "Maryland Attorney General September 25 UMMS facility-fee settlement",
+        "url": "https://oag.maryland.gov/News/Pages/Attorney-General-Brown-Announces-Settlement-Agreement-for-$2.25-Million-in-Restitution-with-the-University-of-Maryland-Medi.aspx"
+      }
+    ],
+    "internal_links": [
+      {
+        "label": "Medical bills and financial assistance",
+        "path": "/medical-debt"
+      }
+    ],
+    "date_published": "2026-09-27T07:08:41-04:00",
+    "date_modified": "2026-09-27T07:08:41-04:00"
+  },
+  {
     "slug": "ftc-weighs-platform-duties-impersonation-ads",
     "title": "FTC weighs new duties for platforms carrying impersonation ads",
     "description": "Agency seeks evidence about ad tools and impersonation scams. No new platform rule has taken effect.",

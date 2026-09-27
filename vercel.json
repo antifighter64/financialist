@@ -2,13 +2,50 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/best-llc-formation-services", "destination": "/guides/best-llc-formation-services", "permanent": true },
-    { "source": "/best-student-loan-refinance-companies", "destination": "/guides/best-student-loan-refinance-companies", "permanent": true },
-    { "source": "/best-debt-relief-companies", "destination": "/guides/best-debt-relief-companies", "permanent": true },
-    { "source": "/best-gold-ira-companies", "destination": "/guides/best-gold-ira-companies", "permanent": true },
-    { "source": "/llc-formation", "destination": "/guides/best-llc-formation-services", "permanent": true },
-    { "source": "/student-loan-refinance", "destination": "/guides/best-student-loan-refinance-companies", "permanent": true },
-    { "source": "/debt-relief", "destination": "/guides/best-debt-relief-companies", "permanent": true },
-    { "source": "/gold-ira", "destination": "/guides/best-gold-ira-companies", "permanent": true }
+    {
+      "source": "/news/amazon-prime-refunds-expanded-ftc-settlement",
+      "destination": "/news/amazon-prime-refunds-200-automatic-october-2026",
+      "permanent": true
+    },
+    {
+      "source": "/best-llc-formation-services",
+      "destination": "/guides/best-llc-formation-services",
+      "permanent": true
+    },
+    {
+      "source": "/best-student-loan-refinance-companies",
+      "destination": "/guides/best-student-loan-refinance-companies",
+      "permanent": true
+    },
+    {
+      "source": "/best-debt-relief-companies",
+      "destination": "/guides/best-debt-relief-companies",
+      "permanent": true
+    },
+    {
+      "source": "/best-gold-ira-companies",
+      "destination": "/guides/best-gold-ira-companies",
+      "permanent": true
+    },
+    {
+      "source": "/llc-formation",
+      "destination": "/guides/best-llc-formation-services",
+      "permanent": true
+    },
+    {
+      "source": "/student-loan-refinance",
+      "destination": "/guides/best-student-loan-refinance-companies",
+      "permanent": true
+    },
+    {
+      "source": "/debt-relief",
+      "destination": "/guides/best-debt-relief-companies",
+      "permanent": true
+    },
+    {
+      "source": "/gold-ira",
+      "destination": "/guides/best-gold-ira-companies",
+      "permanent": true
+    }
   ]
 }
