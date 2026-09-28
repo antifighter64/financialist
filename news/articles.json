@@ -1,5 +1,279 @@
 [
   {
+    "slug": "occ-second-quarter-2026-mortgage-performance-foreclosures",
+    "title": "OCC Says 97.7% of Its Tracked Mortgages Performed, Yet Starts Rose",
+    "description": "OCC's September 23 mortgage report covers about 18.8% of U.S. residential mortgage debt. It found 97.7% current and performing in Q2, while new foreclosures increased.",
+    "author": "James Park",
+    "body": [
+      "The OCC's second-quarter mortgage report, released September 23, says 97.7% of mortgages in its federal-banking-system sample were current and performing at quarter-end, up from 97.5% a year earlier. At the same time, servicers initiated 7,904 foreclosures during the quarter, up from both the previous quarter and a year earlier. Both statements can be true: they describe different measures and different denominators.",
+      "The agency also counted 7,349 completed loan modifications in the quarter, a 16.5% increase over the prior quarter's 6,308. Most modifications combined several changes intended to improve affordability and sustainability. The report includes about 10.1 million first-lien loans, representing roughly 18.8% of U.S. residential mortgage debt, through June 30, 2026. It is not a survey of every mortgage or a forecast of what one borrower's lender will do.",
+      "If you are struggling to pay, contact the servicer early and ask which loss-mitigation options apply to your loan. HUD lists free housing-counseling help for homeowners at risk of foreclosure. The separate ICE August delinquency figures cover a later month and a different data pool; do not compare the two percentages as if they measure the same set of mortgages."
+    ],
+    "sources": [
+      {
+        "label": "OCC September 23 second-quarter mortgage metrics",
+        "url": "https://www.occ.gov/news-issuances/news-releases/2026/nr-occ-2026-80.html"
+      },
+      {
+        "label": "HUD resources for avoiding foreclosure",
+        "url": "https://www.hud.gov/helping-americans/avoiding-foreclosure"
+      }
+    ],
+    "internal_links": [
+      {
+        "label": "Mortgage-shopping guide",
+        "path": "/guides/best-mortgage-lenders"
+      },
+      {
+        "label": "Debt payoff calculator",
+        "path": "/tools/debt-payoff-calculator"
+      }
+    ],
+    "date_published": "2026-09-28T13:49:47-04:00",
+    "date_modified": "2026-09-28T13:49:47-04:00"
+  },
+  {
+    "slug": "new-york-apartment-deposit-refunds-brooklyn-high-rise-2026",
+    "title": "Brooklyn Rental Applicants May Get Deposits Back After Blacklisting Case",
+    "description": "A September 18 New York settlement requires $150,000 in restitution for certain apartment applicants and bans the firm's use of housing-court history in screening.",
+    "author": "David Chen",
+    "body": [
+      "New York's attorney general says Brooklyn High Rise LLC agreed September 18 to pay $150,000 in restitution to certain apartment applicants who paid a 'good faith deposit' but withdrew or were denied housing and did not get it back. The state also imposed $202,250 in penalties for unlawful tenant blacklisting. The penalty goes to the state; it is not another pool of individual deposit refunds.",
+      "According to the office, the firm denied housing to more than 200 applicants using prior housing-court records, contrary to New York's protections. It also charged applicants $500 to $750 to hold units while processing applications, promising the money would go toward rent but failing to return some deposits. The agreement requires it to stop seeking housing-court history in screening and change its application practices.",
+      "An applicant who dealt with this firm should keep proof of the deposit, the application and any denial or withdrawal. The state release says all tenants meeting the restitution criteria will receive refunds, but it does not establish that every person ever rejected by a Brooklyn landlord gets a check. If you have a separate screening issue, check the state's guidance and document what the landlord requested; Financialist's general debt guides do not replace tenant-rights advice."
+    ],
+    "sources": [
+      {
+        "label": "New York Attorney General September 18 Brooklyn High Rise settlement",
+        "url": "https://ag.ny.gov/press-release/2026/attorney-general-james-stops-brooklyn-real-estate-firm-illegally-blacklisting"
+      }
+    ],
+    "internal_links": [
+      {
+        "label": "Financialist New York money-rights resources",
+        "path": "/money-rights"
+      }
+    ],
+    "date_published": "2026-09-28T13:49:47-04:00",
+    "date_modified": "2026-09-28T13:49:47-04:00"
+  },
+  {
+    "slug": "new-york-darcars-dealership-fee-refunds-september-2026",
+    "title": "New York Orders $1 Million-Plus in DARCARS Refunds. Check Your Paperwork",
+    "description": "Two Westchester DARCARS dealers must reimburse eligible buyers and lessees for sales-commission and add-on charges, says the NY attorney general's September 16 settlement.",
+    "author": "David Chen",
+    "body": [
+      "New York's attorney general announced September 16 that two Westchester DARCARS dealerships agreed to more than $1 million in customer refunds over sales-commission charges and an add-on bundle. The affected dealers are DARCARS Lexus of Mount Kisco and DARCARS BMW. The settlement concerns specific transactions, not every purchase from the DARCARS group.",
+      "The attorney general says DARCARS Lexus must return $892,671.26 to people charged a sales-commission fee from October 23, 2021 through May 30, 2022. Both dealers must make additional reimbursements totaling $281,847.72 connected to misleading add-on practices. The office says thousands who bought or leased cars may be eligible and the dealers must stop the described fee practices. The amounts are aggregate obligations, not an individual check estimate.",
+      "If you bought or leased at either location in the affected period, keep your signed contract, itemized sale and lease paperwork and any correspondence. Look for sales-commission fees and DARCARS Assurance charges; the state's release provides the exact dealer names and settlement terms. Do not pay an outside 'claims agent' to tell you whether the state has identified you. Ask the attorney general's office or dealership about your particular transaction, rather than assuming the settlement covers every add-on from every dealer."
+    ],
+    "sources": [
+      {
+        "label": "New York Attorney General September 16 DARCARS settlement",
+        "url": "https://ag.ny.gov/press-release/2026/attorney-general-james-secures-more-1-million-refunds-new-yorkers-cheated"
+      }
+    ],
+    "internal_links": [
+      {
+        "label": "New York debt guide",
+        "path": "/debt/new-york"
+      },
+      {
+        "label": "Financialist money-rights hub",
+        "path": "/money-rights"
+      }
+    ],
+    "date_published": "2026-09-28T13:49:47-04:00",
+    "date_modified": "2026-09-28T13:49:47-04:00"
+  },
+  {
+    "slug": "fleetcor-corpay-fuel-card-100-million-ftc-redress-proposal",
+    "title": "FleetCor's $100 Million FTC Deal Could Repay Businesses, but Not Yet",
+    "description": "The FTC's September 17 proposed FleetCor/Corpay order sets aside $100 million for harmed fuel-card customers. Comment and refund mechanics are still pending.",
+    "author": "James Park",
+    "body": [
+      "FleetCor, now called Corpay, and its CEO agreed to pay $100 million to resolve an FTC administrative action over fuel-card fees and claimed savings, the agency announced September 17. The proposed payment would be used for redress to business customers harmed by the conduct. It is not a current application for a guaranteed payment to every small business that used a fuel card.",
+      "The FTC alleged undisclosed or unauthorized charges, late fees even when customers paid on time or could not pay on time, and misleading claims about gas savings and fraud controls. A federal district court in 2023 entered summary judgment for the FTC on its claims, the agency says, while the new administrative consent agreement still has a separate process before it is final.",
+      "The FTC expects a Federal Register notice followed by 30 days of public comment before it decides whether to make the proposed consent order final. The September 17 release does not state individual refund amounts, a claim form or payment date. A business owner can preserve statements, fee records and contracts while checking official FTC updates. Compare any fuel-card offer using total fees and actual pump-price discounts, not the advertised savings alone."
+    ],
+    "sources": [
+      {
+        "label": "FTC September 17 FleetCor administrative settlement proposal",
+        "url": "https://www.ftc.gov/news-events/news/press-releases/2026/09/fleetcor-agrees-pay-100-million-resolve-administrative-action-after-federal-court-finds-it-violated"
+      }
+    ],
+    "internal_links": [
+      {
+        "label": "Financialist small-business topics",
+        "path": "/topics"
+      }
+    ],
+    "date_published": "2026-09-28T13:49:47-04:00",
+    "date_modified": "2026-09-28T13:49:47-04:00"
+  },
+  {
+    "slug": "ftc-amway-225-million-mlm-proposed-settlement-2026",
+    "title": "Amway's Proposed $225 Million FTC Deal Is Not a Refund Form Yet",
+    "description": "The FTC says a proposed Amway settlement would fund redress for harmed sellers and change recruitment practices. No claim instructions were announced in the September 17 release.",
+    "author": "David Chen",
+    "body": [
+      "The FTC and Washington state announced a proposed $225 million order September 17 involving Amway and two approved-provider groups, World Wide Group and Leadership Team Development. The agencies allege misleading earnings claims and pressure to buy products and training. Nearly all of the proposed monetary relief would be used to compensate certain harmed participants. That is not an announced check for every person who ever joined Amway.",
+      "In its complaint, the FTC alleges that most participants joining the two groups after 2020 spent more on products and training than they made from Amway. The proposed order would require stronger sales records and outside auditing, reduce certain incentives tied to recruits' purchases and bar the groups from charging new participants for training in their first year. These are allegations and proposed remedies; a stipulated final order has force only after court approval and signature.",
+      "The FTC explicitly said it would provide redress-program information later. As of that release, there was no official FTC claim form, payout date or eligibility test to complete. Anyone approached with an 'Amway refund' request for an upfront fee should verify it on the FTC's own case or refund pages before responding. Independent sellers considering any MLM should compare actual net income after inventory, travel and training costs, not only gross sales or recruitment promises."
+    ],
+    "sources": [
+      {
+        "label": "FTC September 17 Amway proposed-order announcement",
+        "url": "https://www.ftc.gov/news-events/news/press-releases/2026/09/ftc-takes-historic-action-against-multilevel-marketing-operator-amway-unfair-deceptive-business"
+      }
+    ],
+    "internal_links": [
+      {
+        "label": "Financialist small-business and money topics",
+        "path": "/topics"
+      }
+    ],
+    "date_published": "2026-09-28T13:49:47-04:00",
+    "date_modified": "2026-09-28T13:49:47-04:00"
+  },
+  {
+    "slug": "fed-stablecoin-reserve-capital-rules-proposal-september-2026",
+    "title": "Fed's Stablecoin Plan: Full Reserves Proposed, Not Yet Required by This Rule",
+    "description": "The Fed's September 24 proposals would set reserves, capital and application rules for issuers it supervises. The comment window depends on Federal Register publication.",
+    "author": "James Park",
+    "body": [
+      "The Federal Reserve released two stablecoin proposals September 24 under the GENIUS Act. One would require payment-stablecoin issuers supervised by the Board to fully back their coins with eligible reserve assets, including certain short-term Treasury bills and other liquid assets. It would also set standardized capital and risk-management standards. Those are proposals, not a declaration that a buyer's particular stablecoin already satisfies them.",
+      "A separate proposal would set an application process for Board-supervised banks seeking approval to issue payment stablecoins. Applicants would submit a business plan and financial information, with procedures for appeals and decisions. The Fed also proposes rules for supervised firms safeguarding reserve assets and clarification of bank stablecoin activities.",
+      "The Fed says comments close 60 days after publication in the Federal Register, rather than giving a fixed date in its September 24 release. A stablecoin holder should check who issues the token, what claims the holder has against that issuer and the current reserve disclosures. Do not treat a proposed federal framework as deposit insurance, an investment return or a guarantee that one token can always be redeemed at par."
+    ],
+    "sources": [
+      {
+        "label": "Federal Reserve September 24 stablecoin proposals",
+        "url": "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20260924a.htm"
+      }
+    ],
+    "internal_links": [
+      {
+        "label": "Financialist money-rights hub",
+        "path": "/money-rights"
+      }
+    ],
+    "date_published": "2026-09-28T13:49:47-04:00",
+    "date_modified": "2026-09-28T13:49:47-04:00"
+  },
+  {
+    "slug": "ftc-corteva-pesticide-loyalty-settlement-farmer-prices-2026",
+    "title": "FTC's Corteva Deal Targets Pesticide Prices, Not Immediate Farmer Refunds",
+    "description": "A September 28 proposed FTC-Corteva order would end certain distributor loyalty terms for 10 years. Farmers may gain generic choices, but no personal refund was announced.",
+    "author": "David Chen",
+    "body": [
+      "The Federal Trade Commission and state attorneys general announced a September 28 proposed settlement with Corteva over pesticide-distributor loyalty terms. The FTC says the program deterred distributors from carrying generic competitors after pesticide patents expired. The agreement would restrict those practices for 10 years, potentially making lower-priced products easier for farmers to buy. That is a competition remedy, not a price guarantee at the next farm-supply purchase.",
+      "The FTC's 2022 lawsuit alleges that distributors received end-of-year incentives for buying nearly all of certain pesticide ingredients from Corteva, excluding lower-priced competitors. Under the proposed order, Corteva could not condition distributor benefits on buying more than 50% of a given active ingredient from it or restrict generic purchases to under 50%. The order would extend across Corteva's post-patent active ingredients, not only the examples in the lawsuit.",
+      "The commission said the Corteva agreement resolves only its claims against that company; litigation against Syngenta continues. The proposed order was filed in federal court and would become enforceable upon court approval. The release mentions money to state plaintiffs, but does not announce an individual farmer-refund or claim process. Farmers comparing pesticide offers should ask distributors for equivalent active ingredients, product labels and current prices rather than assuming the lawsuit has already lowered every price."
+    ],
+    "sources": [
+      {
+        "label": "FTC and states, September 28 proposed Corteva settlement",
+        "url": "https://www.ftc.gov/news-events/news/press-releases/2026/09/ftc-states-win-protections-lower-pesticide-prices-american-farmers-antitrust-case-against-corteva"
+      }
+    ],
+    "internal_links": [
+      {
+        "label": "Financialist small-business topics",
+        "path": "/topics"
+      }
+    ],
+    "date_published": "2026-09-28T13:49:47-04:00",
+    "date_modified": "2026-09-28T13:49:47-04:00"
+  },
+  {
+    "slug": "ice-august-2026-mortgage-delinquency-foreclosure-data",
+    "title": "Mortgage Delinquencies Hit 3.53% in August. The Headline Needs Context",
+    "description": "ICE's September 28 first look says August mortgage delinquency rose to 3.53%, partly a calendar effect, while serious late payments rose year over year.",
+    "author": "James Park",
+    "body": [
+      "ICE Mortgage Technology's September 28 first look puts the August 2026 national mortgage delinquency rate at 3.53%, up 0.14 percentage point from July. The company says this rise was effectively flat after a calendar-driven decline the month before. A one-month move alone is not evidence of a sudden foreclosure wave.",
+      "The more concerning measure is serious delinquency: ICE estimates 574,000 loans were seriously delinquent at the end of August, up 11,000 for the month and 19% from a year earlier. It puts that share at 1.04% of active loans. Foreclosure starts fell 6% in August but remained 29% above a year earlier. Pre-sale foreclosure inventory was 0.54% of active loans, unchanged for the month but up by 89,000 loans, or 41%, over the year.",
+      "These are ICE estimates extrapolated from its loan-level mortgage database, not a census of every borrower. Its release says whole-number loan counts are generally rounded. A borrower behind on payments should contact their servicer before ignoring a notice and can seek a HUD-approved housing counselor; the data does not determine anyone's eligibility for help. The separate OCC and FHFA second-quarter reports cover different loan populations and time windows, so their percentages are not interchangeable with ICE's August figure."
+    ],
+    "sources": [
+      {
+        "label": "ICE Mortgage Technology, August first look published September 28",
+        "url": "https://mortgagetech.ice.com/resources/data-reports/first-look-at-august-2026-mortgage-data"
+      },
+      {
+        "label": "HUD avoiding foreclosure resources",
+        "url": "https://www.hud.gov/helping-americans/avoiding-foreclosure"
+      }
+    ],
+    "internal_links": [
+      {
+        "label": "Financialist mortgage-shopping guide",
+        "path": "/guides/best-mortgage-lenders"
+      },
+      {
+        "label": "Debt payoff calculator",
+        "path": "/tools/debt-payoff-calculator"
+      }
+    ],
+    "date_published": "2026-09-28T13:49:47-04:00",
+    "date_modified": "2026-09-28T13:49:47-04:00"
+  },
+  {
+    "slug": "irs-farmland-sale-tax-installments-proposed-rules-2026",
+    "title": "Selling Farmland? IRS Proposes How Four-Year Tax Payments Would Work",
+    "description": "The IRS released proposed rules September 28 for qualifying farmland sellers to pay tax on gain over four annual installments. The proposal is not a general tax extension.",
+    "author": "James Park",
+    "body": [
+      "The IRS and Treasury issued proposed regulations September 28 on a narrow tax election for qualifying sales or exchanges of farmland to an individual actively engaged in farming. Section 1062 allows an eligible seller to pay the tax attributable to the gain in four equal annual installments, rather than all at once. That does not mean the entire sale price is tax-free or that every land sale qualifies.",
+      "According to the IRS release, eligible U.S. real property generally must have been used for farming, or leased to a qualified farmer, during substantially all of the preceding 10 years. A legally enforceable restriction must generally keep the property in farming for 10 years after sale. The buyer must be an individual actively farming. Qualifying transactions are in taxable years beginning after July 4, 2025.",
+      "The proposal says each installment would be 25% of the applicable tax liability. The first would generally be due by the regular return due date for the sale year without regard to extensions; later installments would be due on following years' regular return due dates. Proposed rules also explain pass-through entities and temporary gaps in farming use. The IRS is taking comments through November 30, 2026. A seller considering this election should review current statute, the proposal and their specific facts with a tax professional before closing."
+    ],
+    "sources": [
+      {
+        "label": "IRS September 28 proposed-regulation announcement",
+        "url": "https://www.irs.gov/newsroom/treasury-irs-issue-proposed-regulations-on-installment-payments-for-tax-on-certain-farmland-sales"
+      }
+    ],
+    "internal_links": [
+      {
+        "label": "Financialist tax topics",
+        "path": "/topics"
+      }
+    ],
+    "date_published": "2026-09-28T13:49:47-04:00",
+    "date_modified": "2026-09-28T13:49:47-04:00"
+  },
+  {
+    "slug": "oreilly-text-message-settlement-claim-deadline-september-28-2026",
+    "title": "O'Reilly Text Settlement Claims Close Today: Who May Get Up to $22",
+    "description": "A proposed O'Reilly Automotive text-message settlement has a September 28 claim deadline. Eligibility is narrow, payment is not guaranteed, and court approval remains pending.",
+    "author": "David Chen",
+    "body": [
+      "A proposed settlement over O'Reilly Automotive marketing texts has a claim deadline today, September 28, 2026. The case concerns people who received two or more texts after their number was assigned to them while it was on the National Do Not Call Registry. A person with a qualifying claim may receive up to $22, but the amount may be reduced if claims exceed the fund. This is not a payment to every O'Reilly customer.",
+      "The settlement site's notice says a claimant's application may be denied if they made an online or in-store O'Reilly purchase during the 18 months before the texts. O'Reilly denies wrongdoing, and a court has not ruled on the merits. The court must still approve the settlement before payment; the claims deadline is not the payment date.",
+      "The site says online claims must be submitted September 28, or paper claims postmarked by that date. The same page lists a separate objection deadline of October 6. Before sharing personal information, check the court case number, Bryan v. O'Reilly Automotive, Inc., No. 2026CH000016, and check the settlement administrator site linked in the court notice yourself. Financialist has not authenticated any individual unsolicited settlement message; do not treat a text asking for a fee or bank password as proof you qualify."
+    ],
+    "sources": [
+      {
+        "label": "Settlement administrator's case notice and deadlines, checked September 28",
+        "url": "https://oreillyrndsettlement.com/"
+      },
+      {
+        "label": "LaSalle County preliminary approval order, e-filed June 29, hosted by ClassAction.org",
+        "url": "https://www.classaction.org/media/oreilly-prelim-approval.pdf"
+      }
+    ],
+    "internal_links": [
+      {
+        "label": "Financialist money-rights guides",
+        "path": "/money-rights"
+      }
+    ],
+    "date_published": "2026-09-28T13:49:47-04:00",
+    "date_modified": "2026-09-28T13:49:47-04:00"
+  },
+  {
     "slug": "florida-home-insurance-rate-cuts-four-companies-2026",
     "title": "Florida Clears Four Home Insurance Rate Cuts. Will Your Renewal Be Cheaper?",
     "description": "Florida says four approved insurer rate decreases affect more than 62,000 policies. The cuts take effect at renewal and do not guarantee a lower bill for every homeowner.",
