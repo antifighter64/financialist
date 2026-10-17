@@ -1,0 +1,494 @@
+<!--
+  ============================================================================
+  FINANCIALIST.COM — Top 10 Home Insurance Companies (DRAFT)
+  ----------------------------------------------------------------------------
+  STATUS: DO NOT PUBLISH AS-IS. Specs below (AM Best ratings, discounts,
+  coverage features) are realistic framings labeled "as of Oct 2026" but
+  MUST be verified before this page goes live. NO premium quotes are shown —
+  home insurance prices vary by state, home value, and risk factors, and any
+  quoted figure would be stale instantly.
+  AFFILIATE LINKS: all hrefs are placeholders ("#affiliate-link-*") marked
+  data-affiliate="pending". No live affiliate links exist for this vertical.
+  Swap each with the real tracking URL; keep the data-affiliate attribute
+  in sync. Every CTA is preceded by an <!-- AFFILIATE PLACEHOLDER --> comment.
+  Module anatomy modeled on NerdWallet/Bankrate teardown (Oct 2026 research).
+  ============================================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10 Best Home Insurance Companies of October 2026 | Financialist</title>
+<meta name="description" content="Compare the 10 best home insurance companies of October 2026: ratings, financial strength, discounts and coverage. Filter, sort and compare side by side.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1a365d; --navy2:#234876; --ink:#1f2937; --muted:#6b7280;
+    --line:#e5e7eb; --bg:#f8fafc; --card:#ffffff; --green:#16a34a; --green-d:#15803d;
+    --gold:#f59e0b; --blue:#2563eb; --radius:12px;
+  }
+  *{box-sizing:border-box}
+  body{font-family:'Inter',-apple-system,'Segoe UI',Roboto,sans-serif;color:var(--ink);margin:0;background:var(--bg);line-height:1.55}
+  .fin-wrap{max-width:1080px;margin:0 auto;padding:0 16px 120px}
+  .fin-topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0;flex-wrap:wrap}
+  .fin-brand{font-weight:800;font-size:20px;color:var(--navy);text-decoration:none}
+  .fin-brand span{color:var(--green)}
+  .disclosure-btn{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:13px;font-weight:600;color:var(--navy);cursor:pointer}
+  .disclosure-btn:hover{border-color:var(--navy)}
+  .fin-updated{font-size:12px;color:var(--muted)}
+  h1{font-size:30px;color:var(--navy);margin:8px 0 6px;letter-spacing:-.5px}
+  .lede{color:#374151;font-size:16px;max-width:760px;margin:0 0 4px}
+  .rates-note{font-size:12px;color:var(--muted);margin:0 0 18px}
+  .filter-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:18px 0;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;position:sticky;top:0;z-index:20}
+  .pill{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 14px;font-size:13px;font-weight:600;color:#374151;cursor:pointer}
+  .pill.active{background:var(--navy);border-color:var(--navy);color:#fff}
+  .sort-wrap{margin-left:auto;display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+  .sort-wrap select{border:1px solid var(--line);border-radius:8px;padding:7px 10px;font-size:13px;font-weight:600;color:var(--ink);background:#fff}
+  .result-count{font-size:13px;color:var(--muted);margin:6px 2px 10px}
+  .table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:#fff;margin-bottom:34px}
+  .glance-h2{font-size:20px;color:var(--navy);margin:26px 0 10px}
+  table.cmp{width:100%;border-collapse:collapse;min-width:760px;font-size:14px}
+  table.cmp thead th{background:var(--navy);color:#fff;text-align:left;padding:12px 14px;font-size:12.5px;text-transform:uppercase;letter-spacing:.4px;white-space:nowrap;cursor:pointer;user-select:none}
+  table.cmp thead th .arrow{opacity:.7;font-size:11px}
+  table.cmp tbody td{padding:14px;border-top:1px solid var(--line);vertical-align:middle}
+  table.cmp tbody tr:hover{background:#f1f5f9}
+  .t-rank{font-weight:800;color:var(--navy);font-size:16px}
+  .t-name{font-weight:700;color:var(--navy)}
+  .t-name a{color:var(--navy);text-decoration:none}
+  .t-name a:hover{text-decoration:underline}
+  .t-apply{display:flex;flex-direction:column;gap:6px}
+  .btn{display:inline-block;text-align:center;font-weight:700;border-radius:8px;cursor:pointer;text-decoration:none;border:none}
+  .btn-apply{background:var(--green);color:#fff;padding:10px 16px;font-size:13.5px;text-transform:uppercase;letter-spacing:.3px}
+  .btn-apply:hover{background:var(--green-d)}
+  .btn-apply .lock{font-size:12px}
+  .rates-link{font-size:12.5px;color:var(--blue);text-decoration:none}
+  .rates-link:hover{text-decoration:underline}
+  .stars{position:relative;display:inline-block;font-size:15px;line-height:1;letter-spacing:2px;color:#d1d5db;white-space:nowrap}
+  .stars .fill{position:absolute;left:0;top:0;overflow:hidden;color:var(--gold);white-space:nowrap}
+  .rating-num{font-weight:700;font-size:13px;color:var(--ink);margin-left:6px}
+  .aff-tag{font-size:10px;font-weight:700;background:#fef3c7;color:#92400e;border:1px solid #fcd34d;border-radius:4px;padding:1px 5px;margin-left:6px;vertical-align:middle}
+  .mod{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-bottom:22px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+  .mod-top{display:flex;gap:20px;flex-wrap:wrap}
+  .mod-visual{flex:0 0 170px}
+  .brand-art{display:block;width:170px;height:108px;border-radius:10px;background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;text-decoration:none;position:relative;overflow:hidden;box-shadow:0 4px 10px rgba(26,54,93,.25)}
+  .brand-art::after{content:"";position:absolute;right:-30px;top:-30px;width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.08)}
+  .brand-art .init{position:absolute;left:14px;bottom:10px;font-size:26px;font-weight:800;letter-spacing:1px}
+  .brand-art .sub{position:absolute;left:14px;top:12px;font-size:12px;font-weight:600;opacity:.85}
+  .mod-main{flex:1;min-width:260px}
+  .pick-label{font-size:13px;font-weight:800;color:var(--green-d);text-transform:uppercase;letter-spacing:.5px;margin:0 0 4px}
+  .award{display:inline-block;background:var(--navy);color:#fff;font-size:11px;font-weight:700;border-radius:4px;padding:3px 8px;margin-bottom:8px;letter-spacing:.4px}
+  .rank-badge{display:inline-block;background:var(--navy);color:#fff;font-weight:800;font-size:15px;border-radius:8px;padding:5px 12px;margin-bottom:8px;letter-spacing:.4px;margin-right:8px}
+  .mod-name{font-size:21px;font-weight:800;color:var(--navy);margin:0 0 4px}
+  .mod-name a{color:var(--navy);text-decoration:none}
+  .mod-rating{display:flex;align-items:center;gap:8px;margin:6px 0 10px;flex-wrap:wrap}
+  .method-link{font-size:12.5px;color:var(--blue);text-decoration:none}
+  .method-link:hover{text-decoration:underline}
+  .compare-check{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:#374151;margin:8px 0;cursor:pointer}
+  .compare-check input{width:16px;height:16px;accent-color:var(--navy);cursor:pointer}
+  .cta-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0 4px}
+  .btn-big{padding:13px 26px;font-size:15px}
+  .why-like{background:#f0fdf4;border-left:4px solid var(--green);padding:10px 14px;font-size:14px;border-radius:0 8px 8px 0;margin:12px 0;color:#14532d}
+  .why-like strong{color:var(--green-d)}
+  .spec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0}
+  .spec{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+  .spec .k{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--muted)}
+  .spec .v{font-size:14px;font-weight:600;color:var(--ink);margin-top:2px}
+  details.mod-details{border-top:1px solid var(--line);margin-top:12px;padding-top:10px}
+  details.mod-details summary{cursor:pointer;font-weight:700;color:var(--navy);font-size:14px;padding:6px 0}
+  .pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px;font-size:14px}
+  .pros-cons h4{margin:0 0 6px;font-size:13px;text-transform:uppercase;letter-spacing:.4px}
+  .pros h4{color:var(--green-d)} .cons h4{color:#b91c1c}
+  .pros-cons ul{margin:0;padding-left:18px}
+  .pros-cons li{margin-bottom:4px}
+  .take{font-size:14px;color:#374151;margin-top:10px}
+  .methodology{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-top:10px}
+  .methodology h2{color:var(--navy);font-size:20px;margin-top:0}
+  .methodology p,.methodology li{font-size:14px;color:#374151}
+  .compare-tray{position:fixed;left:0;right:0;bottom:0;background:var(--navy);color:#fff;padding:12px 16px;display:none;z-index:50;box-shadow:0 -4px 16px rgba(0,0,0,.2)}
+  .compare-tray.show{display:block}
+  .tray-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .tray-items{display:flex;gap:8px;flex-wrap:wrap;flex:1}
+  .tray-item{background:rgba(255,255,255,.12);border-radius:8px;padding:6px 10px;font-size:13px;font-weight:600;display:flex;gap:8px;align-items:center}
+  .tray-item button{background:none;border:none;color:#fca5a5;font-size:15px;cursor:pointer;line-height:1}
+  .btn-compare-now{background:var(--gold);color:#1f2937;padding:10px 20px;font-size:14px}
+  .btn-compare-now:hover{background:#d97706;color:#fff}
+  .modal-back{position:fixed;inset:0;background:rgba(15,23,42,.6);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+  .modal-back.show{display:flex}
+  .modal{background:#fff;border-radius:14px;max-width:640px;width:100%;max-height:88vh;overflow:auto;padding:28px;position:relative}
+  .modal.wide{max-width:960px}
+  .modal h2{color:var(--navy);margin-top:0;font-size:22px}
+  .modal p{font-size:14.5px;color:#374151}
+  .modal-close{position:absolute;top:12px;right:14px;background:none;border:none;font-size:24px;cursor:pointer;color:var(--muted)}
+  .cmp-side{width:100%;border-collapse:collapse;font-size:13.5px;min-width:560px}
+  .cmp-side th,.cmp-side td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+  .cmp-side th{background:var(--navy);color:#fff;font-size:14px}
+  .cmp-side tr td:first-child{font-weight:700;background:var(--bg);white-space:nowrap}
+  @media(max-width:640px){
+    h1{font-size:24px}
+    .mod{padding:16px}
+    .pros-cons{grid-template-columns:1fr}
+    .sort-wrap{margin-left:0}
+    .brand-art{width:150px;height:96px}
+  }
+</style>
+</head>
+<body>
+<div class="fin-wrap">
+  <div class="fin-topbar">
+    <a class="fin-brand" href="/">Financialist<span>.com</span></a>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <span class="fin-updated">Last updated: October 2026 · Fact checked ✓</span>
+      <button class="disclosure-btn" id="openDisclosure">Advertiser disclosure</button>
+    </div>
+  </div>
+
+  <h1>10 Best Home Insurance Companies of October 2026</h1>
+  <p class="lede">Your home is probably your biggest asset — the insurer behind it matters as much as the price. We ranked these companies on coverage quality, pricing power and discounts, financial strength and claims, and digital experience — then you can filter, sort, and compare them side by side before you get a quote.</p>
+  <p class="rates-note">We don't show premium quotes as current prices — home insurance rates vary by state, home value, construction, and risk factors, and change constantly. AM Best ratings shown as of October 2026; confirm current terms and financial ratings on each insurer's site before buying.</p>
+
+  <div class="filter-bar" id="filterBar">
+    <button class="pill active" data-filter="all">All insurers</button>
+    <button class="pill" data-filter="high-value">High-value homes</button>
+    <button class="pill" data-filter="digital">Digital / fast claims</button>
+    <button class="pill" data-filter="bundling">Bundling</button>
+    <button class="pill" data-filter="regional">Regional</button>
+    <div class="sort-wrap">
+      <label for="sortSel">Sort by</label>
+      <select id="sortSel">
+        <option value="featured">Featured</option>
+        <option value="rating">Highest rating</option>
+      </select>
+    </div>
+  </div>
+  <div class="result-count" id="resultCount"></div>
+
+  <h2 class="glance-h2">Our top picks at a glance</h2>
+  <div class="table-scroll">
+    <table class="cmp" id="cmpTable">
+      <thead><tr>
+        <th data-sort="rank">Rank <span class="arrow">↕</span></th>
+        <th data-sort="name">Insurer <span class="arrow">↕</span></th>
+        <th data-sort="rating">Rating <span class="arrow">↕</span></th>
+        <th>AM Best rating</th>
+        <th>Standout feature</th>
+        <th>Key discounts</th>
+        <th>Get a quote</th>
+      </tr></thead>
+      <tbody id="cmpBody"></tbody>
+    </table>
+  </div>
+
+  <div id="modules"></div>
+
+<section class="related-guides" style="margin:32px 0">
+<h2>Related Financialist guides</h2>
+<ul style="list-style:none;padding:0;margin:0">
+<li style="margin:10px 0"><a href="/guides/top-10-auto-insurance">10 Best Car Insurance Companies of 2026</a></li>
+<li style="margin:10px 0"><a href="/guides/top-10-life-insurance">10 Best Life Insurance Companies of 2026</a></li>
+<li style="margin:10px 0"><a href="/articles/small-business-insurance-quotes">Small Business Insurance Quotes</a></li>
+<li style="margin:10px 0"><a href="/viral/emergency-fund-how-much">Emergency Fund: How Much Do You Need?</a></li>
+</ul>
+</section>
+
+  <section class="methodology" id="methodology">
+    <h2>How Financialist rates home insurers</h2>
+    <p>Every insurer gets a score from 0 to 5. Our analysts weigh what matters most to real homeowners:</p>
+    <ul>
+      <li><strong>Coverage quality (30%)</strong> — dwelling, personal property, liability, loss of use, plus valuable add-ons (extended replacement cost, water backup, equipment breakdown, ordinance coverage).</li>
+      <li><strong>Pricing &amp; discounts (25%)</strong> — competitiveness of base rates and discount depth (bundling, protective devices, claims-free, new home).</li>
+      <li><strong>Financial strength &amp; claims (25%)</strong> — AM Best financial-strength ratings, claims satisfaction, and complaint records.</li>
+      <li><strong>Digital experience (20%)</strong> — quoting, policy management, and claims filing online and in-app.</li>
+    </ul>
+    <p>Partners who compensate us cannot pay for a higher rating or a better placement. <a href="#" class="method-link" id="openDisclosure2">Read our advertiser disclosure</a>.</p>
+  </section>
+</div>
+
+<div class="compare-tray" id="tray">
+  <div class="tray-inner">
+    <strong>Compare (<span id="trayCount">0</span>/3):</strong>
+    <div class="tray-items" id="trayItems"></div>
+    <button class="btn btn-compare-now" id="compareNow">Compare now</button>
+  </div>
+</div>
+
+<div class="modal-back" id="disclosureBack">
+  <div class="modal">
+    <button class="modal-close" data-close="disclosureBack">×</button>
+    <h2>You're our first priority. Every time.</h2>
+    <p>Many or all of the products featured here are from our partners who compensate us. That may influence which products we write about and where and how they appear on a page.</p>
+    <p><strong>It does not influence our evaluations.</strong> Our ratings are set by our editorial team using the published methodology above. Partners cannot pay for favorable reviews, higher ratings, or better placement.</p>
+    <p>When you click "Get a quote" you leave Financialist.com and go to the insurer's secure site. If you buy a policy, we may earn a commission — at no cost to you.</p>
+  </div>
+</div>
+
+<div class="modal-back" id="compareBack">
+  <div class="modal wide">
+    <button class="modal-close" data-close="compareBack">×</button>
+    <h2>Side-by-side comparison</h2>
+    <div style="overflow-x:auto"><table class="cmp-side" id="sideTable"></table></div>
+  </div>
+</div>
+
+<script>
+const PRODUCTS = [
+  {
+    id:'usaa', name:'USAA', init:'USAA',
+    pick:'Best for military families', badge:'2026 BEST FOR MILITARY FAMILIES', rating:4.9,
+    affiliate:'#affiliate-link-usaa-home', affStatus:'pending', cta:'GET A QUOTE', ctaSub:'See your rate',
+    cats:['bundling'], creditNum:0,
+    t1:'A++', t2:'Eligibility: military members, veterans & families', t3:'Bundling, protective devices, claims-free', t4:'Replacement cost, military uniform coverage, flood (via NFIP)',
+    why:'If you qualify, USAA pairs elite pricing with replacement-cost coverage and service scores the industry envies.',
+    pros:['Exceptionally low rates for members','Replacement-cost coverage standard','Covers military uniforms and deployment gear','Top-tier claims satisfaction'],
+    cons:['Membership restricted to the military community','Not available to the general public'],
+    take:'Eligible homeowners should quote USAA before anyone else — the combination of price and coverage is unmatched.'
+  },
+  {
+    id:'state-farm', name:'State Farm', init:'SF',
+    pick:'Best overall home insurer', badge:'2026 BEST OVERALL HOME INSURER', rating:4.8,
+    affiliate:'#affiliate-link-state-farm-home', affStatus:'pending', cta:'GET A QUOTE', ctaSub:'See your rate',
+    cats:['bundling'], creditNum:0,
+    t1:'A++', t2:'Largest U.S. home insurer; 19,000+ agents', t3:'Bundling, protective devices, roofing', t4:'Increased-cost endorsement, energy-efficiency upgrades',
+    why:'The biggest home insurer in America — scale, agent support, and endorsements that cover modern risks.',
+    pros:['Largest market share — deep claims resources','Huge local agent network','Strong endorsement menu (increased dwelling limit)','Excellent financial strength'],
+    cons:['Base rates can be high in catastrophe-prone states','Digital tools lag pure-direct rivals'],
+    take:'The default first quote for most homeowners. An agent can walk the property and catch coverage gaps a web form misses.'
+  },
+  {
+    id:'chubb', name:'Chubb', init:'Chubb',
+    pick:'Best for high-value homes', badge:'2026 BEST FOR HIGH-VALUE HOMES', rating:4.7,
+    affiliate:'#affiliate-link-chubb', affStatus:'pending', cta:'GET A QUOTE', ctaSub:'See your rate',
+    cats:['high-value'], creditNum:0,
+    t1:'A++', t2:'Masterpiece coverage; extended replacement cost', t3:'Protective devices, wildfire defense', t4:'Cash settlement option, valuables, water damage',
+    why:'For homes that outgrow standard policies, Chubb\u2019s Masterpiece line is the industry benchmark.',
+    pros:['Extended replacement cost up to policy limits','Cash settlement — rebuild or take the money','White-glove claims for luxury homes','Strong wildfire and water-damage provisions'],
+    cons:['Premium pricing — not a budget play','Aimed at higher-value homes, not every buyer'],
+    take:'If your home\u2019s replacement cost is well above average, a standard policy will leave you underinsured. Get the Chubb quote.'
+  },
+  {
+    id:'erie-insurance', name:'Erie Insurance', init:'Erie',
+    pick:'Best regional value', badge:'2026 BEST REGIONAL PICK', rating:4.5,
+    affiliate:'#affiliate-link-erie-insurance-home', affStatus:'pending', cta:'GET A QUOTE', ctaSub:'See your rate',
+    cats:['regional','bundling'], creditNum:0,
+    t1:'A+', t2:'Guaranteed replacement cost option', t3:'Bundling, protective devices, advance quote', t4:'Guaranteed replacement cost, personal injury',
+    why:'Guaranteed replacement cost and loyal agents make Erie a standout — where it operates.',
+    pros:['Guaranteed replacement cost option','Excellent regional claims service','Competitive rates in its footprint','Strong bundling with auto'],
+    cons:['Only available in 12 states plus D.C.','Fewer digital tools than national giants'],
+    take:'In-footprint homeowners should make Erie one of their three quotes — the replacement-cost guarantee is rare.'
+  },
+  {
+    id:'travelers', name:'Travelers', init:'T',
+    pick:'Best for green and smart homes', badge:'', rating:4.4,
+    affiliate:'#affiliate-link-travelers-home', affStatus:'pending', cta:'GET A QUOTE', ctaSub:'See your rate',
+    cats:['bundling'], creditNum:0,
+    t1:'A++', t2:'Green home and smart-device discounts', t3:'Protective devices, bundling, new home', t4:'Replacement cost, valuable items, identity fraud',
+    why:'Travelers rewards the modern home — smart devices, green construction, and new builds all earn discounts.',
+    pros:['Top-tier financial strength (A++)','Green home discount','Smart-home device discounts','Strong bundling with auto'],
+    cons:['Fewer local agents than State Farm','Quote process can be slower'],
+    take:'Newer or smart-equipped homes should quote here — the device and green discounts stack nicely.'
+  },
+  {
+    id:'allstate', name:'Allstate', init:'A',
+    pick:'Best for customizable coverage', badge:'', rating:4.4,
+    affiliate:'#affiliate-link-allstate-home', affStatus:'pending', cta:'GET A QUOTE', ctaSub:'See your rate',
+    cats:['bundling'], creditNum:0,
+    t1:'A+', t2:'HostAdvantage (home-sharing) endorsement', t3:'Bundling, protective devices, new homebuyer', t4:'HostAdvantage, water backup, scheduled property',
+    why:'Allstate\u2019s endorsement menu is one of the deepest — including coverage built for Airbnb-style hosting.',
+    pros:['HostAdvantage for short-term rentals','Deep endorsement menu','Large agent network','Claim RateGuard options in some states'],
+    cons:['Premiums can run high before discounts','Discount stacking needed for best prices'],
+    take:'Rent out a room or the whole house? Allstate\u2019s HostAdvantage is purpose-built for that — most insurers exclude it.'
+  },
+  {
+    id:'american-family', name:'American Family', init:'AmFam',
+    pick:'Best for first-time homeowners', badge:'', rating:4.4,
+    affiliate:'#affiliate-link-american-family-home', affStatus:'pending', cta:'GET A QUOTE', ctaSub:'See your rate',
+    cats:['bundling'], creditNum:0,
+    t1:'A', t2:'Diminishing deductible rewards', t3:'Bundling, protective devices, generational', t4:'Diminishing deductible, matching siding/roofing',
+    why:'First-time buyers get clear guidance, a diminishing deductible, and coverage for the surprises older homes hide.',
+    pros:['Diminishing deductible rewards claim-free years','Matching siding and roofing coverage','Strong agent guidance for new buyers','Generational and bundling discounts'],
+    cons:['Not available in all states','Rates less competitive in some coastal markets'],
+    take:'A friendly first policy: the diminishing deductible quietly lowers your out-of-pocket every claim-free year.'
+  },
+  {
+    id:'lemonade', name:'Lemonade', init:'Lem',
+    pick:'Best for fast digital claims', badge:'2026 BEST DIGITAL EXPERIENCE', rating:4.3,
+    affiliate:'#affiliate-link-lemonade-home', affStatus:'pending', cta:'GET A QUOTE', ctaSub:'See your rate',
+    cats:['digital'], creditNum:0,
+    t1:'A (as of Oct 2026 — verify)', t2:'AI claims; 2%-flat-fee model; B-Corp', t3:'Protective devices, bundling (with pet/auto)', t4:'Standard HO-3/HO-4; add-ons via partners',
+    why:'Quote in minutes, file claims by chat, get paid in hours — Lemonade rebuilt home insurance around a phone.',
+    pros:['Fastest quote and claims experience','Transparent flat-fee business model','Giveback program donates leftover premiums','Competitive for condos and renters'],
+    cons:['Thinner coverage menu than legacy insurers','Availability and coverage vary by state','Financial-strength rating less established'],
+    take:'Ideal if you want insurance that works like an app. Complex homes should still compare against a full-service insurer.'
+  },
+  {
+    id:'nationwide', name:'Nationwide', init:'N',
+    pick:'Best for bundling home and auto', badge:'', rating:4.3,
+    affiliate:'#affiliate-link-nationwide-home', affStatus:'pending', cta:'GET A QUOTE', ctaSub:'See your rate',
+    cats:['bundling'], creditNum:0,
+    t1:'A+', t2:'Strong multi-policy bundle savings', t3:'Bundling, protective devices, renovation', t4:'Brand New Belongings, Better Roof Replacement',
+    why:'Nationwide\u2019s Brand New Belongings and roof-replacement upgrades make the bundle more than a discount.',
+    pros:['Brand New Belongings replacement coverage','Better Roof Replacement endorsement','Solid bundle discounts','Renovation credits for updated systems'],
+    cons:['Rates mid-pack without the bundle','Agent quality varies by location'],
+    take:'Quote the home-plus-auto bundle as one number — the endorsements make it competitive beyond the discount.'
+  },
+  {
+    id:'liberty-mutual', name:'Liberty Mutual', init:'LM',
+    pick:'Best for inflation protection', badge:'', rating:4.2,
+    affiliate:'#affiliate-link-liberty-mutual-home', affStatus:'pending', cta:'GET A QUOTE', ctaSub:'See your rate',
+    cats:['bundling'], creditNum:0,
+    t1:'A', t2:'Inflation protection on dwelling limits', t3:'Bundling, protective devices, new home', t4:'Inflation protection, water backup, personal property replacement',
+    why:'Automatic inflation protection keeps your dwelling limit aligned with rebuilding costs — a quiet but valuable feature.',
+    pros:['Inflation protection built in','Wide national availability','Decent endorsement menu','Home-system breakdown coverage available'],
+    cons:['Premiums trend above average','Customer satisfaction scores are mixed'],
+    take:'In high-construction-cost markets, the inflation protection is genuinely useful — just benchmark the premium.'
+  }
+];
+
+let state = {filter:'all', sort:'featured', compare:[]};
+const $ = id => document.getElementById(id);
+const affTag = p => p.affStatus==='pending' ? '<span class="aff-tag" title="Affiliate link pending — swap with tracking URL before publish">LINK PENDING</span>' : '';
+const affCmt = p => `<!-- AFFILIATE PLACEHOLDER: ${p.name} -->`;
+
+function stars(r){
+  const pct = (r/5*100).toFixed(0);
+  return `<span class="stars" aria-label="${r} out of 5 stars">★★★★★<span class="fill" style="width:${pct}%">★★★★★</span></span><span class="rating-num">${r.toFixed(1)}</span>`;
+}
+function filtered(){
+  let list = PRODUCTS.filter(p => state.filter==='all' || p.cats.includes(state.filter));
+  const by = {
+    featured:(a,b)=>b.rating-a.rating,
+    rating:(a,b)=>b.rating-a.rating
+  }[state.sort] || (()=>0);
+  return list.slice().sort(by);
+}
+function renderTable(){
+  const list = filtered();
+  $('resultCount').textContent = `Showing ${list.length} of ${PRODUCTS.length} insurers`;
+  $('cmpBody').innerHTML = list.map((p,i)=>`
+    <tr>
+      <td><span class="t-rank">#${i+1}</span></td>
+      <td><span class="t-name"><a href="${p.affiliate}" data-affiliate="${p.affStatus}">${p.name}</a></span>${affTag(p)}</td>
+      <td>${stars(p.rating)}</td>
+      <td><strong>${p.t1}</strong></td>
+      <td>${p.t2}</td>
+      <td>${p.t3}</td>
+      <td><div class="t-apply">
+        ${affCmt(p)}
+        <a class="btn btn-apply" href="${p.affiliate}" data-affiliate="${p.affStatus}"><span class="lock">🔒</span> ${p.cta}</a>
+        <a class="rates-link" href="${p.affiliate}" data-affiliate="${p.affStatus}">${p.ctaSub}</a>
+        <label class="compare-check"><input type="checkbox" data-cmp="${p.id}" ${state.compare.includes(p.id)?'checked':''}> Add to compare</label>
+      </div></td>
+    </tr>`).join('');
+  bindCompareBoxes();
+}
+function renderModules(){
+  $('modules').innerHTML = filtered().map((p,i)=>`
+  <article class="mod" id="mod-${p.id}">
+    <div class="mod-top">
+      <div class="mod-visual">
+        <a class="brand-art" href="${p.affiliate}" data-affiliate="${p.affStatus}" aria-label="Get a quote from ${p.name}">
+          <span class="sub">${p.pick.replace('Best for ','').replace('Best ','')}</span><span class="init">${p.init}</span>
+        </a>
+      </div>
+      <div class="mod-main">
+        <p class="pick-label">Our pick for: ${p.pick}</p>
+        <div><span class="rank-badge">RANK #${i+1}</span>${p.badge?`<span class="award">🏆 ${p.badge}</span>`:''}</div>
+        <h2 class="mod-name"><a href="${p.affiliate}" data-affiliate="${p.affStatus}">${p.name}</a>${affTag(p)}</h2>
+        <div class="mod-rating">${stars(p.rating)}<a class="method-link" href="#methodology">How are ratings determined?</a></div>
+        <div class="why-like"><strong>Why you'll like this:</strong> ${p.why}</div>
+        <label class="compare-check"><input type="checkbox" data-cmp="${p.id}" ${state.compare.includes(p.id)?'checked':''}> Add to compare</label>
+        <div class="cta-row">
+          ${affCmt(p)}
+          <a class="btn btn-apply btn-big" href="${p.affiliate}" data-affiliate="${p.affStatus}">${p.cta} <span class="lock">🔒</span> on ${p.name}'s secure site</a>
+          <a class="rates-link" href="${p.affiliate}" data-affiliate="${p.affStatus}">${p.ctaSub}</a>
+        </div>
+        <div class="spec-grid">
+          <div class="spec"><div class="k">AM Best rating</div><div class="v">${p.t1}</div></div>
+          <div class="spec"><div class="k">Standout feature</div><div class="v">${p.t2}</div></div>
+          <div class="spec"><div class="k">Key discounts</div><div class="v">${p.t3}</div></div>
+          <div class="spec"><div class="k">Coverage highlights</div><div class="v">${p.t4}</div></div>
+        </div>
+        <details class="mod-details">
+          <summary>Company details, pros &amp; cons</summary>
+          <div class="pros-cons">
+            <div class="pros"><h4>Pros</h4><ul>${p.pros.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+            <div class="cons"><h4>Cons</h4><ul>${p.cons.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+          </div>
+          <p class="take"><strong>Financialist's take:</strong> ${p.take}</p>
+        </details>
+      </div>
+    </div>
+  </article>`).join('');
+  bindCompareBoxes();
+}
+function bindCompareBoxes(){
+  document.querySelectorAll('[data-cmp]').forEach(box=>{
+    box.onchange = ()=>{
+      const id = box.getAttribute('data-cmp');
+      if(box.checked){
+        if(state.compare.length>=3){ box.checked=false; alert('You can compare up to 3 insurers.'); return; }
+        if(!state.compare.includes(id)) state.compare.push(id);
+      } else state.compare = state.compare.filter(x=>x!==id);
+      syncTray();
+      document.querySelectorAll(`[data-cmp="${id}"]`).forEach(b=>{ if(b!==box) b.checked=box.checked; });
+    };
+  });
+}
+function syncTray(){
+  const tray = $('tray');
+  $('trayCount').textContent = state.compare.length;
+  $('trayItems').innerHTML = state.compare.map(id=>{
+    const p = PRODUCTS.find(x=>x.id===id);
+    return `<span class="tray-item">${p.name}<button data-rm="${id}" aria-label="Remove">×</button></span>`;
+  }).join('');
+  tray.classList.toggle('show', state.compare.length>0);
+  document.querySelectorAll('[data-rm]').forEach(b=>b.onclick=()=>{
+    const id=b.getAttribute('data-rm');
+    state.compare=state.compare.filter(x=>x!==id);
+    document.querySelectorAll(`[data-cmp="${id}"]`).forEach(x=>x.checked=false);
+    syncTray();
+  });
+}
+function renderSide(){
+  const ps = state.compare.map(id=>PRODUCTS.find(x=>x.id===id));
+  const rows = [
+    ['Rating', p=>stars(p.rating)],
+    ['AM Best rating', p=>`<strong>${p.t1}</strong>`],
+    ['Standout feature', p=>p.t2],
+    ['Key discounts', p=>p.t3],
+    ['Coverage highlights', p=>p.t4],
+    ['Get a quote', p=>`${affCmt(p)}<a class="btn btn-apply" href="${p.affiliate}" data-affiliate="${p.affStatus}">${p.cta}</a>`]
+  ];
+  $('sideTable').innerHTML =
+    `<tr><th></th>${ps.map(p=>`<th>${p.name}</th>`).join('')}</tr>` +
+    rows.map(([k,fn])=>`<tr><td>${k}</td>${ps.map(p=>`<td>${fn(p)}</td>`).join('')}</tr>`).join('');
+}
+document.querySelectorAll('#filterBar .pill').forEach(pill=>{
+  pill.onclick=()=>{
+    document.querySelectorAll('#filterBar .pill').forEach(x=>x.classList.remove('active'));
+    pill.classList.add('active');
+    state.filter=pill.getAttribute('data-filter');
+    renderTable(); renderModules();
+  };
+});
+$('sortSel').onchange=e=>{ state.sort=e.target.value; renderTable(); };
+document.querySelectorAll('#cmpTable thead th[data-sort]').forEach(th=>{
+  th.onclick=()=>{
+    const k=th.getAttribute('data-sort');
+    state.sort = k==='rating' ? 'rating' : 'featured';
+    renderTable();
+  };
+});
+$('compareNow').onclick=()=>{ if(!state.compare.length) return; renderSide(); $('compareBack').classList.add('show'); };
+const openD=()=>$('disclosureBack').classList.add('show');
+$('openDisclosure').onclick=openD;
+$('openDisclosure2').onclick=e=>{e.preventDefault();openD();};
+document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>$(b.getAttribute('data-close')).classList.remove('show'));
+document.querySelectorAll('.modal-back').forEach(m=>m.addEventListener('click',e=>{ if(e.target===m) m.classList.remove('show'); }));
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') document.querySelectorAll('.modal-back.show').forEach(m=>m.classList.remove('show')); });
+renderTable(); renderModules(); syncTray();
+</script>
+</body>
+</html>

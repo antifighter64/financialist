@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  FINANCIALIST.COM — PERSONAL LOAN QUIZ FUNNEL (FRONT-END DEMO)
+  ----------------------------------------------------------------------------
+  This is a front-end demo only. Leads currently go NOWHERE — there is no
+  backend, no form endpoint, and no ESP/email integration wired up.
+  BEFORE PUBLISHING, you MUST:
+    1. Point the email-capture form at a real endpoint (form action or JS
+       fetch) — e.g. your ESP (Mailchimp, ConvertKit, Klaviyo) or a lead API.
+    2. Replace every "#affiliate-link-SLUG" placeholder href with your live
+       affiliate tracking link (FlexOffers, CJ, Lead Stack Media, etc.).
+    3. Confirm the advertiser disclosure + privacy/consent copy with legal.
+  Real affiliate programs mapped per lender are noted in comments below.
+  ============================================================================
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compare Personal Loan Offers — Financialist</title>
+<meta name="description" content="Answer 4 quick questions and get matched with personal loan lenders for your amount, purpose and credit score.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0f2a4a; --navy-light:#1b3d66; --green:#0e9f6e; --green-dark:#0b7a55;
+    --bg:#f4f6fa; --card:#ffffff; --text:#1a2332; --muted:#64748b;
+    --border:#e2e8f0; --gold:#f5a623; --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:640px;margin:0 auto;padding:24px 16px 64px}
+  .brand{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+  .brand-mark{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px}
+  .brand-name{font-weight:800;font-size:20px;color:var(--navy)}
+  .card{background:var(--card);border-radius:var(--radius);box-shadow:0 4px 24px rgba(15,42,74,.08);padding:32px 28px}
+  @media(max-width:520px){.card{padding:24px 18px}}
+  .step{display:none}
+  .step.active{display:block;animation:fadeIn .3s ease}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .progress{height:8px;background:var(--border);border-radius:99px;overflow:hidden;margin-bottom:24px}
+  .progress-fill{height:100%;background:linear-gradient(90deg,var(--green),#14b87f);border-radius:99px;transition:width .35s ease;width:0%}
+  .step-label{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  h1.q{font-size:24px;font-weight:800;color:var(--navy);margin-bottom:6px}
+  @media(max-width:520px){h1.q{font-size:21px}}
+  p.sub{color:var(--muted);font-size:14px;margin-bottom:20px}
+  .options{display:grid;gap:12px}
+  .opt{display:flex;align-items:center;gap:14px;border:2px solid var(--border);border-radius:12px;padding:16px;cursor:pointer;transition:all .15s ease;background:#fff}
+  .opt:hover{border-color:#b6c6dd}
+  .opt.selected{border-color:var(--green);background:#f0fdf6;box-shadow:0 0 0 1px var(--green)}
+  .opt-emoji{font-size:26px;flex-shrink:0}
+  .opt-title{font-weight:700;font-size:16px}
+  .opt-desc{font-size:13px;color:var(--muted)}
+  .nav{display:flex;justify-content:space-between;align-items:center;margin-top:24px;gap:12px}
+  .btn{border:none;border-radius:10px;font-weight:700;font-size:16px;padding:14px 28px;cursor:pointer;transition:all .15s ease;font-family:inherit}
+  .btn-primary{background:var(--green);color:#fff;flex:1}
+  .btn-primary:hover{background:var(--green-dark)}
+  .btn-primary:disabled{background:#cbd5e1;cursor:not-allowed}
+  .btn-back{background:transparent;color:var(--muted);padding:14px 8px}
+  .btn-back:hover{color:var(--navy)}
+  .error{color:#dc2626;font-size:13px;margin-top:10px;display:none}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-weight:600;font-size:14px;margin-bottom:6px}
+  .field input[type=text],.field input[type=email]{width:100%;border:2px solid var(--border);border-radius:10px;padding:13px 14px;font-size:16px;font-family:inherit;transition:border .15s}
+  .field input:focus{outline:none;border-color:var(--green)}
+  .consent{display:flex;gap:10px;align-items:flex-start;background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:14px;margin:18px 0;font-size:13px;color:var(--muted)}
+  .consent input{margin-top:3px;flex-shrink:0;width:16px;height:16px;accent-color:var(--green)}
+  .privacy-note{font-size:12px;color:var(--muted);text-align:center;margin-top:12px}
+  .privacy-note a,.disclosure a{color:var(--navy-light);text-decoration:underline}
+  .results-head{text-align:center;margin-bottom:20px}
+  .results-head .check{width:56px;height:56px;border-radius:50%;background:#e6f9f0;color:var(--green);font-size:28px;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-weight:800}
+  .rec{border:2px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px;position:relative;background:#fff}
+  .rec.top{border-color:var(--gold);box-shadow:0 4px 20px rgba(245,166,35,.15)}
+  .rec-badge{position:absolute;top:-12px;left:16px;background:var(--gold);color:#fff;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:99px}
+  .rec-name{font-size:18px;font-weight:800;color:var(--navy);margin-bottom:4px}
+  .stars{color:var(--gold);font-size:16px;letter-spacing:2px;margin-bottom:8px}
+  .stars .off{color:#e2e8f0}
+  .rec-why{font-size:14px;color:var(--muted);margin-bottom:12px}
+  .specs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+  .spec{background:#f8fafc;border-radius:8px;padding:10px 12px}
+  .spec-k{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+  .spec-v{font-weight:700;font-size:14px}
+  .apr{font-size:13px;color:var(--green-dark);font-weight:700;margin-bottom:12px}
+  .btn-apply{display:block;width:100%;background:var(--navy);color:#fff;text-align:center;text-decoration:none;border-radius:10px;font-weight:700;font-size:16px;padding:14px;transition:background .15s}
+  .btn-apply:hover{background:var(--navy-light)}
+  .apply-note{font-size:11px;color:var(--muted);text-align:center;margin-top:8px}
+  .disclosure{font-size:12px;color:var(--muted);background:#f8fafc;border-radius:10px;padding:14px;margin-top:24px;line-height:1.6}
+  .restart{text-align:center;margin-top:16px}
+  .restart button{background:none;border:none;color:var(--navy-light);font-weight:600;cursor:pointer;text-decoration:underline;font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">
+    <div class="brand-mark">F</div>
+    <div class="brand-name">Financialist</div>
+  </div>
+
+  <div class="card">
+    <div class="progress"><div class="progress-fill" id="progressFill"></div></div>
+
+    <!-- STEP 1: Loan amount -->
+    <div class="step active" data-step="1">
+      <div class="step-label">Step 1 of 4</div>
+      <h1 class="q">How much do you need to borrow?</h1>
+      <p class="sub">Lenders specialize in different loan sizes — we'll match accordingly.</p>
+      <div class="options" id="opt-amount">
+        <div class="opt" data-val="small"><div class="opt-emoji">💵</div><div><div class="opt-title">Under $5,000</div><div class="opt-desc">Smaller, short-term needs</div></div></div>
+        <div class="opt" data-val="medium"><div class="opt-emoji">💰</div><div><div class="opt-title">$5,000 – $15,000</div><div class="opt-desc">The most common range</div></div></div>
+        <div class="opt" data-val="large"><div class="opt-emoji">🏠</div><div><div class="opt-title">$15,000 – $35,000</div><div class="opt-desc">Major expenses & projects</div></div></div>
+        <div class="opt" data-val="xlarge"><div class="opt-emoji">🏦</div><div><div class="opt-title">$35,000+</div><div class="opt-desc">Large financing needs</div></div></div>
+      </div>
+      <div class="error" id="err-1">Please pick one to continue.</div>
+      <div class="nav"><span></span><button class="btn btn-primary" onclick="nextStep(1)">Continue →</button></div>
+    </div>
+
+    <!-- STEP 2: Purpose -->
+    <div class="step" data-step="2">
+      <div class="step-label">Step 2 of 4</div>
+      <h1 class="q">What will you use the loan for?</h1>
+      <p class="sub">Some lenders offer better rates for specific purposes.</p>
+      <div class="options" id="opt-purpose">
+        <div class="opt" data-val="debt"><div class="opt-emoji">🧾</div><div><div class="opt-title">Consolidate debt</div><div class="opt-desc">Combine high-interest balances</div></div></div>
+        <div class="opt" data-val="home"><div class="opt-emoji">🔨</div><div><div class="opt-title">Home improvement</div><div class="opt-desc">Renovations & repairs</div></div></div>
+        <div class="opt" data-val="purchase"><div class="opt-emoji">🚗</div><div><div class="opt-title">Major purchase</div><div class="opt-desc">Car, wedding, medical & more</div></div></div>
+        <div class="opt" data-val="emergency"><div class="opt-emoji">🚨</div><div><div class="opt-title">Emergency expense</div><div class="opt-desc">Fast funding needed</div></div></div>
+        <div class="opt" data-val="other"><div class="opt-emoji">📋</div><div><div class="opt-title">Something else</div><div class="opt-desc">Other personal use</div></div></div>
+      </div>
+      <div class="error" id="err-2">Please pick one to continue.</div>
+      <div class="nav"><button class="btn btn-back" onclick="prevStep(2)">← Back</button><button class="btn btn-primary" onclick="nextStep(2)">Continue →</button></div>
+    </div>
+
+    <!-- STEP 3: Credit score -->
+    <div class="step" data-step="3">
+      <div class="step-label">Step 3 of 4</div>
+      <h1 class="q">What's your credit score range?</h1>
+      <p class="sub">Your score determines which lenders — and rates — you qualify for.</p>
+      <div class="options" id="opt-score">
+        <div class="opt" data-val="excellent"><div class="opt-emoji">🌟</div><div><div class="opt-title">Excellent (720+)</div><div class="opt-desc">Best rates available</div></div></div>
+        <div class="opt" data-val="good"><div class="opt-emoji">👍</div><div><div class="opt-title">Good (660–719)</div><div class="opt-desc">Competitive offers</div></div></div>
+        <div class="opt" data-val="fair"><div class="opt-emoji">🛠️</div><div><div class="opt-title">Fair (580–659)</div><div class="opt-desc">Specialist lenders</div></div></div>
+        <div class="opt" data-val="poor"><div class="opt-emoji">🌱</div><div><div class="opt-title">Below 580</div><div class="opt-desc">Bad-credit-friendly options</div></div></div>
+      </div>
+      <div class="error" id="err-3">Please pick one to continue.</div>
+      <div class="nav"><button class="btn btn-back" onclick="prevStep(3)">← Back</button><button class="btn btn-primary" onclick="nextStep(3)">Continue →</button></div>
+    </div>
+
+    <!-- STEP 4: Email capture -->
+    <div class="step" data-step="4">
+      <div class="step-label">Step 4 of 4 — almost done</div>
+      <h1 class="q">Where should we send your loan matches?</h1>
+      <p class="sub">Get your 3 matched lenders plus alerts when rates drop in your range.</p>
+      <form id="leadForm" onsubmit="return submitLead(event)">
+        <div class="field">
+          <label for="fname">First name</label>
+          <input type="text" id="fname" name="first_name" placeholder="Alex" autocomplete="given-name">
+        </div>
+        <div class="field">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+        </div>
+        <div class="error" id="err-4">Please enter a valid email and accept the consent below.</div>
+        <label class="consent">
+          <input type="checkbox" id="consent" required>
+          <span>By submitting, you agree to receive personalized loan offers, rate alerts and money tips from Financialist by email. You can unsubscribe anytime. See our <a href="/privacy" target="_blank">Privacy Policy</a>.</span>
+        </label>
+        <button type="submit" class="btn btn-primary" style="width:100%">Show my matches →</button>
+      </form>
+      <p class="privacy-note">🔒 We never sell your personal info. <a href="/privacy" target="_blank">Privacy Policy</a></p>
+      <div class="nav"><button class="btn btn-back" onclick="prevStep(4)">← Back</button><span></span></div>
+    </div>
+
+    <!-- STEP 5: Results -->
+    <div class="step" data-step="5">
+      <div class="results-head">
+        <div class="check">✓</div>
+        <h1 class="q">Your top 3 loan matches</h1>
+        <p class="sub" id="resultsSub">Based on your answers — ranked by fit.</p>
+      </div>
+      <div id="results"></div>
+      <div class="disclosure">
+        <strong>Advertiser Disclosure:</strong> Financialist.com is an independent comparison service. Some offers on this page are from lenders who compensate us per qualified lead — this is how we keep the site free. Our matches are based on loan terms and editorial review, not payment. Checking your rate will not affect your credit score. <a href="/how-we-make-money" target="_blank">How we make money</a>
+      </div>
+      <div class="restart"><button onclick="restart()">↺ Retake the quiz</button></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ------------------------------------------------------------------
+   LENDER DATA — affiliate programs noted per lender.
+   Replace every "#affiliate-link-SLUG" with the live tracking URL.
+   ------------------------------------------------------------------ */
+const LENDERS = {
+  /* PersonalLoans.com — direct, $110/lead (up to $120 at volume) */
+  personalloans: { name:"PersonalLoans Network", rating:4.6, apr:"5.99% – 35.99% APR",
+    why:"Best overall marketplace — one form, offers from multiple lenders.",
+    specs:{"Loan amounts":"$1,000 – $35,000","Funding":"As fast as 1 business day","Credit needed":"580+","Fee":"Free to check"},
+    slug:"personalloans", program:"PersonalLoans.com direct ($110/lead)" },
+  /* Trusted Loan Network — FlexOffers, $80 per sold lead */
+  trustedloan: { name:"Trusted Loan Network", rating:4.3, apr:"Varies by lender",
+    why:"Strong for fair credit — connects you with willing lenders fast.",
+    specs:{"Loan amounts":"$500 – $10,000","Funding":"Next business day","Credit needed":"All levels","Fee":"Free to check"},
+    slug:"trusted-loan-network", program:"Trusted Loan Network via FlexOffers ($80/lead)" },
+  /* LoanMart — FlexOffers, $100 per lead (title loans) */
+  loanmart: { name:"LoanMart Title Loans", rating:4.1, apr:"Varies by state",
+    why:"Borrow against your car title — credit score less important.",
+    specs:{"Loan amounts":"$1,500 – $50,000","Funding":"Same day possible","Credit needed":"No minimum","Collateral":"Vehicle title"},
+    slug:"loanmart", program:"LoanMart via FlexOffers ($100/lead)" },
+  /* Viva Payday Loans — Lead Stack Media, up to $300/accepted lead */
+  viva: { name:"Viva Payday Loans", rating:4.0, apr:"Varies by lender",
+    why:"Fast small-dollar funding, even with poor credit history.",
+    specs:{"Loan amounts":"$100 – $5,000","Funding":"Same/next day","Credit needed":"All levels","Fee":"Free to apply"},
+    slug:"viva-payday", program:"Lead Stack Media (up to $300/lead)" },
+  /* Rocket Mortgage — CJ, $15–20 per lead (home equity / refi angle) */
+  rocket: { name:"Rocket Home Loans", rating:4.7, apr:"From 6.5% APR",
+    why:"Best for homeowners — cash-out refi or HELOC for big projects.",
+    specs:{"Loan amounts":"$25,000+","Funding":"2–4 weeks","Credit needed":"620+","Type":"Home-backed"},
+    slug:"rocket-mortgage", program:"Rocket Mortgage via CJ ($15–20/lead)" },
+  /* Kapitus — direct, $50/qualified lead (business) */
+  kapitus: { name:"Kapitus Business Funding", rating:4.4, apr:"Varies",
+    why:"For business owners — revenue-based funding, fast decisions.",
+    specs:{"Loan amounts":"$10,000 – $5M","Funding":"1–3 days","Credit needed":"650+","For":"Business use"},
+    slug:"kapitus", program:"Kapitus direct ($50/qualified lead)" },
+  /* SoFi-style prime lender (placeholder archetype) */
+  prime: { name:"PrimeRate Personal Loans", rating:4.8, apr:"7.99% – 23.43% APR",
+    why:"Lowest rates for excellent credit — no fees, unemployment protection.",
+    specs:{"Loan amounts":"$5,000 – $100,000","Funding":"Same day","Credit needed":"680+","Fees":"None"},
+    slug:"prime-lender", program:"Prime lender — map to live CPL partner" },
+  /* Upgrade-style mid-prime (placeholder archetype) */
+  midprime: { name:"ClearPath Lending", rating:4.5, apr:"8.49% – 35.99% APR",
+    why:"Great for good credit — joint applications welcome, fast funding.",
+    specs:{"Loan amounts":"$1,000 – $50,000","Funding":"1 business day","Credit needed":"580+","Fees":"1.85%–9.99% orig."},
+    slug:"midprime-lender", program:"Mid-prime lender — map to live CPL partner" }
+};
+
+const answers = { amount:null, purpose:null, score:null };
+
+function selectOption(containerId, el){
+  document.querySelectorAll('#'+containerId+' .opt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+}
+document.querySelectorAll('.opt').forEach(el=>{
+  el.addEventListener('click',()=>selectOption(el.parentElement.id, el));
+});
+
+function getSelected(step){
+  const map = {1:'opt-amount',2:'opt-purpose',3:'opt-score'};
+  const sel = document.querySelector('#'+map[step]+' .opt.selected');
+  return sel ? sel.dataset.val : null;
+}
+
+function showStep(n){
+  document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
+  document.querySelector('.step[data-step="'+n+'"]').classList.add('active');
+  const pct = n<=4 ? (n/4*80) : 100;
+  document.getElementById('progressFill').style.width = pct+'%';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function nextStep(n){
+  const val = getSelected(n);
+  const err = document.getElementById('err-'+n);
+  if(!val){ err.style.display='block'; return; }
+  err.style.display='none';
+  if(n===1) answers.amount=val;
+  if(n===2) answers.purpose=val;
+  if(n===3) answers.score=val;
+  showStep(n+1);
+}
+function prevStep(n){ showStep(n-1); }
+function restart(){
+  answers.amount=answers.purpose=answers.score=null;
+  document.querySelectorAll('.opt.selected').forEach(o=>o.classList.remove('selected'));
+  document.getElementById('leadForm').reset();
+  showStep(1);
+}
+
+function submitLead(e){
+  e.preventDefault();
+  const email = document.getElementById('email').value.trim();
+  const consent = document.getElementById('consent').checked;
+  const err = document.getElementById('err-4');
+  const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  if(!valid || !consent){ err.style.display='block'; return false; }
+  err.style.display='none';
+  /* TODO: POST lead to your endpoint / ESP here.
+     fetch('/api/leads', {method:'POST', body: JSON.stringify({...answers, email, name})}) */
+  console.log('LEAD (demo — not sent):', {answers, email, name:document.getElementById('fname').value});
+  renderResults();
+  showStep(5);
+  return false;
+}
+
+function starRow(r){
+  let s='';
+  for(let i=1;i<=5;i++){ s += i<=Math.round(r) ? '★' : '<span class="off">★</span>'; }
+  return s+' <span style="color:var(--muted);font-size:13px">'+r.toFixed(1)+'/5</span>';
+}
+
+function pickLenders(){
+  const {amount, purpose, score} = answers;
+  const prime = (score==='excellent'||score==='good');
+  const subprime = (score==='poor');
+  let picks=[];
+  if(purpose==='home' && (amount==='large'||amount==='xlarge') && !subprime){
+    picks = ['rocket','prime','personalloans'];
+  } else if(subprime){
+    picks = amount==='small' ? ['viva','trustedloan','personalloans']
+                            : ['trustedloan','loanmart','personalloans'];
+  } else if(amount==='small'){
+    picks = ['personalloans','midprime','trustedloan'];
+  } else if(amount==='xlarge'){
+    picks = prime ? ['prime','rocket','personalloans'] : ['personalloans','midprime','kapitus'];
+  } else {
+    picks = prime ? ['prime','midprime','personalloans'] : ['personalloans','midprime','trustedloan'];
+  }
+  if(purpose==='emergency' && !picks.includes('viva') && subprime){ picks[2]='viva'; }
+  return picks.map(k=>LENDERS[k]);
+}
+
+function renderResults(){
+  const picks = pickLenders();
+  const sub = {debt:'matched to consolidate debt at lower rates',home:'matched for home projects',
+               purchase:'matched for major purchases',emergency:'matched for fast funding',
+               other:'matched to your loan needs'}[answers.purpose];
+  document.getElementById('resultsSub').textContent = 'Based on your answers — '+sub+'.';
+  document.getElementById('results').innerHTML = picks.map((c,i)=>`
+    <div class="rec${i===0?' top':''}">
+      ${i===0?'<div class="rec-badge">Best match</div>':''}
+      <div class="rec-name">${c.name}</div>
+      <div class="stars">${starRow(c.rating)}</div>
+      <div class="apr">${c.apr}</div>
+      <div class="rec-why">${c.why}</div>
+      <div class="specs">${Object.entries(c.specs).map(([k,v])=>
+        `<div class="spec"><div class="spec-k">${k}</div><div class="spec-v">${v}</div></div>`).join('')}</div>
+      <!-- Affiliate program: ${c.program} — swap href for live tracking link -->
+      <a class="btn-apply" href="#affiliate-link-${c.slug}" target="_blank" rel="sponsored nofollow noopener">Check My Rate →</a>
+      <div class="apply-note">Won't affect your credit score to check • Free to compare</div>
+    </div>`).join('');
+}
+showStep(1);
+</script>
+</body>
+</html>

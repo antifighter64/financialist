@@ -1,0 +1,386 @@
+<!--
+  ============================================================================
+  FINANCIALIST.COM — Top 10 Small Business Loans (DRAFT)
+STATUS: DO NOT PUBLISH AS-IS. Amounts, credit minimums, and funding speeds are realistic ranges
+labeled 'as of Oct 2026' but MUST be verified against each lender's current terms before publish.
+AFFILIATE LINKS: all hrefs are '#affiliate-link-*' placeholders with data-affiliate="pending".
+No live affiliate links exist for the business-lending vertical. Swap each with the real tracking URL
+when network approvals land; keep data-affiliate="pending|live" in sync.
+NOTE: Kalshi (live, prediction markets) does not fit this vertical — do not use.
+  Module anatomy modeled on NerdWallet/Bankrate teardown (Oct 2026 research).
+  ============================================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10 Best Small Business Loans of October 2026 — Compare Lenders | Financialist</title>
+<meta name="description" content="10 Best Small Business Loans of October 2026: ratings, key specs and side-by-side comparison. Filter, sort and compare before you apply.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1a365d; --navy2:#234876; --ink:#1f2937; --muted:#6b7280;
+    --line:#e5e7eb; --bg:#f8fafc; --card:#ffffff; --green:#16a34a; --green-d:#15803d;
+    --gold:#f59e0b; --blue:#2563eb; --radius:12px;
+  }
+  *{box-sizing:border-box}
+  body{font-family:'Inter',-apple-system,'Segoe UI',Roboto,sans-serif;color:var(--ink);margin:0;background:var(--bg);line-height:1.55}
+  .fin-wrap{max-width:1080px;margin:0 auto;padding:0 16px 120px}
+  .fin-topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0;flex-wrap:wrap}
+  .fin-brand{font-weight:800;font-size:20px;color:var(--navy);text-decoration:none}
+  .fin-brand span{color:var(--green)}
+  .disclosure-btn{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:13px;font-weight:600;color:var(--navy);cursor:pointer}
+  .disclosure-btn:hover{border-color:var(--navy)}
+  .fin-updated{font-size:12px;color:var(--muted)}
+  h1{font-size:30px;color:var(--navy);margin:8px 0 6px;letter-spacing:-.5px}
+  .lede{color:#374151;font-size:16px;max-width:760px;margin:0 0 4px}
+  .rates-note{font-size:12px;color:var(--muted);margin:0 0 18px}
+  .responsible-box{background:#fffbeb;border:1px solid #fcd34d;border-left:4px solid var(--gold);border-radius:0 8px 8px 0;padding:12px 16px;font-size:14px;color:#78350f;margin:14px 0 6px;max-width:900px}
+  .responsible-box strong{color:#92400e}
+  /* Filter bar */
+  .filter-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:18px 0;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;position:sticky;top:0;z-index:20}
+  .pill{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 14px;font-size:13px;font-weight:600;color:#374151;cursor:pointer}
+  .pill.active{background:var(--navy);border-color:var(--navy);color:#fff}
+  .sort-wrap{margin-left:auto;display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+  .sort-wrap select{border:1px solid var(--line);border-radius:8px;padding:7px 10px;font-size:13px;font-weight:600;color:var(--ink);background:#fff}
+  .result-count{font-size:13px;color:var(--muted);margin:6px 2px 10px}
+  .glance-h2{color:var(--navy);font-size:20px;margin:22px 0 10px}
+  /* Table */
+  .table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:#fff;margin-bottom:34px}
+  table.cmp{width:100%;border-collapse:collapse;min-width:760px;font-size:14px}
+  table.cmp thead th{background:var(--navy);color:#fff;text-align:left;padding:12px 14px;font-size:12.5px;text-transform:uppercase;letter-spacing:.4px;white-space:nowrap;cursor:pointer;user-select:none}
+  table.cmp thead th .arrow{opacity:.7;font-size:11px}
+  table.cmp tbody td{padding:14px;border-top:1px solid var(--line);vertical-align:middle}
+  table.cmp tbody tr:hover{background:#f1f5f9}
+  .t-name{font-weight:700;color:var(--navy)}
+  .t-name a{color:var(--navy);text-decoration:none}
+  .t-name a:hover{text-decoration:underline}
+  .t-apply{display:flex;flex-direction:column;gap:6px}
+  .btn{display:inline-block;text-align:center;font-weight:700;border-radius:8px;cursor:pointer;text-decoration:none;border:none}
+  .btn-apply{background:var(--green);color:#fff;padding:10px 16px;font-size:13.5px;text-transform:uppercase;letter-spacing:.3px}
+  .btn-apply:hover{background:var(--green-d)}
+  .btn-apply .lock{font-size:12px}
+  .rates-link{font-size:12.5px;color:var(--blue);text-decoration:none}
+  .rates-link:hover{text-decoration:underline}
+  .stars{position:relative;display:inline-block;font-size:15px;line-height:1;letter-spacing:2px;color:#d1d5db;white-space:nowrap}
+  .stars .fill{position:absolute;left:0;top:0;overflow:hidden;color:var(--gold);white-space:nowrap}
+  .rating-num{font-weight:700;font-size:13px;color:var(--ink);margin-left:6px}
+  .aff-tag{font-size:10px;font-weight:700;background:#fef3c7;color:#92400e;border:1px solid #fcd34d;border-radius:4px;padding:1px 5px;margin-left:6px;vertical-align:middle}
+  .rank-cell{font-weight:800;color:var(--navy);font-size:16px}
+  /* Product modules */
+  .mod{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-bottom:22px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+  .mod-top{display:flex;gap:20px;flex-wrap:wrap}
+  .mod-visual{flex:0 0 170px}
+  .card-art{display:block;width:170px;height:108px;border-radius:10px;background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;text-decoration:none;position:relative;overflow:hidden;box-shadow:0 4px 10px rgba(26,54,93,.25)}
+  .card-art::after{content:"";position:absolute;right:-30px;top:-30px;width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.08)}
+  .card-art .init{position:absolute;left:14px;bottom:10px;font-size:26px;font-weight:800;letter-spacing:1px}
+  .card-art .chip{position:absolute;left:14px;top:12px;width:30px;height:22px;border-radius:4px;background:linear-gradient(135deg,#fbbf24,#f59e0b)}
+  .mod-main{flex:1;min-width:260px}
+  .pick-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+  .rank-badge{display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:32px;padding:0 10px;background:var(--navy);color:#fff;font-weight:800;font-size:16px;border-radius:8px}
+  .pick-label{font-size:13px;font-weight:800;color:var(--green-d);text-transform:uppercase;letter-spacing:.5px;margin:0}
+  .award{display:inline-block;background:var(--navy);color:#fff;font-size:11px;font-weight:700;border-radius:4px;padding:3px 8px;margin-bottom:8px;letter-spacing:.4px}
+  .mod-name{font-size:21px;font-weight:800;color:var(--navy);margin:0 0 4px}
+  .mod-name a{color:var(--navy);text-decoration:none}
+  .mod-rating{display:flex;align-items:center;gap:8px;margin:6px 0 10px;flex-wrap:wrap}
+  .method-link{font-size:12.5px;color:var(--blue);text-decoration:none}
+  .method-link:hover{text-decoration:underline}
+  .compare-check{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:#374151;margin:8px 0;cursor:pointer}
+  .compare-check input{width:16px;height:16px;accent-color:var(--navy);cursor:pointer}
+  .cta-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0 4px}
+  .btn-big{padding:13px 26px;font-size:15px}
+  .why-like{background:#f0fdf4;border-left:4px solid var(--green);padding:10px 14px;font-size:14px;border-radius:0 8px 8px 0;margin:12px 0;color:#14532d}
+  .why-like strong{color:var(--green-d)}
+  .spec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0}
+  .spec{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+  .spec .k{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--muted)}
+  .spec .v{font-size:14px;font-weight:600;color:var(--ink);margin-top:2px}
+  details.mod-details{border-top:1px solid var(--line);margin-top:12px;padding-top:10px}
+  details.mod-details summary{cursor:pointer;font-weight:700;color:var(--navy);font-size:14px;padding:6px 0}
+  .pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px;font-size:14px}
+  .pros-cons h4{margin:0 0 6px;font-size:13px;text-transform:uppercase;letter-spacing:.4px}
+  .pros h4{color:var(--green-d)} .cons h4{color:#b91c1c}
+  .pros-cons ul{margin:0;padding-left:18px}
+  .pros-cons li{margin-bottom:4px}
+  .take{font-size:14px;color:#374151;margin-top:10px}
+  /* Methodology + disclosure */
+  .methodology{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-top:10px}
+  .methodology h2{color:var(--navy);font-size:20px;margin-top:0}
+  .methodology p,.methodology li{font-size:14px;color:#374151}
+  .adv-disclosure{font-size:13px;color:var(--muted);margin:18px 2px 0;max-width:900px}
+  .fin-footer{font-size:12px;color:var(--muted);margin:26px 2px 0;border-top:1px solid var(--line);padding-top:14px}
+  /* Compare tray */
+  .compare-tray{position:fixed;left:0;right:0;bottom:0;background:var(--navy);color:#fff;padding:12px 16px;display:none;z-index:50;box-shadow:0 -4px 16px rgba(0,0,0,.2)}
+  .compare-tray.show{display:block}
+  .tray-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .tray-items{display:flex;gap:8px;flex-wrap:wrap;flex:1}
+  .tray-item{background:rgba(255,255,255,.12);border-radius:8px;padding:6px 10px;font-size:13px;font-weight:600;display:flex;gap:8px;align-items:center}
+  .tray-item button{background:none;border:none;color:#fca5a5;font-size:15px;cursor:pointer;line-height:1}
+  .btn-compare-now{background:var(--gold);color:#1f2937;padding:10px 20px;font-size:14px}
+  .btn-compare-now:hover{background:#d97706;color:#fff}
+  /* Modals */
+  .modal-back{position:fixed;inset:0;background:rgba(15,23,42,.6);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+  .modal-back.show{display:flex}
+  .modal{background:#fff;border-radius:14px;max-width:640px;width:100%;max-height:88vh;overflow:auto;padding:28px;position:relative}
+  .modal.wide{max-width:960px}
+  .modal h2{color:var(--navy);margin-top:0;font-size:22px}
+  .modal p{font-size:14.5px;color:#374151}
+  .modal-close{position:absolute;top:12px;right:14px;background:none;border:none;font-size:24px;cursor:pointer;color:var(--muted)}
+  .cmp-side{width:100%;border-collapse:collapse;font-size:13.5px;min-width:560px}
+  .cmp-side th,.cmp-side td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+  .cmp-side th{background:var(--navy);color:#fff;font-size:14px}
+  .cmp-side tr td:first-child{font-weight:700;background:var(--bg);white-space:nowrap}
+  @media(max-width:640px){
+    h1{font-size:24px}
+    .mod{padding:16px}
+    .pros-cons{grid-template-columns:1fr}
+    .sort-wrap{margin-left:0}
+    .card-art{width:150px;height:96px}
+  }
+</style>
+</head>
+<body>
+<div class="fin-wrap">
+  <div class="fin-topbar">
+    <a class="fin-brand" href="/">Financialist<span>.com</span></a>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <span class="fin-updated">Updated: October 2026 &middot; Fact checked &#10003;</span>
+      <button class="disclosure-btn" id="openDisclosure">Advertiser disclosure</button>
+    </div>
+  </div>
+
+  <h1>10 Best Small Business Loans of October 2026</h1>
+  <p class="lede">Banks say no to most small-business borrowers. Online lenders say yes in hours — at a price. We ranked the top lenders on speed, amounts, qualification requirements, and true cost so you can fund growth without overpaying.</p>
+  <div class="responsible-box"><strong>Compare the true cost, not just the monthly payment.</strong> Many online lenders quote a <em>factor rate</em> (e.g. 1.2) instead of an APR &mdash; a 1.2 factor on a 6-month loan can equal a triple-digit APR. Always convert quotes to an annualized rate before comparing, watch for daily or weekly repayment schedules, and never borrow more than your cash flow can service.</div>
+  <p class="rates-note">Amounts, credit minimums, and funding speeds shown as of October 2026 and vary by applicant — always confirm current terms with the lender.</p>
+
+  <div class="filter-bar" id="filterBar">
+    <button class="pill active" data-filter="all">All lenders</button><button class="pill" data-filter="term">Term loans</button><button class="pill" data-filter="line">Lines of credit</button><button class="pill" data-filter="fast">Fast funding</button><button class="pill" data-filter="marketplace">Marketplaces</button>
+    <div class="sort-wrap">
+      <label for="sortSel">Sort by</label>
+      <select id="sortSel">
+        <option value="featured">Featured</option>
+        <option value="rating">Highest rating</option>
+        <option value="custom">Highest max funding</option>
+      </select>
+    </div>
+  </div>
+  <div class="result-count" id="resultCount"></div>
+
+  <h2 class="glance-h2">Our top picks at a glance</h2>
+  <div class="table-scroll">
+    <table class="cmp" id="cmpTable">
+      <thead><tr><th>Rank</th><th>Lender</th><th>Rating</th><th>Funding up to</th><th>Min. credit</th><th>Get started</th></tr></thead>
+      <tbody id="cmpBody"></tbody>
+    </table>
+  </div>
+
+<section class="quiz-cta" style="background:#f0fdf4;border:2px solid #16a34a;border-radius:12px;padding:20px;margin:24px 0;text-align:center">
+<h2 style="margin-top:0">Not sure which is right for you?</h2>
+<p>Answer 4 quick questions and get matched to your best options in 60 seconds.</p>
+<a href="/tools/personal-loan-quiz" style="display:inline-block;background:#16a34a;color:#fff;padding:12px 28px;border-radius:8px;font-weight:700;text-decoration:none">Take the 60-second quiz</a>
+</section>
+
+  <div id="modules"></div>
+
+<section class="related-guides" style="margin:32px 0">
+<h2>Related Financialist guides</h2>
+<ul style="list-style:none;padding:0;margin:0">
+<li style="margin:10px 0"><a href="/guides/top-10-personal-loans">10 Best Personal Loans of 2026</a></li>
+<li style="margin:10px 0"><a href="/guides/top-10-mortgage-lenders">10 Best Mortgage Lenders of 2026</a></li>
+<li style="margin:10px 0"><a href="/tools/personal-loan-quiz">Personal Loan Quiz: Get Matched in 60 Seconds</a></li>
+<li style="margin:10px 0"><a href="/viral/debt-snowball-vs-avalanche">Debt Snowball vs. Avalanche: Which Is Faster?</a></li>
+</ul>
+</section>
+
+  <section class="methodology" id="methodology">
+    <h2>How Financialist rates business lenders</h2>
+    <p>Every lender gets a score from 0 to 5. Our analysts weigh what matters most to borrowers:</p>
+    <ul>
+      <li><strong>Cost of capital (30%)</strong> — true APRs and total repayment cost vs. amount borrowed.</li><li><strong>Speed &amp; ease (25%)</strong> — application simplicity and time to funding.</li><li><strong>Qualification accessibility (25%)</strong> — credit, revenue, and time-in-business minimums.</li><li><strong>Product fit (20%)</strong> — loan types, amounts, terms, and repayment flexibility.</li>
+    </ul>
+    <p>Partners who compensate us cannot pay for a higher rating or a better placement. <a href="#" class="method-link" id="openDisclosure2">Read our advertiser disclosure</a>.</p>
+  </section>
+
+  <p class="adv-disclosure"><strong>Advertiser disclosure:</strong> Many or all of the products featured here are from our partners who compensate us. That may influence which products we write about and where and how they appear on a page. <strong>It does not influence our evaluations.</strong> Our ratings are set by our editorial team using the published methodology above. Partners cannot pay for favorable reviews, higher ratings, or better placement.</p>
+
+  <p class="fin-footer">&copy; 2026 Financialist.com — Top 10 listicle draft. All product specs labeled &ldquo;as of Oct 2026&rdquo; must be verified before publication. Affiliate links pending.</p>
+</div>
+
+<div class="compare-tray" id="tray">
+  <div class="tray-inner">
+    <strong>Compare (<span id="trayCount">0</span>/3):</strong>
+    <div class="tray-items" id="trayItems"></div>
+    <button class="btn btn-compare-now" id="compareNow">Compare now</button>
+  </div>
+</div>
+
+<div class="modal-back" id="disclosureBack">
+  <div class="modal">
+    <button class="modal-close" data-close="disclosureBack">&times;</button>
+    <h2>You're our first priority. Every time.</h2>
+    <p>Many or all of the products featured here are from our partners who compensate us. That may influence which products we write about and where and how they appear on a page.</p>
+    <p><strong>It does not influence our evaluations.</strong> Our ratings are set by our editorial team using the published methodology above. Partners cannot pay for favorable reviews, higher ratings, or better placement.</p>
+    <p>When you click &ldquo;Get a quote&rdquo; you leave Financialist.com and go to the lender's site. If you're approved and funded, we may earn a commission &mdash; at no cost to you.</p>
+  </div>
+</div>
+
+<div class="modal-back" id="compareBack">
+  <div class="modal wide">
+    <button class="modal-close" data-close="compareBack">&times;</button>
+    <h2>Side-by-side comparison</h2>
+    <div style="overflow-x:auto"><table class="cmp-side" id="sideTable"></table></div>
+  </div>
+</div>
+
+<script>
+const PRODUCTS = [{"id": "ondeck", "name": "OnDeck", "initials": "OD", "pick": "Best overall", "badge": "2026 BEST OVERALL BUSINESS LENDER", "rating": 4.8, "cats": ["term", "fast"], "sortVal": 250000, "sortDir": "desc", "table": ["Up to $250K", "625+ (typical)"], "specs": [["Funding up to", "$250,000 (term loans)"], ["Typical minimum credit", "625 (verify)"], ["Time in business", "1+ year (typical)"], ["Funding speed", "As fast as 24 hours (advertised)"]], "why": "The pioneer of online small-business lending — fast decisions, term loans and lines of credit, and a track record few rivals match.", "pros": ["Funding as fast as 24 hours (advertised)", "Term loans up to $250K plus lines of credit", "High approval odds for established businesses", "Dedicated loan advisors"], "cons": ["Higher costs than bank loans — compare the true APR", "Short repayment terms on some products", "Not ideal for startups under 1 year"], "take": "The default first quote for an established small business that needs money this week, not next quarter.", "affiliate": "#affiliate-link-ondeck"}, {"id": "bluevine", "name": "Bluevine", "initials": "BV", "pick": "Best lines of credit", "badge": "", "rating": 4.7, "cats": ["line", "fast"], "sortVal": 250000, "sortDir": "desc", "table": ["Up to $250K", "625+ (typical)"], "specs": [["Funding up to", "$250,000 (lines of credit)"], ["Typical minimum credit", "625 (verify)"], ["Time in business", "6+ months (typical)"], ["Funding speed", "As fast as 24 hours (advertised)"]], "why": "The go-to online line of credit: draw what you need, pay interest only on what you use, and pair it with Bluevine business checking.", "pros": ["Revolving line up to $250K", "Pay interest only on drawn funds", "Fast online application", "Integrates with Bluevine business checking"], "cons": ["Draw fees may apply", "Not a term loan — different use case", "Requires regular revenue"], "take": "If you want flexible, reusable capital rather than a lump sum, Bluevine's line is the benchmark.", "affiliate": "#affiliate-link-bluevine"}, {"id": "fundbox", "name": "Fundbox", "initials": "FB", "pick": "Best for newer businesses", "badge": "", "rating": 4.5, "cats": ["line", "fast"], "sortVal": 150000, "sortDir": "desc", "table": ["Up to $150K", "600+ (typical)"], "specs": [["Funding up to", "$150,000 (lines of credit)"], ["Typical minimum credit", "600 (verify)"], ["Time in business", "6+ months (typical)"], ["Funding speed", "As fast as next business day (advertised)"]], "why": "Built for businesses that banks ignore — lower credit minimums and decisions in minutes, not weeks.", "pros": ["Lower credit minimums than most rivals", "Decisions in minutes (advertised)", "Connects to accounting software for fast underwriting", "No application fee"], "cons": ["Smaller maximum amounts", "Weekly repayment schedule", "Costs add up — compare total cost of capital"], "take": "A lifeline for younger businesses with imperfect credit — just price the weekly payments carefully.", "affiliate": "#affiliate-link-fundbox"}, {"id": "kabbage-amex", "name": "Kabbage (American Express)", "initials": "KA", "pick": "Best Amex-integrated", "badge": "", "rating": 4.4, "cats": ["line"], "sortVal": 250000, "sortDir": "desc", "table": ["Up to $250K", "640+ (typical)"], "specs": [["Funding up to", "$250,000 (lines of credit)"], ["Typical minimum credit", "640 (verify)"], ["Time in business", "1+ year (typical)"], ["Funding speed", "As fast as next business day (advertised)"]], "why": "Now part of American Express — Kabbage pairs its automated underwriting with Amex's small-business ecosystem.", "pros": ["Backed by American Express", "Automated, data-driven underwriting", "Lines up to $250K", "Integrates with Amex business products"], "cons": ["Amex integration means Amex's underwriting standards", "Not the fastest funder on this list", "Limited to lines of credit"], "take": "Natural fit if your business already runs on Amex — one ecosystem for cards, checking, and credit.", "affiliate": "#affiliate-link-kabbage-amex"}, {"id": "lendio", "name": "Lendio", "initials": "LE", "pick": "Best marketplace", "badge": "", "rating": 4.4, "cats": ["marketplace", "fast"], "sortVal": 2000000, "sortDir": "desc", "table": ["Varies by lender", "Varies by lender"], "specs": [["Funding up to", "Varies by matched lender"], ["Typical minimum credit", "Varies by matched lender"], ["Lender network", "75+ lenders (advertised)"], ["Funding speed", "Varies; some same-week"]], "why": "One application, dozens of lenders: Lendio's marketplace shops your profile across 75+ lenders to find competing offers.", "pros": ["One application reaches 75+ lenders", "Competing offers can lower your cost", "Good for unusual business profiles", "Free to use the marketplace"], "cons": ["You're sharing data with many lenders", "Final terms vary widely by match", "Not a direct lender — less control"], "take": "The comparison-shopping play: let lenders compete instead of applying one by one.", "affiliate": "#affiliate-link-lendio"}, {"id": "national-funding", "name": "National Funding", "initials": "NF", "pick": "Best for working capital", "badge": "", "rating": 4.3, "cats": ["term", "fast"], "sortVal": 500000, "sortDir": "desc", "table": ["Up to $500K", "660+ (typical)"], "specs": [["Funding up to", "$500,000 (working capital)"], ["Typical minimum credit", "660 (verify)"], ["Time in business", "1+ year (typical)"], ["Funding speed", "As fast as 24 hours (advertised)"]], "why": "Specializes in larger working-capital loans with early-payoff discounts that reward borrowers who repay ahead of schedule.", "pros": ["Working capital up to $500K", "Early payoff discounts (advertised)", "Fast funding for qualified borrowers", "Dedicated funding specialists"], "cons": ["Higher credit minimum than some rivals", "Factor-rate pricing — compare true APR", "Daily/weekly repayment options"], "take": "If you need a bigger working-capital injection and can qualify, the payoff discounts are a real edge.", "affiliate": "#affiliate-link-national-funding"}, {"id": "credibly", "name": "Credibly", "initials": "CR", "pick": "Best for fair credit", "badge": "", "rating": 4.2, "cats": ["term"], "sortVal": 400000, "sortDir": "desc", "table": ["Up to $400K", "500+ (typical)"], "specs": [["Funding up to", "$400,000"], ["Typical minimum credit", "500 (verify)"], ["Time in business", "6+ months (typical)"], ["Funding speed", "As fast as 24–48 hours (advertised)"]], "why": "One of the most accessible online lenders — a 500-range credit minimum opens the door where banks and top-tier lenders won't.", "pros": ["Credit minimums as low as 500 (verify)", "Funding up to $400K", "Fast decisions", "Prepayment options on some products"], "cons": ["Higher cost of capital at lower credit tiers", "Shorter terms common", "Factor-rate quotes need APR conversion"], "take": "The accessibility pick — just go in eyes open about the cost and convert every quote to a true APR.", "affiliate": "#affiliate-link-credibly"}, {"id": "rapid-finance", "name": "Rapid Finance", "initials": "RF", "pick": "Best for fast funding", "badge": "", "rating": 4.1, "cats": ["term", "fast"], "sortVal": 1000000, "sortDir": "desc", "table": ["Up to $1M", "550+ (typical)"], "specs": [["Funding up to", "$1,000,000 (select products)"], ["Typical minimum credit", "550 (verify)"], ["Time in business", "1+ year (typical)"], ["Funding speed", "As fast as same business day (advertised)"]], "why": "Built for speed: same-day funding potential and amounts up to $1M for businesses that can't wait on bank timelines.", "pros": ["Same-day funding possible (advertised)", "Amounts up to $1M on select products", "Multiple product types", "Experienced in urgent capital needs"], "cons": ["Speed comes at a price — compare APRs", "Qualification bar rises with amount", "Short repayment terms on fastest products"], "take": "When tomorrow is the deadline, Rapid Finance is built for exactly that scenario.", "affiliate": "#affiliate-link-rapid-finance"}, {"id": "kapitus", "name": "Kapitus", "initials": "KP", "pick": "Best for revenue-based financing", "badge": "", "rating": 4.1, "cats": ["term"], "sortVal": 5000000, "sortDir": "desc", "table": ["Up to $5M", "Varies (typical)"], "specs": [["Funding up to", "$5,000,000 (revenue-based)"], ["Typical minimum credit", "Varies by product (verify)"], ["Time in business", "1+ year (typical)"], ["Funding speed", "As fast as 24 hours (advertised)"]], "why": "Revenue-based financing up to $5M — repayments flex with your revenue, which suits seasonal and high-growth businesses.", "pros": ["Up to $5M in revenue-based financing", "Repayments scale with revenue", "Multiple financing products", "Fast funding for qualified borrowers"], "cons": ["Revenue-based costs can exceed term-loan APRs", "Requires strong, verifiable revenue", "Complex product menu"], "take": "For established businesses with lumpy revenue, the flex-repayment model can beat a rigid term loan.", "affiliate": "#affiliate-link-kapitus"}, {"id": "fundera", "name": "Fundera (NerdWallet)", "initials": "FU", "pick": "Best comparison shopping", "badge": "", "rating": 4.0, "cats": ["marketplace"], "sortVal": 5000000, "sortDir": "desc", "table": ["Varies by lender", "Varies by lender"], "specs": [["Funding up to", "Varies by matched lender"], ["Typical minimum credit", "Varies by matched lender"], ["Lender network", "Marketplace (NerdWallet-owned)"], ["Funding speed", "Varies by matched lender"]], "why": "NerdWallet's small-business loan marketplace — compare real offers side by side with editorial-style transparency.", "pros": ["Compare multiple lender offers in one place", "Backed by NerdWallet's editorial brand", "No cost to compare", "Educational resources built in"], "cons": ["Not a direct lender", "Offer quality depends on matched partners", "Newer marketplace vs. Lendio"], "take": "A trustworthy starting point for comparison shopping — get quotes here, then verify against a direct lender.", "affiliate": "#affiliate-link-fundera"}];
+const CTA_LABEL = "GET A QUOTE";
+const SORT_DIR = "desc";
+
+let state = {filter:'all', sort:'featured', compare:[]};
+const $ = id => document.getElementById(id);
+const affTag = p => '<span class="aff-tag" title="Affiliate link pending — swap with tracking URL before publish">LINK PENDING</span>';
+
+function stars(r){
+  const pct = (r/5*100).toFixed(0);
+  return `<span class="stars" aria-label="${r} out of 5 stars">★★★★★<span class="fill" style="width:${pct}%">★★★★★</span></span><span class="rating-num">${r.toFixed(1)}</span>`;
+}
+function customSort(a,b){
+  return SORT_DIR === 'desc' ? b.sortVal - a.sortVal : a.sortVal - b.sortVal;
+}
+function filtered(){
+  let list = PRODUCTS.filter(p => state.filter==='all' || p.cats.includes(state.filter));
+  const by = {
+    featured:(a,b)=>b.rating-a.rating,
+    rating:(a,b)=>b.rating-a.rating,
+    custom:customSort
+  }[state.sort] || (()=>0);
+  return list.slice().sort(by);
+}
+function renderTable(){
+  const list = filtered();
+  $('resultCount').textContent = `Showing ${list.length} of ${PRODUCTS.length} options`;
+  $('cmpBody').innerHTML = list.map((p,i)=>`
+    <tr>
+      <td class="rank-cell">#${PRODUCTS.indexOf(p)+1}</td>
+      <td><span class="t-name"><a href="#mod-${p.id}">${p.name}</a></span> ${affTag(p)}</td>
+      <td>${stars(p.rating)}</td>
+      ${p.table.map(c=>`<td>${c}</td>`).join('')}
+      <td><div class="t-apply">
+        <!-- AFFILIATE PLACEHOLDER: ${p.name} -->
+        <a class="btn btn-apply" href="${p.affiliate}" data-affiliate="pending"><span class="lock">🔒</span> ${CTA_LABEL}</a>
+        <label class="compare-check"><input type="checkbox" data-cmp="${p.id}" ${state.compare.includes(p.id)?'checked':''}> Add to compare</label>
+      </div></td>
+    </tr>`).join('');
+  bindCompareBoxes();
+}
+function renderModules(){
+  $('modules').innerHTML = filtered().map((p,i)=>`
+  <article class="mod" id="mod-${p.id}">
+    <div class="mod-top">
+      <div class="mod-visual">
+        <!-- AFFILIATE PLACEHOLDER: ${p.name} -->
+        <a class="card-art" href="${p.affiliate}" data-affiliate="pending" aria-label="${p.name}">
+          <span class="chip"></span><span class="init">${p.initials}</span>
+        </a>
+      </div>
+      <div class="mod-main">
+        <div class="pick-row">
+          <span class="rank-badge">#${PRODUCTS.indexOf(p)+1}</span>
+          <p class="pick-label">Our pick for: ${p.pick}</p>
+        </div>
+        ${p.badge?`<span class="award">🏆 ${p.badge}</span>`:''}
+        <!-- AFFILIATE PLACEHOLDER: ${p.name} -->
+        <h2 class="mod-name"><a href="${p.affiliate}" data-affiliate="pending">${p.name}</a> ${affTag(p)}</h2>
+        <div class="mod-rating">${stars(p.rating)}<a class="method-link" href="#methodology">How are ratings determined?</a></div>
+        <div class="why-like"><strong>Why you'll like this:</strong> ${p.why}</div>
+        <label class="compare-check"><input type="checkbox" data-cmp="${p.id}" ${state.compare.includes(p.id)?'checked':''}> Add to compare</label>
+        <div class="cta-row">
+          <!-- AFFILIATE PLACEHOLDER: ${p.name} -->
+          <a class="btn btn-apply btn-big" href="${p.affiliate}" data-affiliate="pending">${CTA_LABEL} <span class="lock">🔒</span> on ${p.name}'s secure site</a>
+        </div>
+        <div class="spec-grid">
+          ${p.specs.map(s=>`<div class="spec"><div class="k">${s[0]}</div><div class="v">${s[1]}</div></div>`).join('')}
+        </div>
+        <details class="mod-details">
+          <summary>Details, pros &amp; cons</summary>
+          <div class="pros-cons">
+            <div class="pros"><h4>Pros</h4><ul>${p.pros.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+            <div class="cons"><h4>Cons</h4><ul>${p.cons.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+          </div>
+          <p class="take"><strong>Financialist's take:</strong> ${p.take}</p>
+        </details>
+      </div>
+    </div>
+  </article>`).join('');
+  bindCompareBoxes();
+}
+function bindCompareBoxes(){
+  document.querySelectorAll('[data-cmp]').forEach(box=>{
+    box.onchange = ()=>{
+      const id = box.getAttribute('data-cmp');
+      if(box.checked){
+        if(state.compare.length>=3){ box.checked=false; alert('You can compare up to 3.'); return; }
+        if(!state.compare.includes(id)) state.compare.push(id);
+      } else state.compare = state.compare.filter(x=>x!==id);
+      syncTray();
+      document.querySelectorAll(`[data-cmp="${id}"]`).forEach(b=>{ if(b!==box) b.checked=box.checked; });
+    };
+  });
+}
+function syncTray(){
+  const tray = $('tray');
+  $('trayCount').textContent = state.compare.length;
+  $('trayItems').innerHTML = state.compare.map(id=>{
+    const p = PRODUCTS.find(x=>x.id===id);
+    return `<span class="tray-item">${p.name}<button data-rm="${id}" aria-label="Remove">×</button></span>`;
+  }).join('');
+  tray.classList.toggle('show', state.compare.length>0);
+  document.querySelectorAll('[data-rm]').forEach(b=>b.onclick=()=>{
+    const id=b.getAttribute('data-rm');
+    state.compare=state.compare.filter(x=>x!==id);
+    document.querySelectorAll(`[data-cmp="${id}"]`).forEach(x=>x.checked=false);
+    syncTray();
+  });
+}
+function renderSide(){
+  const ps = state.compare.map(id=>PRODUCTS.find(x=>x.id===id));
+  const specKeys = ps.length ? ps[0].specs.map(s=>s[0]) : [];
+  const rows = [
+    ['Rating', p=>stars(p.rating)],
+    ...specKeys.map(k=>[k, p=>{ const s=p.specs.find(x=>x[0]===k); return s?s[1]:'—'; }]),
+    ['Get started', p=>`<!-- AFFILIATE PLACEHOLDER: ${p.name} --><a class="btn btn-apply" href="${p.affiliate}" data-affiliate="pending">${CTA_LABEL}</a>`]
+  ];
+  $('sideTable').innerHTML =
+    `<tr><th></th>${ps.map(p=>`<th>${p.name}</th>`).join('')}</tr>` +
+    rows.map(([k,fn])=>`<tr><td>${k}</td>${ps.map(p=>`<td>${fn(p)}</td>`).join('')}</tr>`).join('');
+}
+// Filters
+document.querySelectorAll('#filterBar .pill').forEach(pill=>{
+  pill.onclick=()=>{
+    document.querySelectorAll('#filterBar .pill').forEach(x=>x.classList.remove('active'));
+    pill.classList.add('active');
+    state.filter=pill.getAttribute('data-filter');
+    renderTable(); renderModules();
+  };
+});
+// Sort select
+$('sortSel').onchange=e=>{ state.sort=e.target.value; renderTable(); };
+// Disclosure modals
+const openD=()=>$('disclosureBack').classList.add('show');
+$('openDisclosure').onclick=openD;
+$('openDisclosure2').onclick=e=>{e.preventDefault();openD();};
+// Compare modal
+$('compareNow').onclick=()=>{ if(!state.compare.length) return; renderSide(); $('compareBack').classList.add('show'); };
+document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>$(b.getAttribute('data-close')).classList.remove('show'));
+document.querySelectorAll('.modal-back').forEach(m=>m.addEventListener('click',e=>{ if(e.target===m) m.classList.remove('show'); }));
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') document.querySelectorAll('.modal-back.show').forEach(m=>m.classList.remove('show')); });
+// Init
+renderTable(); renderModules(); syncTray();
+</script>
+</body>
+</html>

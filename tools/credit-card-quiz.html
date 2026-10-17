@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  FINANCIALIST.COM — CREDIT CARD QUIZ FUNNEL (FRONT-END DEMO)
+  ----------------------------------------------------------------------------
+  This is a front-end demo only. Leads currently go NOWHERE — there is no
+  backend, no form endpoint, and no ESP/email integration wired up.
+  BEFORE PUBLISHING, you MUST:
+    1. Point the email-capture form at a real endpoint (form action or JS
+       fetch) — e.g. your ESP (Mailchimp, ConvertKit, Klaviyo) or a lead API.
+    2. Replace every "#affiliate-link-SLUG" placeholder href with your live
+       affiliate tracking link (CJ, Impact, FlexOffers, CardRatings, etc.).
+    3. Confirm the advertiser disclosure + privacy/consent copy with legal.
+  Real affiliate programs mapped per card are noted in comments below.
+  ============================================================================
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find Your Best Credit Card — Financialist</title>
+<meta name="description" content="Answer 4 quick questions and get matched with the best credit cards for your credit score and spending habits.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0f2a4a; --navy-light:#1b3d66; --green:#0e9f6e; --green-dark:#0b7a55;
+    --bg:#f4f6fa; --card:#ffffff; --text:#1a2332; --muted:#64748b;
+    --border:#e2e8f0; --gold:#f5a623; --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:640px;margin:0 auto;padding:24px 16px 64px}
+  .brand{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+  .brand-mark{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px}
+  .brand-name{font-weight:800;font-size:20px;color:var(--navy)}
+  .card{background:var(--card);border-radius:var(--radius);box-shadow:0 4px 24px rgba(15,42,74,.08);padding:32px 28px}
+  @media(max-width:520px){.card{padding:24px 18px}}
+  .step{display:none}
+  .step.active{display:block;animation:fadeIn .3s ease}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .progress{height:8px;background:var(--border);border-radius:99px;overflow:hidden;margin-bottom:24px}
+  .progress-fill{height:100%;background:linear-gradient(90deg,var(--green),#14b87f);border-radius:99px;transition:width .35s ease;width:0%}
+  .step-label{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  h1.q{font-size:24px;font-weight:800;color:var(--navy);margin-bottom:6px}
+  @media(max-width:520px){h1.q{font-size:21px}}
+  p.sub{color:var(--muted);font-size:14px;margin-bottom:20px}
+  .options{display:grid;gap:12px}
+  .opt{display:flex;align-items:center;gap:14px;border:2px solid var(--border);border-radius:12px;padding:16px;cursor:pointer;transition:all .15s ease;background:#fff}
+  .opt:hover{border-color:#b6c6dd}
+  .opt.selected{border-color:var(--green);background:#f0fdf6;box-shadow:0 0 0 1px var(--green)}
+  .opt-emoji{font-size:26px;flex-shrink:0}
+  .opt-title{font-weight:700;font-size:16px}
+  .opt-desc{font-size:13px;color:var(--muted)}
+  .nav{display:flex;justify-content:space-between;align-items:center;margin-top:24px;gap:12px}
+  .btn{border:none;border-radius:10px;font-weight:700;font-size:16px;padding:14px 28px;cursor:pointer;transition:all .15s ease;font-family:inherit}
+  .btn-primary{background:var(--green);color:#fff;flex:1}
+  .btn-primary:hover{background:var(--green-dark)}
+  .btn-primary:disabled{background:#cbd5e1;cursor:not-allowed}
+  .btn-back{background:transparent;color:var(--muted);padding:14px 8px}
+  .btn-back:hover{color:var(--navy)}
+  .error{color:#dc2626;font-size:13px;margin-top:10px;display:none}
+  /* Email step */
+  .field{margin-bottom:16px}
+  .field label{display:block;font-weight:600;font-size:14px;margin-bottom:6px}
+  .field input[type=text],.field input[type=email]{width:100%;border:2px solid var(--border);border-radius:10px;padding:13px 14px;font-size:16px;font-family:inherit;transition:border .15s}
+  .field input:focus{outline:none;border-color:var(--green)}
+  .consent{display:flex;gap:10px;align-items:flex-start;background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:14px;margin:18px 0;font-size:13px;color:var(--muted)}
+  .consent input{margin-top:3px;flex-shrink:0;width:16px;height:16px;accent-color:var(--green)}
+  .privacy-note{font-size:12px;color:var(--muted);text-align:center;margin-top:12px}
+  .privacy-note a,.disclosure a{color:var(--navy-light);text-decoration:underline}
+  /* Results */
+  .results-head{text-align:center;margin-bottom:20px}
+  .results-head .check{width:56px;height:56px;border-radius:50%;background:#e6f9f0;color:var(--green);font-size:28px;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-weight:800}
+  .rec{border:2px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px;position:relative;background:#fff}
+  .rec.top{border-color:var(--gold);box-shadow:0 4px 20px rgba(245,166,35,.15)}
+  .rec-badge{position:absolute;top:-12px;left:16px;background:var(--gold);color:#fff;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:99px}
+  .rec-name{font-size:18px;font-weight:800;color:var(--navy);margin-bottom:4px}
+  .stars{color:var(--gold);font-size:16px;letter-spacing:2px;margin-bottom:8px}
+  .stars .off{color:#e2e8f0}
+  .rec-why{font-size:14px;color:var(--muted);margin-bottom:12px}
+  .specs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+  .spec{background:#f8fafc;border-radius:8px;padding:10px 12px}
+  .spec-k{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+  .spec-v{font-weight:700;font-size:14px}
+  .btn-apply{display:block;width:100%;background:var(--navy);color:#fff;text-align:center;text-decoration:none;border-radius:10px;font-weight:700;font-size:16px;padding:14px;transition:background .15s}
+  .btn-apply:hover{background:var(--navy-light)}
+  .apply-note{font-size:11px;color:var(--muted);text-align:center;margin-top:8px}
+  .disclosure{font-size:12px;color:var(--muted);background:#f8fafc;border-radius:10px;padding:14px;margin-top:24px;line-height:1.6}
+  .restart{text-align:center;margin-top:16px}
+  .restart button{background:none;border:none;color:var(--navy-light);font-weight:600;cursor:pointer;text-decoration:underline;font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">
+    <div class="brand-mark">F</div>
+    <div class="brand-name">Financialist</div>
+  </div>
+
+  <div class="card">
+    <div class="progress"><div class="progress-fill" id="progressFill"></div></div>
+
+    <!-- STEP 1: Credit score -->
+    <div class="step active" data-step="1">
+      <div class="step-label">Step 1 of 4</div>
+      <h1 class="q">What's your credit score range?</h1>
+      <p class="sub">This helps us match you with cards you're likely to qualify for.</p>
+      <div class="options" id="opt-score">
+        <div class="opt" data-val="excellent"><div class="opt-emoji">🌟</div><div><div class="opt-title">Excellent (750+)</div><div class="opt-desc">Top-tier rewards and premium cards</div></div></div>
+        <div class="opt" data-val="good"><div class="opt-emoji">👍</div><div><div class="opt-title">Good (670–749)</div><div class="opt-desc">Strong cash back and travel options</div></div></div>
+        <div class="opt" data-val="fair"><div class="opt-emoji">🛠️</div><div><div class="opt-title">Fair (580–669)</div><div class="opt-desc">Cards designed to build your score</div></div></div>
+        <div class="opt" data-val="building"><div class="opt-emoji">🌱</div><div><div class="opt-title">Building / No score yet</div><div class="opt-desc">Secured and starter cards</div></div></div>
+      </div>
+      <div class="error" id="err-1">Please pick one to continue.</div>
+      <div class="nav"><span></span><button class="btn btn-primary" onclick="nextStep(1)">Continue →</button></div>
+    </div>
+
+    <!-- STEP 2: Goal -->
+    <div class="step" data-step="2">
+      <div class="step-label">Step 2 of 4</div>
+      <h1 class="q">What's your #1 goal for a new card?</h1>
+      <p class="sub">We'll prioritize cards that excel at what matters most to you.</p>
+      <div class="options" id="opt-goal">
+        <div class="opt" data-val="cashback"><div class="opt-emoji">💵</div><div><div class="opt-title">Earn cash back</div><div class="opt-desc">Rewards on everyday spending</div></div></div>
+        <div class="opt" data-val="travel"><div class="opt-emoji">✈️</div><div><div class="opt-title">Travel rewards</div><div class="opt-desc">Points, miles & travel perks</div></div></div>
+        <div class="opt" data-val="balance"><div class="opt-emoji">⚖️</div><div><div class="opt-title">Pay down a balance</div><div class="opt-desc">0% intro APR transfer offers</div></div></div>
+        <div class="opt" data-val="building"><div class="opt-emoji">📈</div><div><div class="opt-title">Build my credit</div><div class="opt-desc">Cards that report to all bureaus</div></div></div>
+      </div>
+      <div class="error" id="err-2">Please pick one to continue.</div>
+      <div class="nav"><button class="btn btn-back" onclick="prevStep(2)">← Back</button><button class="btn btn-primary" onclick="nextStep(2)">Continue →</button></div>
+    </div>
+
+    <!-- STEP 3: Monthly spend -->
+    <div class="step" data-step="3">
+      <div class="step-label">Step 3 of 4</div>
+      <h1 class="q">About how much do you spend monthly?</h1>
+      <p class="sub">Higher spenders can unlock bigger welcome bonuses.</p>
+      <div class="options" id="opt-spend">
+        <div class="opt" data-val="low"><div class="opt-emoji">🪙</div><div><div class="opt-title">Under $1,000</div><div class="opt-desc">Light, everyday spending</div></div></div>
+        <div class="opt" data-val="mid"><div class="opt-emoji">💳</div><div><div class="opt-title">$1,000 – $2,500</div><div class="opt-desc">Typical household spending</div></div></div>
+        <div class="opt" data-val="high"><div class="opt-emoji">💎</div><div><div class="opt-title">$2,500 – $5,000</div><div class="opt-desc">Heavy spender territory</div></div></div>
+        <div class="opt" data-val="veryhigh"><div class="opt-emoji">🚀</div><div><div class="opt-title">$5,000+</div><div class="opt-desc">Maximum rewards potential</div></div></div>
+      </div>
+      <div class="error" id="err-3">Please pick one to continue.</div>
+      <div class="nav"><button class="btn btn-back" onclick="prevStep(3)">← Back</button><button class="btn btn-primary" onclick="nextStep(3)">Continue →</button></div>
+    </div>
+
+    <!-- STEP 4: Email capture -->
+    <div class="step" data-step="4">
+      <div class="step-label">Step 4 of 4 — almost done</div>
+      <h1 class="q">Where should we send your matches?</h1>
+      <p class="sub">Get your 3 personalized card picks plus rate alerts when better offers appear.</p>
+      <form id="leadForm" onsubmit="return submitLead(event)">
+        <div class="field">
+          <label for="fname">First name</label>
+          <input type="text" id="fname" name="first_name" placeholder="Alex" autocomplete="given-name">
+        </div>
+        <div class="field">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+        </div>
+        <div class="error" id="err-4">Please enter a valid email and accept the consent below.</div>
+        <label class="consent">
+          <input type="checkbox" id="consent" required>
+          <span>By submitting, you agree to receive personalized card offers, rate alerts and money tips from Financialist by email. You can unsubscribe anytime. See our <a href="/privacy" target="_blank">Privacy Policy</a>.</span>
+        </label>
+        <button type="submit" class="btn btn-primary" style="width:100%">Show my matches →</button>
+      </form>
+      <p class="privacy-note">🔒 We never sell your personal info. <a href="/privacy" target="_blank">Privacy Policy</a></p>
+      <div class="nav"><button class="btn btn-back" onclick="prevStep(4)">← Back</button><span></span></div>
+    </div>
+
+    <!-- STEP 5: Results -->
+    <div class="step" data-step="5">
+      <div class="results-head">
+        <div class="check">✓</div>
+        <h1 class="q">Your top 3 card matches</h1>
+        <p class="sub" id="resultsSub">Based on your answers — ranked by fit.</p>
+      </div>
+      <div id="results"></div>
+      <div class="disclosure">
+        <strong>Advertiser Disclosure:</strong> Financialist.com is an independent comparison service. Some offers on this page are from advertisers who compensate us when you click or apply — this is how we keep the site free. Our picks are based on real card features and editorial review, not payment. <a href="/how-we-make-money" target="_blank">How we make money</a>
+      </div>
+      <div class="restart"><button onclick="restart()">↺ Retake the quiz</button></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ------------------------------------------------------------------
+   CARD DATA — affiliate programs noted per card.
+   Replace every "#affiliate-link-SLUG" with the live tracking URL.
+   ------------------------------------------------------------------ */
+const CARDS = {
+  /* CardRatings publisher program (Red Ventures) — dozens of issuers */
+  cashback_premium: { name:"Everyday Cash Rewards Card", rating:4.8, why:"Best for high cash-back earners — flat-rate rewards on every purchase.",
+    specs:{"Rewards":"2% back on all purchases","Welcome bonus":"$200 after $500 in 3 mo","Annual fee":"$0","Intro APR":"0% for 15 months"},
+    slug:"cashback-premium", program:"CardRatings" },
+  cashback_simple: { name:"Simple Cash Back Card", rating:4.6, why:"No-fuss cash back with no annual fee and no categories to track.",
+    specs:{"Rewards":"1.5% back everywhere","Welcome bonus":"$150 after $500 in 3 mo","Annual fee":"$0","Regular APR":"19.24%–29.24% var."},
+    slug:"cashback-simple", program:"CardRatings" },
+  travel_premium: { name:"Voyager Travel Rewards Card", rating:4.9, why:"Top pick for travelers — big bonus plus lounge access.",
+    specs:{"Rewards":"5x on travel, 2x dining","Welcome bonus":"60,000 pts (≈$750 travel)","Annual fee":"$95","Travel credit":"$300/yr"},
+    slug:"travel-premium", program:"CardRatings" },
+  travel_nofee: { name:"Wanderer No-Fee Travel Card", rating:4.5, why:"Earn travel points with zero annual fee and no foreign fees.",
+    specs:{"Rewards":"3x dining & travel","Welcome bonus":"30,000 pts","Annual fee":"$0","Foreign fees":"None"},
+    slug:"travel-nofee", program:"CardRatings" },
+  balance_transfer: { name:"Zero Balance Transfer Card", rating:4.7, why:"Longest 0% intro window to crush existing card debt.",
+    specs:{"Intro APR":"0% for 21 months","Transfer fee":"3% intro","Annual fee":"$0","Regular APR":"18.24%–28.24% var."},
+    slug:"balance-transfer", program:"Commission Soup / Merrick Bank" },
+  /* Petal — Impact marketplace, up to $36 per approved application */
+  builder_petal: { name:"Petal® Credit Builder Card", rating:4.4, why:"No deposit, no fees — built for establishing credit from scratch.",
+    specs:{"Deposit":"$0 required","Fees":"No annual/late fees","Credit limit":"$300–$5,000","Reports to":"All 3 bureaus"},
+    slug:"builder-petal", program:"Petal via Impact" },
+  builder_secured: { name:"Foundation Secured Card", rating:4.2, why:"Put down a small deposit and build history that counts.",
+    specs:{"Deposit":"$200 min. refundable","Annual fee":"$0","Reports to":"All 3 bureaus","Upgrade path":"Auto-review at 7 mo"},
+    slug:"builder-secured", program:"Commission Soup / secured cards" },
+  /* LendingTree — CJ, $35 per qualified form submit */
+  marketplace: { name:"Compare 20+ Cards at Once", rating:4.5, why:"Not sure? See side-by-side offers matched to your score.",
+    specs:{"Type":"Comparison marketplace","Cost":"Free to compare","Pre-qualify":"Soft pull only","Payout model":"CPL"},
+    slug:"card-marketplace", program:"LendingTree via CJ" }
+};
+
+const answers = { score:null, goal:null, spend:null };
+
+function selectOption(containerId, el){
+  document.querySelectorAll('#'+containerId+' .opt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+}
+document.querySelectorAll('.opt').forEach(el=>{
+  el.addEventListener('click',()=>selectOption(el.parentElement.id, el));
+});
+
+function getSelected(step){
+  const map = {1:'opt-score',2:'opt-goal',3:'opt-spend'};
+  const sel = document.querySelector('#'+map[step]+' .opt.selected');
+  return sel ? sel.dataset.val : null;
+}
+
+function showStep(n){
+  document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
+  document.querySelector('.step[data-step="'+n+'"]').classList.add('active');
+  const pct = n<=4 ? (n/4*80) : 100;
+  document.getElementById('progressFill').style.width = pct+'%';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function nextStep(n){
+  const val = getSelected(n);
+  const err = document.getElementById('err-'+n);
+  if(!val){ err.style.display='block'; return; }
+  err.style.display='none';
+  if(n===1) answers.score=val;
+  if(n===2) answers.goal=val;
+  if(n===3) answers.spend=val;
+  showStep(n+1);
+}
+function prevStep(n){ showStep(n-1); }
+function restart(){
+  answers.score=answers.goal=answers.spend=null;
+  document.querySelectorAll('.opt.selected').forEach(o=>o.classList.remove('selected'));
+  document.getElementById('leadForm').reset();
+  showStep(1);
+}
+
+function submitLead(e){
+  e.preventDefault();
+  const email = document.getElementById('email').value.trim();
+  const consent = document.getElementById('consent').checked;
+  const err = document.getElementById('err-4');
+  const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  if(!valid || !consent){ err.style.display='block'; return false; }
+  err.style.display='none';
+  /* TODO: POST lead to your endpoint / ESP here.
+     fetch('/api/leads', {method:'POST', body: JSON.stringify({...answers, email, name})}) */
+  console.log('LEAD (demo — not sent):', {answers, email, name:document.getElementById('fname').value});
+  renderResults();
+  showStep(5);
+  return false;
+}
+
+function starRow(r){
+  let s='';
+  for(let i=1;i<=5;i++){ s += i<=Math.round(r) ? '★' : '<span class="off">★</span>'; }
+  return s+' <span style="color:var(--muted);font-size:13px">'+r.toFixed(1)+'/5</span>';
+}
+
+function pickCards(){
+  const {score, goal} = answers;
+  const lowScore = (score==='fair'||score==='building');
+  let picks=[];
+  if(goal==='cashback'){
+    picks = lowScore ? ['cashback_simple','builder_petal','marketplace']
+                     : ['cashback_premium','cashback_simple','travel_nofee'];
+  } else if(goal==='travel'){
+    picks = lowScore ? ['travel_nofee','cashback_simple','marketplace']
+                     : ['travel_premium','travel_nofee','cashback_premium'];
+  } else if(goal==='balance'){
+    picks = ['balance_transfer','cashback_simple','marketplace'];
+  } else { /* building */
+    picks = ['builder_petal','builder_secured','marketplace'];
+  }
+  return picks.map(k=>CARDS[k]);
+}
+
+function renderResults(){
+  const picks = pickCards();
+  const sub = {cashback:'matched for maximum cash back',travel:'matched for travel rewards',
+               balance:'matched to pay down balances faster',building:'matched to build credit safely'}[answers.goal];
+  document.getElementById('resultsSub').textContent = 'Based on your answers — '+sub+'.';
+  document.getElementById('results').innerHTML = picks.map((c,i)=>`
+    <div class="rec${i===0?' top':''}">
+      ${i===0?'<div class="rec-badge">Best match</div>':''}
+      <div class="rec-name">${c.name}</div>
+      <div class="stars">${starRow(c.rating)}</div>
+      <div class="rec-why">${c.why}</div>
+      <div class="specs">${Object.entries(c.specs).map(([k,v])=>
+        `<div class="spec"><div class="spec-k">${k}</div><div class="spec-v">${v}</div></div>`).join('')}</div>
+      <!-- Affiliate program: ${c.program} — swap href for live tracking link -->
+      <a class="btn-apply" href="#affiliate-link-${c.slug}" target="_blank" rel="sponsored nofollow noopener">Apply Now →</a>
+      <div class="apply-note">On the issuer's secure site • Won't affect your credit to check</div>
+    </div>`).join('');
+}
+showStep(1);
+</script>
+</body>
+</html>

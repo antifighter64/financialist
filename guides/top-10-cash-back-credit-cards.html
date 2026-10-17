@@ -1,0 +1,440 @@
+<!--
+  ============================================================================
+  FINANCIALIST.COM — 10 Best Cash Back Credit Cards of October 2026 (DRAFT)
+  ----------------------------------------------------------------------------
+  STATUS: DO NOT PUBLISH AS-IS. Specs below (rates, fees, terms, offers) are
+  realistic ranges labeled "as of Oct 2026" but MUST be verified against each
+  provider's current terms before this page goes live.
+  AFFILIATE LINKS: 10 placeholders, 0 LIVE (none)
+  Keep the data-affiliate="pending|live" attribute in sync when swapping URLs.
+  LIVE links on file (investing vertical only):
+    Robinhood: https://join.robinhood.com/borisk90
+    Kalshi:    https://kalshi.com/r/02e22782-43a0-46ec-afe7-9fb41cc7fb03
+  Module anatomy modeled on NerdWallet/Bankrate teardown (Oct 2026 research).
+  ============================================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10 Best Cash Back Credit Cards of October 2026 — Compare & Apply | Financialist</title>
+<meta name="description" content="Compare the 10 best cash back credit cards of October 2026: ratings, annual fees, rewards rates and intro offers. Filter, sort and compare side by side.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --navy:#1a365d; --navy2:#234876; --ink:#1f2937; --muted:#6b7280;
+    --line:#e5e7eb; --bg:#f8fafc; --card:#ffffff; --green:#16a34a; --green-d:#15803d;
+    --gold:#f59e0b; --blue:#2563eb; --radius:12px;
+  }
+  *{box-sizing:border-box}
+  body{font-family:'Inter',-apple-system,'Segoe UI',Roboto,sans-serif;color:var(--ink);margin:0;background:var(--bg);line-height:1.55}
+  .fin-wrap{max-width:1080px;margin:0 auto;padding:0 16px 120px}
+  .fin-topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0;flex-wrap:wrap}
+  .fin-brand{font-weight:800;font-size:20px;color:var(--navy);text-decoration:none}
+  .fin-brand span{color:var(--green)}
+  .disclosure-btn{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:13px;font-weight:600;color:var(--navy);cursor:pointer}
+  .disclosure-btn:hover{border-color:var(--navy)}
+  .fin-updated{font-size:12px;color:var(--muted)}
+  h1{font-size:30px;color:var(--navy);margin:8px 0 6px;letter-spacing:-.5px}
+  .lede{color:#374151;font-size:16px;max-width:760px;margin:0 0 4px}
+  .rates-note{font-size:12px;color:var(--muted);margin:0 0 18px}
+  /* Filter bar */
+  .filter-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:18px 0;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;position:sticky;top:0;z-index:20}
+  .pill{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 14px;font-size:13px;font-weight:600;color:#374151;cursor:pointer}
+  .pill.active{background:var(--navy);border-color:var(--navy);color:#fff}
+  .sort-wrap{margin-left:auto;display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+  .sort-wrap select{border:1px solid var(--line);border-radius:8px;padding:7px 10px;font-size:13px;font-weight:600;color:var(--ink);background:#fff}
+  .result-count{font-size:13px;color:var(--muted);margin:6px 2px 10px}
+  /* Table */
+  .table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:#fff;margin-bottom:34px}
+  table.cmp{width:100%;border-collapse:collapse;min-width:760px;font-size:14px}
+  table.cmp thead th{background:var(--navy);color:#fff;text-align:left;padding:12px 14px;font-size:12.5px;text-transform:uppercase;letter-spacing:.4px;white-space:nowrap;cursor:pointer;user-select:none}
+  table.cmp thead th .arrow{opacity:.7;font-size:11px}
+  table.cmp tbody td{padding:14px;border-top:1px solid var(--line);vertical-align:middle}
+  table.cmp tbody tr:hover{background:#f1f5f9}
+  .t-name{font-weight:700;color:var(--navy)}
+  .t-name a{color:var(--navy);text-decoration:none}
+  .t-name a:hover{text-decoration:underline}
+  .t-apply{display:flex;flex-direction:column;gap:6px}
+  .btn{display:inline-block;text-align:center;font-weight:700;border-radius:8px;cursor:pointer;text-decoration:none;border:none}
+  .btn-apply{background:var(--green);color:#fff;padding:10px 16px;font-size:13.5px;text-transform:uppercase;letter-spacing:.3px}
+  .btn-apply:hover{background:var(--green-d)}
+  .btn-apply .lock{font-size:12px}
+  .rates-link{font-size:12.5px;color:var(--blue);text-decoration:none}
+  .rates-link:hover{text-decoration:underline}
+  .stars{position:relative;display:inline-block;font-size:15px;line-height:1;letter-spacing:2px;color:#d1d5db;white-space:nowrap}
+  .stars .fill{position:absolute;left:0;top:0;overflow:hidden;color:var(--gold);white-space:nowrap}
+  .rating-num{font-weight:700;font-size:13px;color:var(--ink);margin-left:6px}
+  .aff-tag{font-size:10px;font-weight:700;background:#fef3c7;color:#92400e;border:1px solid #fcd34d;border-radius:4px;padding:1px 5px;margin-left:6px;vertical-align:middle}
+  /* Product modules */
+  .mod{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-bottom:22px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+  .mod-top{display:flex;gap:20px;flex-wrap:wrap}
+  .mod-visual{flex:0 0 170px}
+  .card-art{display:block;width:170px;height:108px;border-radius:10px;background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;text-decoration:none;position:relative;overflow:hidden;box-shadow:0 4px 10px rgba(26,54,93,.25)}
+  .card-art::after{content:"";position:absolute;right:-30px;top:-30px;width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.08)}
+  .card-art .init{position:absolute;left:14px;bottom:10px;font-size:26px;font-weight:800;letter-spacing:1px}
+  .card-art .chip{position:absolute;left:14px;top:12px;width:30px;height:22px;border-radius:4px;background:linear-gradient(135deg,#fbbf24,#f59e0b)}
+  .mod-main{flex:1;min-width:260px}
+  .pick-label{font-size:13px;font-weight:800;color:var(--green-d);text-transform:uppercase;letter-spacing:.5px;margin:0 0 4px}
+  .award{display:inline-block;background:var(--navy);color:#fff;font-size:11px;font-weight:700;border-radius:4px;padding:3px 8px;margin-bottom:8px;letter-spacing:.4px}
+  .mod-name{font-size:21px;font-weight:800;color:var(--navy);margin:0 0 4px}
+  .mod-name a{color:var(--navy);text-decoration:none}
+  .mod-rating{display:flex;align-items:center;gap:8px;margin:6px 0 10px;flex-wrap:wrap}
+  .method-link{font-size:12.5px;color:var(--blue);text-decoration:none}
+  .method-link:hover{text-decoration:underline}
+  .compare-check{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:#374151;margin:8px 0;cursor:pointer}
+  .compare-check input{width:16px;height:16px;accent-color:var(--navy);cursor:pointer}
+  .cta-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0 4px}
+  .btn-big{padding:13px 26px;font-size:15px}
+  .why-like{background:#f0fdf4;border-left:4px solid var(--green);padding:10px 14px;font-size:14px;border-radius:0 8px 8px 0;margin:12px 0;color:#14532d}
+  .why-like strong{color:var(--green-d)}
+  .spec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0}
+  .spec{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+  .spec .k{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--muted)}
+  .spec .v{font-size:14px;font-weight:600;color:var(--ink);margin-top:2px}
+  details.mod-details{border-top:1px solid var(--line);margin-top:12px;padding-top:10px}
+  details.mod-details summary{cursor:pointer;font-weight:700;color:var(--navy);font-size:14px;padding:6px 0}
+  .pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px;font-size:14px}
+  .pros-cons h4{margin:0 0 6px;font-size:13px;text-transform:uppercase;letter-spacing:.4px}
+  .pros h4{color:var(--green-d)} .cons h4{color:#b91c1c}
+  .pros-cons ul{margin:0;padding-left:18px}
+  .pros-cons li{margin-bottom:4px}
+  .take{font-size:14px;color:#374151;margin-top:10px}
+  /* Methodology */
+  .methodology{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-top:10px}
+  .methodology h2{color:var(--navy);font-size:20px;margin-top:0}
+  .methodology p,.methodology li{font-size:14px;color:#374151}
+  /* Compare tray */
+  .compare-tray{position:fixed;left:0;right:0;bottom:0;background:var(--navy);color:#fff;padding:12px 16px;display:none;z-index:50;box-shadow:0 -4px 16px rgba(0,0,0,.2)}
+  .compare-tray.show{display:block}
+  .tray-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .tray-items{display:flex;gap:8px;flex-wrap:wrap;flex:1}
+  .tray-item{background:rgba(255,255,255,.12);border-radius:8px;padding:6px 10px;font-size:13px;font-weight:600;display:flex;gap:8px;align-items:center}
+  .tray-item button{background:none;border:none;color:#fca5a5;font-size:15px;cursor:pointer;line-height:1}
+  .btn-compare-now{background:var(--gold);color:#1f2937;padding:10px 20px;font-size:14px}
+  .btn-compare-now:hover{background:#d97706;color:#fff}
+  /* Modals */
+  .modal-back{position:fixed;inset:0;background:rgba(15,23,42,.6);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+  .modal-back.show{display:flex}
+  .modal{background:#fff;border-radius:14px;max-width:640px;width:100%;max-height:88vh;overflow:auto;padding:28px;position:relative}
+  .modal.wide{max-width:960px}
+  .modal h2{color:var(--navy);margin-top:0;font-size:22px}
+  .modal p{font-size:14.5px;color:#374151}
+  .modal-close{position:absolute;top:12px;right:14px;background:none;border:none;font-size:24px;cursor:pointer;color:var(--muted)}
+  .cmp-side{width:100%;border-collapse:collapse;font-size:13.5px;min-width:560px}
+  .cmp-side th,.cmp-side td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+  .cmp-side th{background:var(--navy);color:#fff;font-size:14px}
+  .cmp-side tr td:first-child{font-weight:700;background:var(--bg);white-space:nowrap}
+  @media(max-width:640px){
+    h1{font-size:24px}
+    .mod{padding:16px}
+    .pros-cons{grid-template-columns:1fr}
+    .sort-wrap{margin-left:0}
+    .card-art{width:150px;height:96px}
+  }
+
+  /* Top-10 listicle additions (kept in the same design language) */
+  .rank-badge{display:inline-block;background:var(--green);color:#fff;font-weight:800;font-size:13px;border-radius:6px;padding:3px 10px;margin:0 8px 8px 0;letter-spacing:.5px}
+  .quick-h{color:var(--navy);font-size:19px;margin:22px 0 10px}
+  .art-symbol{position:absolute;left:14px;top:10px;font-size:22px}
+  .card-art.art-green{background:linear-gradient(135deg,#166534,#22c55e)}
+  .card-art.art-blue{background:linear-gradient(135deg,#1e3a8a,#3b82f6)}
+  .card-art.art-gold{background:linear-gradient(135deg,#92400e,#f59e0b)}
+  .disclosure-sec{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-top:22px}
+  .disclosure-sec h2{color:var(--navy);font-size:20px;margin-top:0}
+  .disclosure-sec p,.disclosure-sec li{font-size:14px;color:#374151}
+  .toc-note{font-size:13px;color:var(--muted);margin:0 0 14px}
+  .btn-jump{background:#fff;border:1px solid var(--navy);color:var(--navy);padding:8px 14px;font-size:13px}
+  .btn-jump:hover{background:var(--navy);color:#fff}
+
+</style>
+</head>
+<body>
+<div class="fin-wrap">
+  <div class="fin-topbar">
+    <a class="fin-brand" href="/">Financialist<span>.com</span></a>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <span class="fin-updated">Last updated: October 2026 · Fact checked ✓</span>
+      <button class="disclosure-btn" id="openDisclosure">Advertiser disclosure</button>
+    </div>
+  </div>
+
+  <h1>10 Best Cash Back Credit Cards of October 2026</h1>
+  <p class="lede">Cash back is the simplest reward there is — money back on money you were spending anyway. We ranked these cards on rewards value, fees, intro offers, and perks, so you can filter, sort, and compare them side by side before you apply.</p>
+  <p class="rates-note">Annual fees, APRs and offers shown as of October 2026 and change often — always confirm current terms on the issuer's site before applying.</p>
+
+  <h2 class="quick-h">Our top picks at a glance</h2>
+  <p class="toc-note">Tap any product to jump to its full review below.</p>
+  <div class="table-scroll">
+    <table class="cmp" id="quickTable">
+      <thead><tr><th>Rank</th><th>Product</th><th>Rating</th><th>Rewards rate</th><th></th></tr></thead>
+      <tbody id="quickBody"></tbody>
+    </table>
+  </div>
+
+<section class="quiz-cta" style="background:#f0fdf4;border:2px solid #16a34a;border-radius:12px;padding:20px;margin:24px 0;text-align:center">
+<h2 style="margin-top:0">Not sure which is right for you?</h2>
+<p>Answer 4 quick questions and get matched to your best options in 60 seconds.</p>
+<a href="/tools/credit-card-quiz" style="display:inline-block;background:#16a34a;color:#fff;padding:12px 28px;border-radius:8px;font-weight:700;text-decoration:none">Take the 60-second quiz</a>
+</section>
+
+  <div class="filter-bar" id="filterBar">
+    <button class="pill active" data-filter="all">All cards</button>
+    <button class="pill" data-filter="no-annual-fee">No annual fee</button>
+    <button class="pill" data-filter="cash-back">Cash back</button>
+    <button class="pill" data-filter="intro-apr">0% intro APR</button>
+    <button class="pill" data-filter="travel">Travel perks</button>
+    
+    <div class="sort-wrap">
+      <label for="sortSel">Sort by</label>
+      <select id="sortSel">
+        <option value="featured">Featured</option><option value="rating">Highest rating</option><option value="fee">Lowest annual fee</option><option value="rewards">Highest rewards rate</option>
+      </select>
+    </div>
+  </div>
+  <div class="result-count" id="resultCount"></div>
+
+  <div class="table-scroll">
+    <table class="cmp" id="cmpTable">
+      <thead><tr>
+        <th data-sort="name">Product <span class="arrow">↕</span></th>
+        <th data-sort="rating">Rating <span class="arrow">↕</span></th>
+        <th data-sort="c0">Annual fee <span class="arrow">↕</span></th><th>Rewards rate</th><th>Intro offer</th>
+        <th>Learn more</th>
+      </tr></thead>
+      <tbody id="cmpBody"></tbody>
+    </table>
+  </div>
+
+<!-- AFFILIATE LINK MANIFEST — swap each href before publish, keep data-affiliate in sync:
+     <!-- AFFILIATE PLACEHOLDER: Wells Fargo Active Cash® Card --> → #affiliate-link-wells-fargo-active-cash (pending)
+     <!-- AFFILIATE PLACEHOLDER: Citi Double Cash® Card --> → #affiliate-link-citi-double-cash (pending)
+     <!-- AFFILIATE PLACEHOLDER: Chase Freedom Unlimited® --> → #affiliate-link-chase-freedom-unlimited (pending)
+     <!-- AFFILIATE PLACEHOLDER: Blue Cash Preferred® Card from American Express --> → #affiliate-link-amex-blue-cash-preferred (pending)
+     <!-- AFFILIATE PLACEHOLDER: Discover it® Cash Back --> → #affiliate-link-discover-it-cash-back (pending)
+     <!-- AFFILIATE PLACEHOLDER: Capital One Savor® --> → #affiliate-link-capital-one-savor (pending)
+     <!-- AFFILIATE PLACEHOLDER: Citi Custom Cash® Card --> → #affiliate-link-citi-custom-cash (pending)
+     <!-- AFFILIATE PLACEHOLDER: Blue Cash Everyday® Card from American Express --> → #affiliate-link-blue-cash-everyday (pending)
+     <!-- AFFILIATE PLACEHOLDER: Chase Freedom Flex® --> → #affiliate-link-chase-freedom-flex (pending)
+     <!-- AFFILIATE PLACEHOLDER: U.S. Bank Cash+® Visa Signature® Card --> → #affiliate-link-us-bank-cash-plus (pending)
+  -->
+
+  <div id="modules"></div>
+
+<section class="related-guides" style="margin:32px 0">
+<h2>Related Financialist guides</h2>
+<ul style="list-style:none;padding:0;margin:0">
+<li style="margin:10px 0"><a href="/guides/best-travel-credit-cards">Best Travel Credit Cards of 2026</a></li>
+<li style="margin:10px 0"><a href="/guides/best-balance-transfer-credit-cards">Best Balance Transfer Credit Cards of 2026</a></li>
+<li style="margin:10px 0"><a href="/tools/credit-card-quiz">Credit Card Quiz: Find Your Best Card in 60 Seconds</a></li>
+<li style="margin:10px 0"><a href="/viral/credit-score-myths">Credit Score Myths Debunked</a></li>
+</ul>
+</section>
+
+  <section class="methodology" id="methodology">
+    <h2>How Financialist rates cash back credit cards</h2>
+    <p>Every card gets a score from 0 to 5. Our analysts weigh what matters most to real cardholders:</p>
+    <ul>
+      <li><strong>Rewards value (35%)</strong> — how much the average spender actually earns back in a year, after caps and categories.</li>
+      <li><strong>Fees (25%)</strong> — annual fee weighed against what you get for it; $0-fee cards score higher here.</li>
+      <li><strong>Intro offers (20%)</strong> — welcome bonuses and 0% intro APR periods.</li>
+      <li><strong>Perks &amp; protections (20%)</strong> — purchase protections, cell-phone coverage, travel perks, and similar.</li>
+    </ul>
+    <p>Partners who compensate us cannot pay for a higher rating or a better placement. <a href="#" class="method-link" id="openDisclosure2">Read our advertiser disclosure</a>.</p>
+  </section>
+
+  <section class="disclosure-sec" id="advertiser-disclosure">
+    <h2>Advertiser disclosure</h2>
+    <p>Many or all of the credit card products featured here are from our partners who compensate us. That may influence which cards we write about and where and how they appear on a page.</p>
+    <p><strong>It does not influence our evaluations.</strong> Our ratings are set by our editorial team using the published methodology above. Partners cannot pay for favorable reviews, higher ratings, or better placement.</p>
+    <p>When you click "Apply now" you leave Financialist.com and go to the issuer's secure site. If you're approved, we may earn a commission — at no cost to you.</p>
+  </section>
+</div>
+
+<div class="compare-tray" id="tray">
+  <div class="tray-inner">
+    <strong>Compare (<span id="trayCount">0</span>/3):</strong>
+    <div class="tray-items" id="trayItems"></div>
+    <button class="btn btn-compare-now" id="compareNow">Compare now</button>
+  </div>
+</div>
+
+<div class="modal-back" id="disclosureBack">
+  <div class="modal">
+    <button class="modal-close" data-close="disclosureBack">×</button>
+    <h2>You're our first priority. Every time.</h2>
+    <p>Many or all of the credit card products featured here are from our partners who compensate us. That may influence which cards we write about and where and how they appear on a page.</p>
+    <p><strong>It does not influence our evaluations.</strong> Our ratings are set by our editorial team using the published methodology above. Partners cannot pay for favorable reviews, higher ratings, or better placement.</p>
+    <p>When you click "Apply now" you leave Financialist.com and go to the issuer's secure site. If you're approved, we may earn a commission — at no cost to you.</p>
+  </div>
+</div>
+
+<div class="modal-back" id="compareBack">
+  <div class="modal wide">
+    <button class="modal-close" data-close="compareBack">×</button>
+    <h2>Side-by-side comparison</h2>
+    <div style="overflow-x:auto"><table class="cmp-side" id="sideTable"></table></div>
+  </div>
+</div>
+
+<script>
+
+const PRODUCTS = [{"id": "wells-fargo-active-cash", "name": "Wells Fargo Active Cash® Card", "issuer": "Wells Fargo", "pick": "Simple flat-rate cash back", "badge": "2026 BEST FLAT-RATE CASH BACK CARD", "rating": 4.8, "affiliate": "#affiliate-link-wells-fargo-active-cash", "affStatus": "pending", "cats": ["cash-back", "no-annual-fee", "intro-apr"], "feeNum": 0, "rewardNum": 2.0, "fee": "$0", "rewards": "Unlimited 2% cash back", "intro": "$200 cash back (check current offer)", "apr": "19.49%–29.49% variable (as of Oct 2026)", "credit": "670–850 (Good–Excellent)", "why": "The easiest 2% you will ever earn — no categories, no caps, no annual fee.", "pros": ["Unlimited 2% cash back on every purchase", "$0 annual fee", "Cell phone protection when you pay your bill with the card", "0% intro APR on purchases and balance transfers"], "cons": ["Bonus categories elsewhere can beat 2%", "Wells Fargo mobile app gets mixed reviews"], "take": "If you want one card and zero homework, this is it. The flat 2% beats most $0-fee cards for typical spending."}, {"id": "citi-double-cash", "name": "Citi Double Cash® Card", "issuer": "Citi", "pick": "Set-it-and-forget-it earners", "badge": "", "rating": 4.7, "affiliate": "#affiliate-link-citi-double-cash", "affStatus": "pending", "cats": ["cash-back", "no-annual-fee", "intro-apr"], "feeNum": 0, "rewardNum": 2.0, "fee": "$0", "rewards": "Up to 2% (1% when you buy, 1% when you pay)", "intro": "$200 cash back (check current spend requirement)", "apr": "18.49%–28.74% variable (as of Oct 2026)", "credit": "670–850 (Good–Excellent)", "why": "Two percent back with no annual fee — you just have to pay your bill to unlock the full rate.", "pros": ["2% effective rate with $0 annual fee", "No rotating categories to track", "0% intro APR on balance transfers for 18 months"], "cons": ["Must pay your bill to earn the full 2%", "No standout bonus categories"], "take": "A classic for a reason. Slightly more effort than a true flat 2%, but the long balance-transfer intro APR is a real perk."}, {"id": "chase-freedom-unlimited", "name": "Chase Freedom Unlimited®", "issuer": "Chase", "pick": "Everyday spending with bonus categories", "badge": "", "rating": 4.6, "affiliate": "#affiliate-link-chase-freedom-unlimited", "affStatus": "pending", "cats": ["cash-back", "no-annual-fee", "intro-apr", "travel"], "feeNum": 0, "rewardNum": 5.0, "fee": "$0", "rewards": "5% travel via Chase, 3% dining/drugstores, 1.5% on everything else", "intro": "$200 cash back (check current requirement)", "apr": "18.24%–27.74% variable; 0% intro 15 months (as of Oct 2026)", "credit": "670–850 (Good–Excellent)", "why": "Bonus categories that match real life, plus a long 0% intro APR runway.", "pros": ["5% on travel booked through Chase", "3% on dining and drugstores", "Pairs with Sapphire cards for transferable travel points", "0% intro APR for 15 months"], "cons": ["Base 1.5% trails flat-2% cards on non-bonus spend", "3% foreign transaction fee"], "take": "The best $0-fee card if you dine out or travel. The Chase ecosystem pairing is the hidden value."}, {"id": "amex-blue-cash-preferred", "name": "Blue Cash Preferred® Card from American Express", "issuer": "American Express", "pick": "Groceries and streaming", "badge": "", "rating": 4.5, "affiliate": "#affiliate-link-amex-blue-cash-preferred", "affStatus": "pending", "cats": ["cash-back"], "feeNum": 150, "rewardNum": 6.0, "fee": "$150", "rewards": "6% at U.S. supermarkets (to $6k/yr) and on select streaming", "intro": "Check current welcome offer", "apr": "See issuer site for current APR", "credit": "670–850 (Good–Excellent)", "why": "Nobody beats 6% on groceries — the fee pays for itself for most families.", "pros": ["6% at U.S. supermarkets and on select streaming", "3% on transit and at U.S. gas stations", "Strong purchase and return protections"], "cons": ["$150 annual fee", "6% grocery rate capped at $6,000 per year"], "take": "Do the math on your grocery spend: over about $3,000 a year at supermarkets, the fee is covered and everything after is profit."}, {"id": "discover-it-cash-back", "name": "Discover it® Cash Back", "issuer": "Discover", "pick": "Rotating bonus categories", "badge": "", "rating": 4.4, "affiliate": "#affiliate-link-discover-it-cash-back", "affStatus": "pending", "cats": ["cash-back", "no-annual-fee", "intro-apr"], "feeNum": 0, "rewardNum": 5.0, "fee": "$0", "rewards": "5% in rotating quarterly categories (activation required)", "intro": "Cashback Match™ — first-year rewards doubled", "apr": "See issuer site for current APR", "credit": "670–850 (Good–Excellent)", "why": "The first-year Cashback Match can make this the highest-earning $0-fee card you will ever hold.", "pros": ["5% in quarterly rotating categories", "$0 annual fee", "First-year Cashback Match doubles your rewards", "Free FICO® score with every statement"], "cons": ["Must activate categories each quarter", "Discover accepted at fewer places abroad"], "take": "A superb second card. Activate the categories, and year one is unbeatable for a no-fee card."}, {"id": "capital-one-savor", "name": "Capital One Savor®", "issuer": "Capital One", "pick": "Dining and entertainment", "badge": "", "rating": 4.4, "affiliate": "#affiliate-link-capital-one-savor", "affStatus": "pending", "cats": ["cash-back", "no-annual-fee"], "feeNum": 0, "rewardNum": 3.0, "fee": "$0", "rewards": "3% on dining, entertainment and streaming", "intro": "Check current welcome offer", "apr": "See issuer site for current APR", "credit": "670–850 (Good–Excellent)", "why": "If restaurants are your biggest bill, 3% back with no fee is hard to argue with.", "pros": ["3% on dining, entertainment and popular streaming services", "2% at grocery stores", "$0 annual fee"], "cons": ["No 0% intro APR period", "Rewards are cash back, not transferable miles"], "take": "Built for people who eat out. Pair it with a flat-2% card and you cover nearly all spending at 2% or better."}, {"id": "citi-custom-cash", "name": "Citi Custom Cash® Card", "issuer": "Citi", "pick": "Automatic category optimization", "badge": "", "rating": 4.3, "affiliate": "#affiliate-link-citi-custom-cash", "affStatus": "pending", "cats": ["cash-back", "no-annual-fee", "intro-apr"], "feeNum": 0, "rewardNum": 5.0, "fee": "$0", "rewards": "5% in your top eligible spend category (to $500/mo), 1% after", "intro": "$200 cash back (check current spend requirement)", "apr": "See issuer site for current APR", "credit": "670–850 (Good–Excellent)", "why": "No tracking, no activating — the card finds your biggest category and pays 5% on it automatically.", "pros": ["Automatic 5% on your top category each month", "$0 annual fee", "0% intro APR on balance transfers for 15 months"], "cons": ["5% applies to only one category per month", "$500 monthly cap on the 5% rate"], "take": "The laziest way to earn 5%. Great if your spending concentrates in one category most months."}, {"id": "blue-cash-everyday", "name": "Blue Cash Everyday® Card from American Express", "issuer": "American Express", "pick": "No-fee groceries and gas", "badge": "", "rating": 4.2, "affiliate": "#affiliate-link-blue-cash-everyday", "affStatus": "pending", "cats": ["cash-back", "no-annual-fee", "intro-apr"], "feeNum": 0, "rewardNum": 3.0, "fee": "$0", "rewards": "3% at U.S. supermarkets (to $6k/yr), 3% U.S. gas, 3% U.S. online retail", "intro": "Check current welcome offer", "apr": "See issuer site for current APR", "credit": "670–850 (Good–Excellent)", "why": "The best parts of its pricier sibling, minus the annual fee.", "pros": ["3% at U.S. supermarkets, U.S. gas stations and U.S. online retail", "$0 annual fee", "0% intro APR on purchases for 15 months"], "cons": ["Lower rates than Blue Cash Preferred", "3% supermarket rate capped at $6,000 per year"], "take": "If the $150 fee on the Preferred gives you pause, this keeps the grocery game strong for free."}, {"id": "chase-freedom-flex", "name": "Chase Freedom Flex®", "issuer": "Chase", "pick": "Quarterly bonus categories", "badge": "", "rating": 4.2, "affiliate": "#affiliate-link-chase-freedom-flex", "affStatus": "pending", "cats": ["cash-back", "no-annual-fee", "intro-apr", "travel"], "feeNum": 0, "rewardNum": 5.0, "fee": "$0", "rewards": "5% rotating categories, 5% travel via Chase, 3% dining/drugstores", "intro": "$200 cash back (check current requirement)", "apr": "See issuer site for current APR", "credit": "670–850 (Good–Excellent)", "why": "Five percent in a lot of places — if you remember to activate each quarter.", "pros": ["5% on rotating quarterly categories (activation required)", "5% on travel booked through Chase", "Pairs with Sapphire cards for travel points"], "cons": ["Must activate bonus categories quarterly", "3% foreign transaction fee"], "take": "The Unlimited's more hands-on sibling. Activators get one of the richest $0-fee cards available."}, {"id": "us-bank-cash-plus", "name": "U.S. Bank Cash+® Visa Signature® Card", "issuer": "U.S. Bank", "pick": "Pick-your-own categories", "badge": "", "rating": 4.1, "affiliate": "#affiliate-link-us-bank-cash-plus", "affStatus": "pending", "cats": ["cash-back", "no-annual-fee"], "feeNum": 0, "rewardNum": 5.0, "fee": "$0", "rewards": "5% on two categories you choose (to $2k/qtr)", "intro": "$200 cash back (check current spend requirement)", "apr": "See issuer site for current APR", "credit": "670–850 (Good–Excellent)", "why": "You pick the 5% categories every quarter — the card adapts to your life, not the other way around.", "pros": ["Choose your own 5% categories each quarter", "2% on one everyday category (groceries, gas or dining)", "$0 annual fee"], "cons": ["Must re-select categories each quarter", "$2,000 quarterly cap on 5% and 2% categories"], "take": "For tinkerers who want control. Set a calendar reminder and it pays like a premium card for free."}];
+const COLS = [{"key": "fee", "label": "Annual fee"}, {"key": "rewards", "label": "Rewards rate"}, {"key": "intro", "label": "Intro offer"}];
+const SPECS = [["Annual fee", "fee"], ["Rewards rate", "rewards"], ["Intro offer", "intro"], ["Regular APR", "apr"], ["Recommended credit", "credit"]];
+const SORTFNS = { featured:(a,b)=>PRODUCTS.indexOf(a)-PRODUCTS.indexOf(b), rating:(a,b)=>b.rating-a.rating, fee:(a,b)=>a.feeNum-b.feeNum, rewards:(a,b)=>b.rewardNum-a.rewardNum };
+const SMALL_CTA = "Apply now";
+const RATES_LINK = "See Rates & Fees";
+const CTA_VERB = "Apply now";
+const ART_CLASS = "";
+const ART_SYMBOL = "💳";
+const QUICK_KEY = "rewards";
+const NOUN = "cards";
+const CMP_NOUN = "cards";
+
+let state = {filter:'all', sort:'featured', compare:[]};
+const $ = id => document.getElementById(id);
+const affTag = p => p.affStatus==='pending' ? '<span class="aff-tag" title="Affiliate link pending — swap with tracking URL before publish">LINK PENDING</span>' : '';
+
+function stars(r){
+  const pct = (r/5*100).toFixed(0);
+  return `<span class="stars" aria-label="${r} out of 5 stars">★★★★★<span class="fill" style="width:${pct}%">★★★★★</span></span><span class="rating-num">${r.toFixed(1)}</span>`;
+}
+function filtered(){
+  let list = PRODUCTS.filter(p => state.filter==='all' || p.cats.includes(state.filter));
+  const fn = SORTFNS[state.sort] || SORTFNS.featured;
+  return list.slice().sort(fn);
+}
+function renderQuick(){
+  $('quickBody').innerHTML = PRODUCTS.map((p,i)=>`
+    <tr>
+      <td><strong>#${i+1}</strong></td>
+      <td><span class="t-name"><a href="#mod-${p.id}">${p.name}</a></span>${affTag(p)}</td>
+      <td>${stars(p.rating)}</td>
+      <td><strong>${p[QUICK_KEY]}</strong></td>
+      <td><a class="btn btn-jump" href="#mod-${p.id}">See details</a></td>
+    </tr>`).join('');
+}
+function renderTable(){
+  const list = filtered();
+  $('resultCount').textContent = `Showing ${list.length} of ${PRODUCTS.length} ${NOUN}`;
+  $('cmpBody').innerHTML = list.map(p=>`
+    <tr>
+      <td><span class="t-name"><a href="${p.affiliate}" data-affiliate="${p.affStatus}">${p.name}</a></span>${affTag(p)}</td>
+      <td>${stars(p.rating)}</td>
+      ${COLS.map((c,ci)=>`<td>${ci===0?`<strong>${p[c.key]}</strong>`:p[c.key]}</td>`).join('')}
+      <td><div class="t-apply">
+        <a class="btn btn-apply" href="${p.affiliate}" data-affiliate="${p.affStatus}"><span class="lock">🔒</span> ${SMALL_CTA}</a>
+        <a class="rates-link" href="${p.affiliate}" data-affiliate="${p.affStatus}">${RATES_LINK}</a>
+        <label class="compare-check"><input type="checkbox" data-cmp="${p.id}" ${state.compare.includes(p.id)?'checked':''}> Add to compare</label>
+      </div></td>
+    </tr>`).join('');
+  bindCompareBoxes();
+}
+function renderModules(){
+  $('modules').innerHTML = filtered().map((p,i)=>`
+  <article class="mod" id="mod-${p.id}">
+    <div class="mod-top">
+      <div class="mod-visual">
+        <a class="card-art ${ART_CLASS}" href="${p.affiliate}" data-affiliate="${p.affStatus}" aria-label="${CTA_VERB} — ${p.name}">
+          <span class="art-symbol">${ART_SYMBOL}</span><span class="init">${p.issuer.split(' ').map(w=>w[0]).join('').slice(0,3)}</span>
+        </a>
+      </div>
+      <div class="mod-main">
+        <p class="pick-label">Our pick for: ${p.pick}</p>
+        <div><span class="rank-badge">#${PRODUCTS.indexOf(p)+1}</span>${p.badge?`<span class="award">🏆 ${p.badge}</span>`:''}</div>
+        <h2 class="mod-name"><a href="${p.affiliate}" data-affiliate="${p.affStatus}">${p.name}</a>${affTag(p)}</h2>
+        <div class="mod-rating">${stars(p.rating)}<a class="method-link" href="#methodology">How are ratings determined?</a></div>
+        <div class="why-like"><strong>Why you'll like this:</strong> ${p.why}</div>
+        <label class="compare-check"><input type="checkbox" data-cmp="${p.id}" ${state.compare.includes(p.id)?'checked':''}> Add to compare</label>
+        <div class="cta-row">
+          <a class="btn btn-apply btn-big" href="${p.affiliate}" data-affiliate="${p.affStatus}">${CTA_VERB} <span class="lock">🔒</span> on ${p.issuer}'s secure site</a>
+          <a class="rates-link" href="${p.affiliate}" data-affiliate="${p.affStatus}">${RATES_LINK}</a>
+        </div>
+        <div class="spec-grid">
+          ${SPECS.map(([label,key])=>`<div class="spec"><div class="k">${label}</div><div class="v">${p[key]}</div></div>`).join('')}
+        </div>
+        <details class="mod-details">
+          <summary>Details, pros &amp; cons</summary>
+          <div class="pros-cons">
+            <div class="pros"><h4>Pros</h4><ul>${p.pros.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+            <div class="cons"><h4>Cons</h4><ul>${p.cons.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+          </div>
+          <p class="take"><strong>Financialist's take:</strong> ${p.take}</p>
+        </details>
+      </div>
+    </div>
+  </article>`).join('');
+  bindCompareBoxes();
+}
+function bindCompareBoxes(){
+  document.querySelectorAll('[data-cmp]').forEach(box=>{
+    box.onchange = ()=>{
+      const id = box.getAttribute('data-cmp');
+      if(box.checked){
+        if(state.compare.length>=3){ box.checked=false; alert('You can compare up to 3 '+CMP_NOUN+'.'); return; }
+        if(!state.compare.includes(id)) state.compare.push(id);
+      } else state.compare = state.compare.filter(x=>x!==id);
+      syncTray();
+      document.querySelectorAll(`[data-cmp="${id}"]`).forEach(b=>{ if(b!==box) b.checked=box.checked; });
+    };
+  });
+}
+function syncTray(){
+  const tray = $('tray');
+  $('trayCount').textContent = state.compare.length;
+  $('trayItems').innerHTML = state.compare.map(id=>{
+    const p = PRODUCTS.find(x=>x.id===id);
+    return `<span class="tray-item">${p.name}<button data-rm="${id}" aria-label="Remove">×</button></span>`;
+  }).join('');
+  tray.classList.toggle('show', state.compare.length>0);
+  document.querySelectorAll('[data-rm]').forEach(b=>b.onclick=()=>{
+    const id=b.getAttribute('data-rm');
+    state.compare=state.compare.filter(x=>x!==id);
+    document.querySelectorAll(`[data-cmp="${id}"]`).forEach(x=>x.checked=false);
+    syncTray();
+  });
+}
+function renderSide(){
+  const ps = state.compare.map(id=>PRODUCTS.find(x=>x.id===id));
+  const rows = [
+    ['Rating', p=>stars(p.rating)],
+    ...SPECS.map(([label,key])=>[label, p=>p[key]]),
+    [SMALL_CTA, p=>`<a class="btn btn-apply" href="${p.affiliate}" data-affiliate="${p.affStatus}">${SMALL_CTA}</a>`]
+  ];
+  $('sideTable').innerHTML =
+    `<tr><th></th>${ps.map(p=>`<th>${p.name}</th>`).join('')}</tr>` +
+    rows.map(([k,fn])=>`<tr><td>${k}</td>${ps.map(p=>`<td>${fn(p)}</td>`).join('')}</tr>`).join('');
+}
+document.querySelectorAll('#filterBar .pill').forEach(pill=>{
+  pill.onclick=()=>{
+    document.querySelectorAll('#filterBar .pill').forEach(x=>x.classList.remove('active'));
+    pill.classList.add('active');
+    state.filter=pill.getAttribute('data-filter');
+    renderTable(); renderModules();
+  };
+});
+$('sortSel').onchange=e=>{ state.sort=e.target.value; renderTable(); };
+document.querySelectorAll('#cmpTable thead th[data-sort]').forEach(th=>{
+  th.onclick=()=>{
+    const k=th.getAttribute('data-sort');
+    state.sort = k==='name' ? 'featured' : (k==='rating'?'rating':(k==='c0'?'fee':'featured'));
+    renderTable();
+  };
+});
+$('compareNow').onclick=()=>{ if(!state.compare.length) return; renderSide(); $('compareBack').classList.add('show'); };
+const openD=()=>$('disclosureBack').classList.add('show');
+$('openDisclosure').onclick=openD;
+$('openDisclosure2').onclick=e=>{e.preventDefault();openD();};
+document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>$(b.getAttribute('data-close')).classList.remove('show'));
+document.querySelectorAll('.modal-back').forEach(m=>m.addEventListener('click',e=>{ if(e.target===m) m.classList.remove('show'); }));
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') document.querySelectorAll('.modal-back.show').forEach(m=>m.classList.remove('show')); });
+renderQuick(); renderTable(); renderModules(); syncTray();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What's Your Money Personality? — Financialist Quiz</title>
+<meta name="description" content="Answer 10 questions and discover your money personality — plus a personalized plan to level up your finances.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0a1428; --card:#122341; --card2:#16294a;
+  --gold:#f5b942; --green:#2fd08c; --blue:#4da3ff; --red:#ff6b6b; --purple:#b678ff;
+  --text:#eef3fb; --muted:#93a4c4; --line:rgba(255,255,255,.09);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(1200px 600px at 80% -10%,#16305c 0%,var(--navy) 55%) fixed,var(--navy);color:var(--text);font-family:Inter,system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column}
+h1,h2,h3,.brand{font-family:Sora,Inter,sans-serif}
+.wrap{max-width:680px;margin:0 auto;padding:0 18px 60px;width:100%;flex:1}
+header.top{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
+.brand{font-weight:800;font-size:22px}.brand span{color:var(--gold)}
+.tag{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:6px 14px}
+.screen{display:none}
+.screen.on{display:block;animation:slideIn .45s ease}
+@keyframes slideIn{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{transform:scale(.9);opacity:0}60%{transform:scale(1.03)}100%{transform:scale(1);opacity:1}}
+.hero{text-align:center;padding:36px 0 10px}
+.hero .emoji{font-size:64px;margin-bottom:10px;animation:pop .6s ease}
+.hero h1{font-size:clamp(28px,5.5vw,44px);font-weight:800;line-height:1.15}
+.hero h1 em{color:var(--gold);font-style:normal}
+.hero p{color:var(--muted);margin:14px auto;max-width:480px;font-size:15px;line-height:1.6}
+.bigbtn{display:inline-block;background:linear-gradient(135deg,var(--gold),#e08e1a);color:#1a1206;font-family:Sora;font-weight:800;font-size:17px;border:none;border-radius:14px;padding:16px 44px;cursor:pointer;margin-top:18px;transition:.2s;box-shadow:0 14px 34px rgba(245,185,66,.3)}
+.bigbtn:hover{transform:translateY(-2px);box-shadow:0 20px 44px rgba(245,185,66,.4)}
+.meta{display:flex;gap:16px;justify-content:center;margin-top:18px;color:var(--muted);font-size:13px}
+.progress{height:8px;background:#0a1730;border-radius:99px;margin:22px 0;overflow:hidden}
+.progress>div{height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--green));border-radius:99px;transition:width .4s ease}
+.qnum{color:var(--gold);font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase}
+.qtext{font-family:Sora;font-size:clamp(20px,4vw,27px);font-weight:700;margin:10px 0 22px;line-height:1.35}
+.opt{display:block;width:100%;text-align:left;background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:14px;color:var(--text);padding:16px 18px;font-size:15px;margin-bottom:12px;cursor:pointer;font-family:Inter;transition:.18s;line-height:1.45}
+.opt:hover{border-color:var(--gold);transform:translateX(6px);background:#1a3054}
+.opt .k{display:inline-block;width:28px;height:28px;border-radius:8px;background:#0a1730;border:1px solid var(--line);text-align:center;line-height:26px;font-size:13px;font-weight:700;color:var(--gold);margin-right:12px}
+.result-hero{text-align:center;padding:26px 0}
+.result-emoji{font-size:72px;animation:pop .6s ease}
+.result-hero h1{font-size:clamp(30px,6vw,46px);font-weight:800;margin-top:8px}
+.result-hero h1 em{font-style:normal}
+.result-tag{display:inline-block;margin-top:10px;background:rgba(255,255,255,.08);border:1px solid var(--line);border-radius:999px;padding:7px 18px;font-size:13px;color:var(--muted)}
+.result-desc{font-size:16px;line-height:1.7;color:var(--text);background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:18px;padding:22px;margin:20px 0}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
+@media(max-width:560px){.cols{grid-template-columns:1fr}}
+.col{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:16px;padding:18px}
+.col h3{font-size:14px;margin-bottom:10px;letter-spacing:.5px}
+.col ul{list-style:none;font-size:14px;line-height:1.7;color:var(--muted)}
+.col ul li::before{content:'✓ ';color:var(--green);font-weight:700}
+.col.warn ul li::before{content:'⚠ '; }
+.tips{background:rgba(245,185,66,.07);border:1px solid rgba(245,185,66,.35);border-radius:16px;padding:20px;margin:18px 0}
+.tips h3{color:var(--gold);font-size:15px;margin-bottom:10px}
+.tips ol{margin-left:20px;font-size:14px;line-height:1.8;color:var(--text)}
+.cta-box{margin:22px 0}
+.cta-box h2{font-size:19px;margin-bottom:4px;text-align:center}
+.cta-box .sub{text-align:center;color:var(--muted);font-size:13px;margin-bottom:14px}
+.cta-grid{display:grid;gap:12px}
+.cta{border-radius:14px;padding:17px 18px;text-decoration:none;display:flex;justify-content:space-between;align-items:center;gap:12px;transition:.2s;color:#0a1428}
+.cta:hover{transform:translateY(-2px)}
+.cta.gold{background:linear-gradient(135deg,#f5b942,#e08e1a)}
+.cta.green{background:linear-gradient(135deg,#2fd08c,#1a9e63);color:#06130c}
+.cta.blue{background:linear-gradient(135deg,#4da3ff,#2b6fd6);color:#06121f}
+.cta div h3{font-size:15px;margin-bottom:4px}
+.cta div p{font-size:13px;opacity:.85;line-height:1.4}
+.cta .go{font-weight:800;font-size:20px;flex:none}
+.email-box{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:18px;padding:26px;margin:24px 0;text-align:center}
+.email-box h2{font-size:20px;margin-bottom:8px}
+.email-box p{color:var(--muted);font-size:14px;margin-bottom:16px;line-height:1.6}
+.email-row{display:flex;gap:10px;max-width:440px;margin:0 auto}
+@media(max-width:480px){.email-row{flex-direction:column}}
+.email-row input{flex:1;background:#0a1730;border:2px solid var(--line);border-radius:12px;color:#fff;padding:13px 16px;font-size:15px;outline:none;font-family:Inter}
+.email-row input:focus{border-color:var(--green)}
+.email-row button{background:var(--green);color:#06130c;border:none;border-radius:12px;font-weight:700;padding:13px 24px;font-size:15px;cursor:pointer;font-family:Inter;white-space:nowrap}
+.email-ok{display:none;color:var(--green);font-weight:600;margin-top:12px}
+.share-row{display:flex;gap:10px;justify-content:center;margin:20px 0;flex-wrap:wrap}
+.share-row button{background:#0a1730;border:1px solid var(--line);color:var(--text);border-radius:10px;padding:10px 20px;font-size:14px;cursor:pointer;font-family:Inter;transition:.2s}
+.share-row button:hover{border-color:var(--gold);color:var(--gold)}
+.restart{text-align:center;margin-top:8px}
+.restart button{background:none;border:none;color:var(--muted);font-size:14px;cursor:pointer;text-decoration:underline;font-family:Inter}
+footer{border-top:1px solid var(--line);margin-top:20px;padding:22px 0;text-align:center;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">💰 Financial<span>ist</span></div>
+    <div class="tag">Personality Quiz</div>
+  </header>
+
+  <!-- START -->
+  <div class="screen on" id="s-start">
+    <div class="hero">
+      <div class="emoji">🧠💸</div>
+      <h1>What's your <em>money personality?</em></h1>
+      <p>Answer 10 quick questions. We'll reveal whether you're a Builder, Spender, Hoarder, or Gambler — and give you a personalized plan to level up.</p>
+      <button class="bigbtn" id="startBtn">Start the quiz →</button>
+      <div class="meta"><span>⏱ 2 minutes</span><span>🔒 No signup needed</span><span>📤 Shareable result</span></div>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="screen" id="s-quiz">
+    <div class="progress"><div id="pbar"></div></div>
+    <div class="qnum" id="qnum">Question 1 of 10</div>
+    <div class="qtext" id="qtext"></div>
+    <div id="opts"></div>
+  </div>
+
+  <!-- RESULT -->
+  <div class="screen" id="s-result">
+    <div class="result-hero">
+      <div class="result-emoji" id="rEmoji">🏗️</div>
+      <h1 id="rTitle">The <em>Builder</em></h1>
+      <div class="result-tag" id="rTag"></div>
+    </div>
+    <div class="result-desc" id="rDesc"></div>
+    <div class="cols">
+      <div class="col"><h3 style="color:var(--green)">💪 YOUR SUPERPOWERS</h3><ul id="rPros"></ul></div>
+      <div class="col warn"><h3 style="color:var(--red)">⚠️ YOUR BLIND SPOTS</h3><ul id="rCons"></ul></div>
+    </div>
+    <div class="tips"><h3>🎯 YOUR 3 MONEY MOVES</h3><ol id="rTips"></ol></div>
+
+    <div class="cta-box">
+      <h2>Tools picked for <span id="rCtaName">your personality</span></h2>
+      <div class="sub">Hand-matched to how you handle money</div>
+      <!-- TODO: replace href="#" with real affiliate links -->
+      <div class="cta-grid" id="rCtas"></div>
+    </div>
+
+    <div class="email-box">
+      <h2>📬 Get your full money plan</h2>
+      <p>We'll email your personalized 5-step action plan + the tools above. Free, no spam, unsubscribe anytime.</p>
+      <div class="email-row">
+        <input type="email" id="email" placeholder="you@email.com" aria-label="Email address">
+        <button id="emailBtn">Send my plan</button>
+      </div>
+      <div class="email-ok" id="emailOk">✅ You're in! Check your inbox for your personalized plan.</div>
+    </div>
+
+    <div class="share-row">
+      <button id="shareBtn">📤 Share my result</button>
+      <button id="copyBtn">🔗 Copy result link</button>
+    </div>
+    <div class="restart"><button id="restartBtn">↺ Retake the quiz</button></div>
+  </div>
+
+  <footer><div class="brand">💰 Financial<span style="color:var(--gold)">ist</span></div><p style="margin-top:8px">Smart money moves, every day.</p></footer>
+</div>
+
+<script>
+const QUESTIONS = [
+ {q:"Payday just hit. What's your first move?",
+  o:[["Move 20% to investments on autopilot","B"],["Finally buy the thing I've been eyeing","S"],["Straight to savings — don't touch it","H"],["Put some into a hot stock or crypto","G"]]},
+ {q:"Your ideal Friday night costs…",
+  o:[["Whatever — experiences over savings","S"],["As close to $0 as possible","H"],["Dinner out, but I budgeted for it","B"],["Poker night or a few sports bets","G"]]},
+ {q:"The credit card statement arrives. You…",
+  o:[["Pay in full — I track my rewards strategy","B"],["Pay the minimum, deal with it later","S"],["Pay in full, then anxiously double-check","H"],["Wait… I have a statement?","G"]]},
+ {q:"A friend pitches you a “can't lose” investment…",
+  o:[["I'm in — how much do you need?","G"],["Show me the numbers first","B"],["Absolutely not","H"],["Only if I can put it on my card for points","S"]]},
+ {q:"Your savings account is for…",
+  o:[["Never touching. Ever.","H"],["Emergency fund + opportunity fund","B"],["…I have a savings account?","S"],["Dry powder for the next big play","G"]]},
+ {q:"Retirement feels…",
+  o:[["On track — I run the numbers yearly","B"],["Terrifying — I need way more saved","H"],["Far away, I'll figure it out","S"],["I'll make it big before then","G"]]},
+ {q:"Budgeting apps are…",
+  o:[["Essential — data drives decisions","B"],["Deleted after 3 days","S"],["I track every penny in a spreadsheet","H"],["A total buzzkill","G"]]},
+ {q:"Your biggest money win ever?",
+  o:[["A trade or bet that paid off big","G"],["Compound growth quietly doing its thing","B"],["An amazing deal on something I love","S"],["Hitting a savings milestone","H"]]},
+ {q:"If you got $10,000 tomorrow, you'd…",
+  o:[["Invest it per my asset allocation","B"],["Save every cent","H"],["Upgrade my life immediately","S"],["Try to double it (or lose trying)","G"]]},
+ {q:"Money is…",
+  o:[["A tool to build freedom","B"],["Security — sleep-at-night money","H"],["Meant to be enjoyed right now","S"],["A game — play to win","G"]]},
+];
+const RESULTS = {
+ B:{emoji:"🏗️",title:"The Builder",color:"#2fd08c",tag:"Disciplined • Long-term • Strategic",
+   desc:"You're the rare person who actually enjoys watching compound interest work. You automate, diversify, and think in decades — not dopamine hits. Money is a construction project, and you're laying bricks every single month.",
+   pros:["Automated saving & investing","Thinks long-term","Data-driven decisions"],
+   cons:["Can over-optimize and freeze","May neglect enjoying money now","Analysis paralysis on big moves"],
+   tips:["Automate a yearly portfolio rebalance so winners don't overweight your risk.","Open a Roth IRA if you haven't — tax-free growth is a Builder's best friend.","Set a “fun money” budget — even builders need to enjoy the build."],
+   ctas:[
+     ["gold","📊 $0-Commission Brokerage","Grow your portfolio with commission-free trades.","→"],
+     ["blue","🤖 Robo-Advisor","Automated rebalancing that thinks like you do.","→"],
+     ["green","🏦 High-Yield Savings","Earn 4%+ on cash while you plan the next move.","→"]]},
+ S:{emoji:"🛍️",title:"The Spender",color:"#b678ff",tag:"Experiences • Joy • Living now",
+   desc:"You believe money is meant to be enjoyed — and honestly, you're not wrong. The problem isn't spending, it's spending without a system. With guardrails in place, your joy-first approach can coexist with serious wealth.",
+   pros:["Generous and fun to be around","Values experiences over stuff","Not paralyzed by money fear"],
+   cons:["Lifestyle inflation risk","Credit card interest eats gains","No system = no safety net"],
+   tips:["Pay yourself first: auto-transfer 20% to savings the day you get paid — spend the rest guilt-free.","Move balances to a 0% APR card and kill interest while you pay debt down.","Use a budgeting app for 30 days — awareness alone cuts spending 10–15%."],
+   ctas:[
+     ["green","📱 Budgeting App","See where your money goes — 30 days changes everything.","→"],
+     ["gold","💳 0% Balance Transfer Card","Stop paying 24% APR. Move it to 0% and attack it.","→"],
+     ["blue","🏦 High-Yield Savings","Make your “pay yourself first” transfer earn 4%+.","→"]]},
+ H:{emoji:"🏦",title:"The Hoarder",color:"#f5b942",tag:"Secure • Cautious • Prepared",
+   desc:"Your emergency fund has an emergency fund. Nobody will ever catch you unprepared — but all that cash sitting at 0.01% interest is quietly losing to inflation. Security is great; optimized security is better.",
+   pros:["Never caught off guard","Zero debt stress","Incredible discipline"],
+   cons:["Cash drag — inflation eats savings","Fear of investing limits growth","May under-enjoy life"],
+   tips:["Keep 6 months expenses in a HYSA earning 4%+ — same safety, 400x the yield.","Invest beyond the emergency fund: even conservative index funds beat cash long-term.","Give yourself permission: budget 5% for pure enjoyment, guilt-free."],
+   ctas:[
+     ["gold","🏦 High-Yield Savings","Your cash deserves 4%+, not 0.01%. Same safety.","→"],
+     ["green","📊 Start Investing Simply","Low-cost index funds: Hoarder-approved growth.","→"],
+     ["blue","💿 CD Ladder Builder","Lock in rates on cash you won't need soon.","→"]]},
+ G:{emoji:"🎲",title:"The Gambler",color:"#ff6b6b",tag:"Bold • High-risk • High-reward",
+   desc:"Fortune favors the bold — and you live by it. You've had wins that make great stories. The trick is keeping the thrill while making sure one bad bet can't wipe you out. Channel the risk, cap the downside.",
+   pros:["Takes action while others hesitate","High risk tolerance = high upside","Learns fast from outcomes"],
+   cons:["One bad bet can erase years","Emotional decisions","No downside protection"],
+   tips:["The 5% rule: cap speculative plays at 5% of your portfolio — thrill intact, future safe.","Build a boring core (index funds) so your bets are pure upside, not survival.","Automate the basics (emergency fund, retirement) so risk is a choice, not a necessity."],
+   ctas:[
+     ["blue","🤖 Robo-Advisor","A disciplined core portfolio behind your bold plays.","→"],
+     ["gold","📊 $0-Commission Brokerage","Trade smarter with research tools built in.","→"],
+     ["green","🏦 High-Yield Savings","Park your safety net at 4%+ while you play offense.","→"]]},
+};
+let qi=0, scores={B:0,S:0,H:0,G:0};
+const screens={start:document.getElementById('s-start'),quiz:document.getElementById('s-quiz'),result:document.getElementById('s-result')};
+function show(s){Object.values(screens).forEach(x=>x.classList.remove('on'));s.classList.add('on');window.scrollTo({top:0,behavior:'smooth'});}
+document.getElementById('startBtn').onclick=()=>{qi=0;scores={B:0,S:0,H:0,G:0};show(screens.quiz);drawQ();};
+function drawQ(){
+  const Q=QUESTIONS[qi];
+  document.getElementById('qnum').textContent=`Question ${qi+1} of ${QUESTIONS.length}`;
+  document.getElementById('qtext').textContent=Q.q;
+  document.getElementById('pbar').style.width=(qi/QUESTIONS.length*100)+'%';
+  const box=document.getElementById('opts');box.innerHTML='';
+  Q.o.forEach((op,i)=>{
+    const b=document.createElement('button');b.className='opt';
+    b.innerHTML=`<span class="k">${'ABCD'[i]}</span>${op[0]}`;
+    b.onclick=()=>{scores[op[1]]++;qi++;qi<QUESTIONS.length?(drawQ(),document.getElementById('pbar').style.width=(qi/QUESTIONS.length*100)+'%'):finish();};
+    box.appendChild(b);
+  });
+}
+function finish(){
+  document.getElementById('pbar').style.width='100%';
+  const win=Object.keys(scores).reduce((a,b)=>scores[a]>=scores[b]?a:b);
+  const R=RESULTS[win];
+  document.getElementById('rEmoji').textContent=R.emoji;
+  document.getElementById('rTitle').innerHTML=`The <em style="color:${R.color}">${R.title.replace('The ','')}</em>`;
+  document.getElementById('rTag').textContent=R.tag;
+  document.getElementById('rDesc').textContent=R.desc;
+  document.getElementById('rPros').innerHTML=R.pros.map(p=>`<li>${p}</li>`).join('');
+  document.getElementById('rCons').innerHTML=R.cons.map(c=>`<li>${c}</li>`).join('');
+  document.getElementById('rTips').innerHTML=R.tips.map(t=>`<li>${t}</li>`).join('');
+  document.getElementById('rCtaName').textContent=R.title;
+  document.getElementById('rCtas').innerHTML=R.ctas.map(c=>
+    `<!-- TODO: replace href="#" with real affiliate link --><a class="cta ${c[0]}" href="#" data-affiliate="${win.toLowerCase()}-${c[1].slice(0,12)}"><div><h3>${c[1]}</h3><p>${c[2]}</p></div><span class="go">${c[3]}</span></a>`).join('');
+  setTimeout(()=>show(screens.result),350);
+}
+document.getElementById('emailBtn').onclick=()=>{
+  const e=document.getElementById('email').value.trim();
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)){document.getElementById('email').style.borderColor='var(--red)';return;}
+  // TODO: wire to email provider (Mailchimp/ConvertKit/etc.)
+  document.getElementById('emailOk').style.display='block';
+  document.getElementById('emailBtn').textContent='Sent ✓';
+};
+document.getElementById('restartBtn').onclick=()=>show(screens.start);
+const shareTxt=()=>"I'm "+document.getElementById('rTitle').textContent+" — what's YOUR money personality? Take the Financialist quiz:";
+document.getElementById('shareBtn').onclick=async()=>{
+  try{if(navigator.share)await navigator.share({title:'My Money Personality',text:shareTxt()});}catch(e){}
+};
+document.getElementById('copyBtn').onclick=async()=>{
+  try{await navigator.clipboard.writeText(shareTxt());document.getElementById('copyBtn').textContent='✓ Copied!';setTimeout(()=>document.getElementById('copyBtn').textContent='🔗 Copy result link',1800);}catch(e){}
+};
+</script>
+</body>
+</html>

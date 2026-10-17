@@ -1,0 +1,434 @@
+<!--
+  ============================================================================
+  FINANCIALIST.COM — 10 Best Investing Apps & Online Brokers of October 2026 (DRAFT)
+  ----------------------------------------------------------------------------
+  STATUS: DO NOT PUBLISH AS-IS. Specs below (rates, fees, terms, offers) are
+  realistic ranges labeled "as of Oct 2026" but MUST be verified against each
+  provider's current terms before this page goes live.
+  AFFILIATE LINKS: 9 placeholders, 1 LIVE (Robinhood)
+  Keep the data-affiliate="pending|live" attribute in sync when swapping URLs.
+  LIVE links on file (investing vertical only):
+    Robinhood: https://join.robinhood.com/borisk90
+    Kalshi:    https://kalshi.com/r/02e22782-43a0-46ec-afe7-9fb41cc7fb03
+  Module anatomy modeled on NerdWallet/Bankrate teardown (Oct 2026 research).
+  ============================================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10 Best Investing Apps & Online Brokers of October 2026 — Compare | Financialist</title>
+<meta name="description" content="Compare the 10 best investing apps and online brokers of October 2026: commissions, minimums, fractional shares and crypto. Filter, sort and compare side by side.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --navy:#1a365d; --navy2:#234876; --ink:#1f2937; --muted:#6b7280;
+    --line:#e5e7eb; --bg:#f8fafc; --card:#ffffff; --green:#16a34a; --green-d:#15803d;
+    --gold:#f59e0b; --blue:#2563eb; --radius:12px;
+  }
+  *{box-sizing:border-box}
+  body{font-family:'Inter',-apple-system,'Segoe UI',Roboto,sans-serif;color:var(--ink);margin:0;background:var(--bg);line-height:1.55}
+  .fin-wrap{max-width:1080px;margin:0 auto;padding:0 16px 120px}
+  .fin-topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0;flex-wrap:wrap}
+  .fin-brand{font-weight:800;font-size:20px;color:var(--navy);text-decoration:none}
+  .fin-brand span{color:var(--green)}
+  .disclosure-btn{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:13px;font-weight:600;color:var(--navy);cursor:pointer}
+  .disclosure-btn:hover{border-color:var(--navy)}
+  .fin-updated{font-size:12px;color:var(--muted)}
+  h1{font-size:30px;color:var(--navy);margin:8px 0 6px;letter-spacing:-.5px}
+  .lede{color:#374151;font-size:16px;max-width:760px;margin:0 0 4px}
+  .rates-note{font-size:12px;color:var(--muted);margin:0 0 18px}
+  /* Filter bar */
+  .filter-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:18px 0;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;position:sticky;top:0;z-index:20}
+  .pill{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 14px;font-size:13px;font-weight:600;color:#374151;cursor:pointer}
+  .pill.active{background:var(--navy);border-color:var(--navy);color:#fff}
+  .sort-wrap{margin-left:auto;display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+  .sort-wrap select{border:1px solid var(--line);border-radius:8px;padding:7px 10px;font-size:13px;font-weight:600;color:var(--ink);background:#fff}
+  .result-count{font-size:13px;color:var(--muted);margin:6px 2px 10px}
+  /* Table */
+  .table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:#fff;margin-bottom:34px}
+  table.cmp{width:100%;border-collapse:collapse;min-width:760px;font-size:14px}
+  table.cmp thead th{background:var(--navy);color:#fff;text-align:left;padding:12px 14px;font-size:12.5px;text-transform:uppercase;letter-spacing:.4px;white-space:nowrap;cursor:pointer;user-select:none}
+  table.cmp thead th .arrow{opacity:.7;font-size:11px}
+  table.cmp tbody td{padding:14px;border-top:1px solid var(--line);vertical-align:middle}
+  table.cmp tbody tr:hover{background:#f1f5f9}
+  .t-name{font-weight:700;color:var(--navy)}
+  .t-name a{color:var(--navy);text-decoration:none}
+  .t-name a:hover{text-decoration:underline}
+  .t-apply{display:flex;flex-direction:column;gap:6px}
+  .btn{display:inline-block;text-align:center;font-weight:700;border-radius:8px;cursor:pointer;text-decoration:none;border:none}
+  .btn-apply{background:var(--green);color:#fff;padding:10px 16px;font-size:13.5px;text-transform:uppercase;letter-spacing:.3px}
+  .btn-apply:hover{background:var(--green-d)}
+  .btn-apply .lock{font-size:12px}
+  .rates-link{font-size:12.5px;color:var(--blue);text-decoration:none}
+  .rates-link:hover{text-decoration:underline}
+  .stars{position:relative;display:inline-block;font-size:15px;line-height:1;letter-spacing:2px;color:#d1d5db;white-space:nowrap}
+  .stars .fill{position:absolute;left:0;top:0;overflow:hidden;color:var(--gold);white-space:nowrap}
+  .rating-num{font-weight:700;font-size:13px;color:var(--ink);margin-left:6px}
+  .aff-tag{font-size:10px;font-weight:700;background:#fef3c7;color:#92400e;border:1px solid #fcd34d;border-radius:4px;padding:1px 5px;margin-left:6px;vertical-align:middle}
+  /* Product modules */
+  .mod{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-bottom:22px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+  .mod-top{display:flex;gap:20px;flex-wrap:wrap}
+  .mod-visual{flex:0 0 170px}
+  .card-art{display:block;width:170px;height:108px;border-radius:10px;background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;text-decoration:none;position:relative;overflow:hidden;box-shadow:0 4px 10px rgba(26,54,93,.25)}
+  .card-art::after{content:"";position:absolute;right:-30px;top:-30px;width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.08)}
+  .card-art .init{position:absolute;left:14px;bottom:10px;font-size:26px;font-weight:800;letter-spacing:1px}
+  .card-art .chip{position:absolute;left:14px;top:12px;width:30px;height:22px;border-radius:4px;background:linear-gradient(135deg,#fbbf24,#f59e0b)}
+  .mod-main{flex:1;min-width:260px}
+  .pick-label{font-size:13px;font-weight:800;color:var(--green-d);text-transform:uppercase;letter-spacing:.5px;margin:0 0 4px}
+  .award{display:inline-block;background:var(--navy);color:#fff;font-size:11px;font-weight:700;border-radius:4px;padding:3px 8px;margin-bottom:8px;letter-spacing:.4px}
+  .mod-name{font-size:21px;font-weight:800;color:var(--navy);margin:0 0 4px}
+  .mod-name a{color:var(--navy);text-decoration:none}
+  .mod-rating{display:flex;align-items:center;gap:8px;margin:6px 0 10px;flex-wrap:wrap}
+  .method-link{font-size:12.5px;color:var(--blue);text-decoration:none}
+  .method-link:hover{text-decoration:underline}
+  .compare-check{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:#374151;margin:8px 0;cursor:pointer}
+  .compare-check input{width:16px;height:16px;accent-color:var(--navy);cursor:pointer}
+  .cta-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0 4px}
+  .btn-big{padding:13px 26px;font-size:15px}
+  .why-like{background:#f0fdf4;border-left:4px solid var(--green);padding:10px 14px;font-size:14px;border-radius:0 8px 8px 0;margin:12px 0;color:#14532d}
+  .why-like strong{color:var(--green-d)}
+  .spec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0}
+  .spec{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+  .spec .k{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--muted)}
+  .spec .v{font-size:14px;font-weight:600;color:var(--ink);margin-top:2px}
+  details.mod-details{border-top:1px solid var(--line);margin-top:12px;padding-top:10px}
+  details.mod-details summary{cursor:pointer;font-weight:700;color:var(--navy);font-size:14px;padding:6px 0}
+  .pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px;font-size:14px}
+  .pros-cons h4{margin:0 0 6px;font-size:13px;text-transform:uppercase;letter-spacing:.4px}
+  .pros h4{color:var(--green-d)} .cons h4{color:#b91c1c}
+  .pros-cons ul{margin:0;padding-left:18px}
+  .pros-cons li{margin-bottom:4px}
+  .take{font-size:14px;color:#374151;margin-top:10px}
+  /* Methodology */
+  .methodology{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-top:10px}
+  .methodology h2{color:var(--navy);font-size:20px;margin-top:0}
+  .methodology p,.methodology li{font-size:14px;color:#374151}
+  /* Compare tray */
+  .compare-tray{position:fixed;left:0;right:0;bottom:0;background:var(--navy);color:#fff;padding:12px 16px;display:none;z-index:50;box-shadow:0 -4px 16px rgba(0,0,0,.2)}
+  .compare-tray.show{display:block}
+  .tray-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .tray-items{display:flex;gap:8px;flex-wrap:wrap;flex:1}
+  .tray-item{background:rgba(255,255,255,.12);border-radius:8px;padding:6px 10px;font-size:13px;font-weight:600;display:flex;gap:8px;align-items:center}
+  .tray-item button{background:none;border:none;color:#fca5a5;font-size:15px;cursor:pointer;line-height:1}
+  .btn-compare-now{background:var(--gold);color:#1f2937;padding:10px 20px;font-size:14px}
+  .btn-compare-now:hover{background:#d97706;color:#fff}
+  /* Modals */
+  .modal-back{position:fixed;inset:0;background:rgba(15,23,42,.6);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+  .modal-back.show{display:flex}
+  .modal{background:#fff;border-radius:14px;max-width:640px;width:100%;max-height:88vh;overflow:auto;padding:28px;position:relative}
+  .modal.wide{max-width:960px}
+  .modal h2{color:var(--navy);margin-top:0;font-size:22px}
+  .modal p{font-size:14.5px;color:#374151}
+  .modal-close{position:absolute;top:12px;right:14px;background:none;border:none;font-size:24px;cursor:pointer;color:var(--muted)}
+  .cmp-side{width:100%;border-collapse:collapse;font-size:13.5px;min-width:560px}
+  .cmp-side th,.cmp-side td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+  .cmp-side th{background:var(--navy);color:#fff;font-size:14px}
+  .cmp-side tr td:first-child{font-weight:700;background:var(--bg);white-space:nowrap}
+  @media(max-width:640px){
+    h1{font-size:24px}
+    .mod{padding:16px}
+    .pros-cons{grid-template-columns:1fr}
+    .sort-wrap{margin-left:0}
+    .card-art{width:150px;height:96px}
+  }
+
+  /* Top-10 listicle additions (kept in the same design language) */
+  .rank-badge{display:inline-block;background:var(--green);color:#fff;font-weight:800;font-size:13px;border-radius:6px;padding:3px 10px;margin:0 8px 8px 0;letter-spacing:.5px}
+  .quick-h{color:var(--navy);font-size:19px;margin:22px 0 10px}
+  .art-symbol{position:absolute;left:14px;top:10px;font-size:22px}
+  .card-art.art-green{background:linear-gradient(135deg,#166534,#22c55e)}
+  .card-art.art-blue{background:linear-gradient(135deg,#1e3a8a,#3b82f6)}
+  .card-art.art-gold{background:linear-gradient(135deg,#92400e,#f59e0b)}
+  .disclosure-sec{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-top:22px}
+  .disclosure-sec h2{color:var(--navy);font-size:20px;margin-top:0}
+  .disclosure-sec p,.disclosure-sec li{font-size:14px;color:#374151}
+  .toc-note{font-size:13px;color:var(--muted);margin:0 0 14px}
+  .btn-jump{background:#fff;border:1px solid var(--navy);color:var(--navy);padding:8px 14px;font-size:13px}
+  .btn-jump:hover{background:var(--navy);color:#fff}
+
+</style>
+</head>
+<body>
+<div class="fin-wrap">
+  <div class="fin-topbar">
+    <a class="fin-brand" href="/">Financialist<span>.com</span></a>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <span class="fin-updated">Last updated: October 2026 · Fact checked ✓</span>
+      <button class="disclosure-btn" id="openDisclosure">Advertiser disclosure</button>
+    </div>
+  </div>
+
+  <h1>10 Best Investing Apps & Online Brokers of October 2026</h1>
+  <p class="lede">Commission-free trading made investing cheap — the differences now are tools, research, and what you can actually buy. We ranked these brokers on commissions and fees, platform and tools, account options, and research and support.</p>
+  <p class="rates-note">Commissions, fees and features shown as of October 2026 and change often — always confirm current pricing on the broker's site before opening an account. Investing involves risk, including loss of principal.</p>
+
+  <h2 class="quick-h">Our top picks at a glance</h2>
+  <p class="toc-note">Tap any product to jump to its full review below.</p>
+  <div class="table-scroll">
+    <table class="cmp" id="quickTable">
+      <thead><tr><th>Rank</th><th>Product</th><th>Rating</th><th>Commissions</th><th></th></tr></thead>
+      <tbody id="quickBody"></tbody>
+    </table>
+  </div>
+
+  <div class="filter-bar" id="filterBar">
+    <button class="pill active" data-filter="all">All apps</button>
+    <button class="pill" data-filter="zero-comm">$0 commissions</button>
+    <button class="pill" data-filter="fractional">Fractional shares</button>
+    <button class="pill" data-filter="crypto">Crypto trading</button>
+    <button class="pill" data-filter="robo">Robo-advisor</button>
+    
+    <div class="sort-wrap">
+      <label for="sortSel">Sort by</label>
+      <select id="sortSel">
+        <option value="featured">Featured</option><option value="rating">Highest rating</option><option value="fee">Lowest account minimum</option><option value="rewards">$0 commissions first</option>
+      </select>
+    </div>
+  </div>
+  <div class="result-count" id="resultCount"></div>
+
+  <div class="table-scroll">
+    <table class="cmp" id="cmpTable">
+      <thead><tr>
+        <th data-sort="name">Product <span class="arrow">↕</span></th>
+        <th data-sort="rating">Rating <span class="arrow">↕</span></th>
+        <th data-sort="c0">Stock/ETF commissions <span class="arrow">↕</span></th><th>Account minimum</th><th>Fractional shares</th>
+        <th>Learn more</th>
+      </tr></thead>
+      <tbody id="cmpBody"></tbody>
+    </table>
+  </div>
+
+<!-- AFFILIATE LINK MANIFEST — swap each href before publish, keep data-affiliate in sync:
+     <!-- AFFILIATE PLACEHOLDER: Fidelity Investments --> → #affiliate-link-fidelity (pending)
+     <!-- AFFILIATE PLACEHOLDER: Charles Schwab --> → #affiliate-link-charles-schwab (pending)
+     <!-- AFFILIATE PLACEHOLDER: Robinhood --> → https://join.robinhood.com/borisk90 (live)
+     <!-- AFFILIATE PLACEHOLDER: E*TRADE from Morgan Stanley --> → #affiliate-link-etrade (pending)
+     <!-- AFFILIATE PLACEHOLDER: Vanguard --> → #affiliate-link-vanguard (pending)
+     <!-- AFFILIATE PLACEHOLDER: Webull --> → #affiliate-link-webull (pending)
+     <!-- AFFILIATE PLACEHOLDER: Public.com --> → #affiliate-link-public-com (pending)
+     <!-- AFFILIATE PLACEHOLDER: SoFi Invest® --> → #affiliate-link-sofi-invest (pending)
+     <!-- AFFILIATE PLACEHOLDER: Acorns --> → #affiliate-link-acorns (pending)
+     <!-- AFFILIATE PLACEHOLDER: Stash --> → #affiliate-link-stash (pending)
+  -->
+
+  <div id="modules"></div>
+
+<section class="related-guides" style="margin:32px 0">
+<h2>Related Financialist guides</h2>
+<ul style="list-style:none;padding:0;margin:0">
+<li style="margin:10px 0"><a href="/referrals/robinhood-15000">Robinhood $150 Bonus Offer</a></li>
+<li style="margin:10px 0"><a href="/viral/index-funds-vs-picking-stocks">Index Funds vs. Picking Stocks</a></li>
+<li style="margin:10px 0"><a href="/viral/roth-vs-traditional-ira">Roth vs. Traditional IRA: Which Is Right for You?</a></li>
+<li style="margin:10px 0"><a href="/viral/401k-myths-costing-you-money">401(k) Myths Costing You Money</a></li>
+</ul>
+</section>
+
+  <section class="methodology" id="methodology">
+    <h2>How Financialist rates investing apps and brokers</h2>
+    <p>Every broker gets a score from 0 to 5. Our analysts weigh:</p>
+    <ul>
+      <li><strong>Commissions and fees (30%)</strong> — stock/ETF/options pricing, account fees, and margin rates.</li>
+      <li><strong>Platform and tools (30%)</strong> — mobile app quality, charting, fractional shares, and crypto access.</li>
+      <li><strong>Account options (20%)</strong> — IRAs, 401(k) rollovers, custodial accounts, and cash management.</li>
+      <li><strong>Research and support (20%)</strong> — screeners, analyst research, education, and customer service.</li>
+    </ul>
+    <p>Partners who compensate us cannot pay for a higher rating or a better placement. <a href="#" class="method-link" id="openDisclosure2">Read our advertiser disclosure</a>.</p>
+  </section>
+
+  <section class="disclosure-sec" id="advertiser-disclosure">
+    <h2>Advertiser disclosure</h2>
+    <p>Many or all of the brokerage products featured here are from our partners who compensate us. That may influence which brokers we write about and where and how they appear on a page.</p>
+    <p><strong>It does not influence our evaluations.</strong> Our ratings are set by our editorial team using the published methodology above. Partners cannot pay for favorable reviews, higher ratings, or better placement.</p>
+    <p>When you click "Open account" you leave Financialist.com and go to the broker's secure site. If you open and fund an account, we may earn a commission — at no cost to you.</p>
+  </section>
+</div>
+
+<div class="compare-tray" id="tray">
+  <div class="tray-inner">
+    <strong>Compare (<span id="trayCount">0</span>/3):</strong>
+    <div class="tray-items" id="trayItems"></div>
+    <button class="btn btn-compare-now" id="compareNow">Compare now</button>
+  </div>
+</div>
+
+<div class="modal-back" id="disclosureBack">
+  <div class="modal">
+    <button class="modal-close" data-close="disclosureBack">×</button>
+    <h2>You're our first priority. Every time.</h2>
+    <p>Many or all of the brokerage products featured here are from our partners who compensate us. That may influence which brokers we write about and where and how they appear on a page.</p>
+    <p><strong>It does not influence our evaluations.</strong> Our ratings are set by our editorial team using the published methodology above. Partners cannot pay for favorable reviews, higher ratings, or better placement.</p>
+    <p>When you click "Open account" you leave Financialist.com and go to the broker's secure site. If you open and fund an account, we may earn a commission — at no cost to you.</p>
+  </div>
+</div>
+
+<div class="modal-back" id="compareBack">
+  <div class="modal wide">
+    <button class="modal-close" data-close="compareBack">×</button>
+    <h2>Side-by-side comparison</h2>
+    <div style="overflow-x:auto"><table class="cmp-side" id="sideTable"></table></div>
+  </div>
+</div>
+
+<script>
+
+const PRODUCTS = [{"id": "fidelity", "name": "Fidelity Investments", "issuer": "Fidelity", "pick": "Best overall brokerage", "badge": "2026 BEST OVERALL ONLINE BROKER", "rating": 4.8, "affiliate": "#affiliate-link-fidelity", "affStatus": "pending", "cats": ["all", "zero-comm", "fractional", "crypto", "robo"], "feeNum": 0, "rewardNum": 1, "fee": "$0", "rewards": "$0", "intro": "Yes", "apr": "Yes", "credit": "Yes (Fidelity Go)", "why": "The rare broker that's best-in-class for beginners and power users at the same time.", "pros": ["$0 stock, ETF and options commissions", "Excellent research, screeners and planning tools", "Fractional shares from $1", "Top-rated customer service"], "cons": ["Crypto is limited compared to dedicated exchanges", "Active-trader platform has a learning curve"], "take": "Our top pick because it has no real weaknesses — low costs, great tools, and service that answers the phone."}, {"id": "charles-schwab", "name": "Charles Schwab", "issuer": "Charles Schwab", "pick": "Customer service and research", "badge": "", "rating": 4.7, "affiliate": "#affiliate-link-charles-schwab", "affStatus": "pending", "cats": ["all", "zero-comm", "fractional", "crypto", "robo"], "feeNum": 0, "rewardNum": 1, "fee": "$0", "rewards": "$0", "intro": "Yes (Stock Slices)", "apr": "Yes", "credit": "Yes (Schwab Intelligent Portfolios)", "why": "Legendary service, deep research, and banking built in — a full financial home.", "pros": ["$0 stock and ETF commissions", "Schwab Stock Slices fractional shares from $5", "Banking + brokerage under one login", "Enormous research library"], "cons": ["$5 minimum for Stock Slices", "Website can feel sprawling"], "take": "If you want a human to talk to and a bank attached to your brokerage, Schwab is the pick."}, {"id": "robinhood", "name": "Robinhood", "issuer": "Robinhood", "pick": "Mobile app for beginners", "badge": "", "rating": 4.7, "affiliate": "https://join.robinhood.com/borisk90", "affStatus": "live", "cats": ["all", "zero-comm", "fractional", "crypto"], "feeNum": 0, "rewardNum": 1, "fee": "$0", "rewards": "$0", "intro": "Yes", "apr": "Yes", "credit": "No", "why": "The app that made investing feel as easy as ordering food — now with IRAs and retirement match.", "pros": ["Beautiful, dead-simple mobile app", "$0 commissions and fractional shares from $1", "Crypto trading built in", "IRA with 1% match (check current terms)"], "cons": ["Limited research and charting tools", "No mutual funds"], "take": "Still the easiest on-ramp to investing. Power users will outgrow it; beginners will love it."}, {"id": "etrade", "name": "E*TRADE from Morgan Stanley", "issuer": "E*TRADE", "pick": "Active traders", "badge": "", "rating": 4.5, "affiliate": "#affiliate-link-etrade", "affStatus": "pending", "cats": ["all", "zero-comm", "robo"], "feeNum": 0, "rewardNum": 1, "fee": "$0", "rewards": "$0", "intro": "No", "apr": "No", "credit": "Yes (Core Portfolios)", "why": "Two platforms in one: simple for beginners, Power E*TRADE for serious traders.", "pros": ["$0 stock and ETF commissions", "Power E*TRADE platform for active traders", "Morgan Stanley research access", "No account minimum"], "cons": ["No fractional shares", "No direct crypto trading"], "take": "The trader's pick in this list — the Power E*TRADE tools are genuinely professional-grade."}, {"id": "vanguard", "name": "Vanguard", "issuer": "Vanguard", "pick": "Long-term index investors", "badge": "", "rating": 4.4, "affiliate": "#affiliate-link-vanguard", "affStatus": "pending", "cats": ["all", "zero-comm", "fractional", "robo"], "feeNum": 0, "rewardNum": 1, "fee": "$0", "rewards": "$0", "intro": "Yes", "apr": "No", "credit": "Yes (Digital Advisor)", "why": "The inventor of the index fund, still the cheapest place to buy and hold them.", "pros": ["$0 commissions on stocks and ETFs", "Rock-bottom expense ratios on Vanguard funds", "Fractional shares on Vanguard ETFs", "Trusted for retirement accounts"], "cons": ["App and website lag competitors", "No crypto trading"], "take": "Buy-and-hold investors need look no further — Vanguard is built for decades, not day trades."}, {"id": "webull", "name": "Webull", "issuer": "Webull", "pick": "Advanced charting", "badge": "", "rating": 4.3, "affiliate": "#affiliate-link-webull", "affStatus": "pending", "cats": ["all", "zero-comm", "fractional", "crypto"], "feeNum": 0, "rewardNum": 1, "fee": "$0", "rewards": "$0", "intro": "Yes", "apr": "Yes", "credit": "No", "why": "Pro-level charts and extended hours for traders who want more than a pretty app.", "pros": ["$0 stock, ETF and options commissions", "Advanced charting and technical indicators", "Extended trading hours", "Paper trading to practice free"], "cons": ["No robo-advisor or mutual funds", "Customer support is thinner than big brokers"], "take": "For the self-directed trader who lives in charts — a lot of platform for $0."}, {"id": "public-com", "name": "Public.com", "issuer": "Public.com", "pick": "Social investing", "badge": "", "rating": 4.2, "affiliate": "#affiliate-link-public-com", "affStatus": "pending", "cats": ["all", "zero-comm", "fractional", "crypto"], "feeNum": 0, "rewardNum": 1, "fee": "$0", "rewards": "$0", "intro": "Yes", "apr": "Yes", "credit": "No", "why": "Invest alongside a community — see what others are buying, minus the meme-stock chaos.", "pros": ["$0 commissions on stocks, ETFs and crypto", "Fractional shares and a clean mobile app", "Social feed with verified investor activity", "High-yield cash account option"], "cons": ["No robo-advisor portfolios", "Smaller research offering"], "take": "A modern, social way to invest — best for younger investors who learn by watching others."}, {"id": "sofi-invest", "name": "SoFi Invest®", "issuer": "SoFi", "pick": "All-in-one finance app", "badge": "", "rating": 4.1, "affiliate": "#affiliate-link-sofi-invest", "affStatus": "pending", "cats": ["all", "zero-comm", "fractional", "crypto", "robo"], "feeNum": 0, "rewardNum": 1, "fee": "$0", "rewards": "$0", "intro": "Yes", "apr": "Yes", "credit": "Yes (automated investing)", "why": "Investing, banking, and loans in one app — money management without the tab-switching.", "pros": ["$0 stock and ETF commissions", "Fractional shares from $1", "Automated investing option", "Works alongside SoFi banking and loans"], "cons": ["Fewer advanced trading tools", "Limited third-party research"], "take": "If SoFi is already your bank, adding investing here is a no-brainer."}, {"id": "acorns", "name": "Acorns", "issuer": "Acorns", "pick": "Round-up investing", "badge": "", "rating": 4.0, "affiliate": "#affiliate-link-acorns", "affStatus": "pending", "cats": ["all", "fractional", "robo"], "feeNum": 3, "rewardNum": 0, "fee": "$3–$12/month plans", "rewards": "$0", "intro": "Yes (portfolios)", "apr": "No", "credit": "Yes (built-in)", "why": "Turns spare change into a diversified portfolio — investing for people who hate thinking about investing.", "pros": ["Automatic round-ups from everyday purchases", "Diversified ETF portfolios by risk level", "Retirement and kids accounts available", "Dead-simple onboarding"], "cons": ["Monthly subscription fee ($3–$12)", "Limited investment choices"], "take": "The training wheels of investing — the fee stings on small balances, but the habit is priceless."}, {"id": "stash", "name": "Stash", "issuer": "Stash", "pick": "Guided beginners", "badge": "", "rating": 4.0, "affiliate": "#affiliate-link-stash", "affStatus": "pending", "cats": ["all", "fractional", "robo"], "feeNum": 3, "rewardNum": 0, "fee": "$3–$9/month plans", "rewards": "$0", "intro": "Yes", "apr": "No", "credit": "Yes (Smart Portfolio)", "why": "Hand-holding for first-timers: guided portfolios, stock rewards, and banking in one subscription.", "pros": ["Beginner-friendly guided portfolios", "Fractional shares from $1", "Stock-Back® rewards on spending", "Banking account included in plans"], "cons": ["Monthly subscription fee ($3–$9)", "Fewer advanced tools"], "take": "A gentle, guided start — worth the subscription only until your balance outgrows the fee."}];
+const COLS = [{"key": "fee", "label": "Stock/ETF commissions"}, {"key": "rewards", "label": "Account minimum"}, {"key": "intro", "label": "Fractional shares"}];
+const SPECS = [["Stock & ETF commissions", "fee"], ["Account minimum", "rewards"], ["Fractional shares", "intro"], ["Cryptocurrency", "apr"], ["Robo-advisor", "credit"]];
+const SORTFNS = { featured:(a,b)=>PRODUCTS.indexOf(a)-PRODUCTS.indexOf(b), rating:(a,b)=>b.rating-a.rating, fee:(a,b)=>a.feeNum-b.feeNum, rewards:(a,b)=>b.rewardNum-a.rewardNum };
+const SMALL_CTA = "Open account";
+const RATES_LINK = "See pricing";
+const CTA_VERB = "Open account";
+const ART_CLASS = "art-gold";
+const ART_SYMBOL = "📈";
+const QUICK_KEY = "fee";
+const NOUN = "brokers";
+const CMP_NOUN = "brokers";
+
+let state = {filter:'all', sort:'featured', compare:[]};
+const $ = id => document.getElementById(id);
+const affTag = p => p.affStatus==='pending' ? '<span class="aff-tag" title="Affiliate link pending — swap with tracking URL before publish">LINK PENDING</span>' : '';
+
+function stars(r){
+  const pct = (r/5*100).toFixed(0);
+  return `<span class="stars" aria-label="${r} out of 5 stars">★★★★★<span class="fill" style="width:${pct}%">★★★★★</span></span><span class="rating-num">${r.toFixed(1)}</span>`;
+}
+function filtered(){
+  let list = PRODUCTS.filter(p => state.filter==='all' || p.cats.includes(state.filter));
+  const fn = SORTFNS[state.sort] || SORTFNS.featured;
+  return list.slice().sort(fn);
+}
+function renderQuick(){
+  $('quickBody').innerHTML = PRODUCTS.map((p,i)=>`
+    <tr>
+      <td><strong>#${i+1}</strong></td>
+      <td><span class="t-name"><a href="#mod-${p.id}">${p.name}</a></span>${affTag(p)}</td>
+      <td>${stars(p.rating)}</td>
+      <td><strong>${p[QUICK_KEY]}</strong></td>
+      <td><a class="btn btn-jump" href="#mod-${p.id}">See details</a></td>
+    </tr>`).join('');
+}
+function renderTable(){
+  const list = filtered();
+  $('resultCount').textContent = `Showing ${list.length} of ${PRODUCTS.length} ${NOUN}`;
+  $('cmpBody').innerHTML = list.map(p=>`
+    <tr>
+      <td><span class="t-name"><a href="${p.affiliate}" data-affiliate="${p.affStatus}">${p.name}</a></span>${affTag(p)}</td>
+      <td>${stars(p.rating)}</td>
+      ${COLS.map((c,ci)=>`<td>${ci===0?`<strong>${p[c.key]}</strong>`:p[c.key]}</td>`).join('')}
+      <td><div class="t-apply">
+        <a class="btn btn-apply" href="${p.affiliate}" data-affiliate="${p.affStatus}"><span class="lock">🔒</span> ${SMALL_CTA}</a>
+        <a class="rates-link" href="${p.affiliate}" data-affiliate="${p.affStatus}">${RATES_LINK}</a>
+        <label class="compare-check"><input type="checkbox" data-cmp="${p.id}" ${state.compare.includes(p.id)?'checked':''}> Add to compare</label>
+      </div></td>
+    </tr>`).join('');
+  bindCompareBoxes();
+}
+function renderModules(){
+  $('modules').innerHTML = filtered().map((p,i)=>`
+  <article class="mod" id="mod-${p.id}">
+    <div class="mod-top">
+      <div class="mod-visual">
+        <a class="card-art ${ART_CLASS}" href="${p.affiliate}" data-affiliate="${p.affStatus}" aria-label="${CTA_VERB} — ${p.name}">
+          <span class="art-symbol">${ART_SYMBOL}</span><span class="init">${p.issuer.split(' ').map(w=>w[0]).join('').slice(0,3)}</span>
+        </a>
+      </div>
+      <div class="mod-main">
+        <p class="pick-label">Our pick for: ${p.pick}</p>
+        <div><span class="rank-badge">#${PRODUCTS.indexOf(p)+1}</span>${p.badge?`<span class="award">🏆 ${p.badge}</span>`:''}</div>
+        <h2 class="mod-name"><a href="${p.affiliate}" data-affiliate="${p.affStatus}">${p.name}</a>${affTag(p)}</h2>
+        <div class="mod-rating">${stars(p.rating)}<a class="method-link" href="#methodology">How are ratings determined?</a></div>
+        <div class="why-like"><strong>Why you'll like this:</strong> ${p.why}</div>
+        <label class="compare-check"><input type="checkbox" data-cmp="${p.id}" ${state.compare.includes(p.id)?'checked':''}> Add to compare</label>
+        <div class="cta-row">
+          <a class="btn btn-apply btn-big" href="${p.affiliate}" data-affiliate="${p.affStatus}">${CTA_VERB} <span class="lock">🔒</span> on ${p.issuer}'s secure site</a>
+          <a class="rates-link" href="${p.affiliate}" data-affiliate="${p.affStatus}">${RATES_LINK}</a>
+        </div>
+        <div class="spec-grid">
+          ${SPECS.map(([label,key])=>`<div class="spec"><div class="k">${label}</div><div class="v">${p[key]}</div></div>`).join('')}
+        </div>
+        <details class="mod-details">
+          <summary>Details, pros &amp; cons</summary>
+          <div class="pros-cons">
+            <div class="pros"><h4>Pros</h4><ul>${p.pros.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+            <div class="cons"><h4>Cons</h4><ul>${p.cons.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+          </div>
+          <p class="take"><strong>Financialist's take:</strong> ${p.take}</p>
+        </details>
+      </div>
+    </div>
+  </article>`).join('');
+  bindCompareBoxes();
+}
+function bindCompareBoxes(){
+  document.querySelectorAll('[data-cmp]').forEach(box=>{
+    box.onchange = ()=>{
+      const id = box.getAttribute('data-cmp');
+      if(box.checked){
+        if(state.compare.length>=3){ box.checked=false; alert('You can compare up to 3 '+CMP_NOUN+'.'); return; }
+        if(!state.compare.includes(id)) state.compare.push(id);
+      } else state.compare = state.compare.filter(x=>x!==id);
+      syncTray();
+      document.querySelectorAll(`[data-cmp="${id}"]`).forEach(b=>{ if(b!==box) b.checked=box.checked; });
+    };
+  });
+}
+function syncTray(){
+  const tray = $('tray');
+  $('trayCount').textContent = state.compare.length;
+  $('trayItems').innerHTML = state.compare.map(id=>{
+    const p = PRODUCTS.find(x=>x.id===id);
+    return `<span class="tray-item">${p.name}<button data-rm="${id}" aria-label="Remove">×</button></span>`;
+  }).join('');
+  tray.classList.toggle('show', state.compare.length>0);
+  document.querySelectorAll('[data-rm]').forEach(b=>b.onclick=()=>{
+    const id=b.getAttribute('data-rm');
+    state.compare=state.compare.filter(x=>x!==id);
+    document.querySelectorAll(`[data-cmp="${id}"]`).forEach(x=>x.checked=false);
+    syncTray();
+  });
+}
+function renderSide(){
+  const ps = state.compare.map(id=>PRODUCTS.find(x=>x.id===id));
+  const rows = [
+    ['Rating', p=>stars(p.rating)],
+    ...SPECS.map(([label,key])=>[label, p=>p[key]]),
+    [SMALL_CTA, p=>`<a class="btn btn-apply" href="${p.affiliate}" data-affiliate="${p.affStatus}">${SMALL_CTA}</a>`]
+  ];
+  $('sideTable').innerHTML =
+    `<tr><th></th>${ps.map(p=>`<th>${p.name}</th>`).join('')}</tr>` +
+    rows.map(([k,fn])=>`<tr><td>${k}</td>${ps.map(p=>`<td>${fn(p)}</td>`).join('')}</tr>`).join('');
+}
+document.querySelectorAll('#filterBar .pill').forEach(pill=>{
+  pill.onclick=()=>{
+    document.querySelectorAll('#filterBar .pill').forEach(x=>x.classList.remove('active'));
+    pill.classList.add('active');
+    state.filter=pill.getAttribute('data-filter');
+    renderTable(); renderModules();
+  };
+});
+$('sortSel').onchange=e=>{ state.sort=e.target.value; renderTable(); };
+document.querySelectorAll('#cmpTable thead th[data-sort]').forEach(th=>{
+  th.onclick=()=>{
+    const k=th.getAttribute('data-sort');
+    state.sort = k==='name' ? 'featured' : (k==='rating'?'rating':(k==='c0'?'fee':'featured'));
+    renderTable();
+  };
+});
+$('compareNow').onclick=()=>{ if(!state.compare.length) return; renderSide(); $('compareBack').classList.add('show'); };
+const openD=()=>$('disclosureBack').classList.add('show');
+$('openDisclosure').onclick=openD;
+$('openDisclosure2').onclick=e=>{e.preventDefault();openD();};
+document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>$(b.getAttribute('data-close')).classList.remove('show'));
+document.querySelectorAll('.modal-back').forEach(m=>m.addEventListener('click',e=>{ if(e.target===m) m.classList.remove('show'); }));
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') document.querySelectorAll('.modal-back.show').forEach(m=>m.classList.remove('show')); });
+renderQuick(); renderTable(); renderModules(); syncTray();
+
+</script>
+</body>
+</html>

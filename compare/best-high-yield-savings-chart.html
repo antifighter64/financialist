@@ -1,0 +1,446 @@
+<!--
+  ============================================================================
+  FINANCIALIST.COM — Best High-Yield Savings Accounts comparison chart (DRAFT)
+  ----------------------------------------------------------------------------
+  STATUS: DO NOT PUBLISH AS-IS. APYs are variable and change often; figures
+  below are realistic ranges labeled "as of Oct 2026" but MUST be verified
+  against each bank's current published rate before this page goes live.
+  AFFILIATE LINKS: all hrefs are placeholders ("#affiliate-link-*") until
+  network approvals land. Swap each with the real tracking URL; keep the
+  data-affiliate="pending|live" attribute in sync.
+  LIVE links on file (investing vertical only, not used on this page):
+    Robinhood: https://join.robinhood.com/borisk90
+    Kalshi:    https://kalshi.com/r/02e22782-43a0-46ec-afe7-9fb41cc7fb03
+  Module anatomy modeled on NerdWallet/Bankrate teardown (Oct 2026 research).
+  ============================================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Best High-Yield Savings Accounts of October 2026 — Compare Rates | Financialist</title>
+<meta name="description" content="Compare the best high-yield savings accounts of October 2026: APYs, minimums, fees and ratings. Filter, sort and compare side by side.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1a365d; --navy2:#234876; --ink:#1f2937; --muted:#6b7280;
+    --line:#e5e7eb; --bg:#f8fafc; --card:#ffffff; --green:#16a34a; --green-d:#15803d;
+    --gold:#f59e0b; --blue:#2563eb; --radius:12px;
+  }
+  *{box-sizing:border-box}
+  body{font-family:'Inter',-apple-system,'Segoe UI',Roboto,sans-serif;color:var(--ink);margin:0;background:var(--bg);line-height:1.55}
+  .fin-wrap{max-width:1080px;margin:0 auto;padding:0 16px 120px}
+  .fin-topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0;flex-wrap:wrap}
+  .fin-brand{font-weight:800;font-size:20px;color:var(--navy);text-decoration:none}
+  .fin-brand span{color:var(--green)}
+  .disclosure-btn{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:13px;font-weight:600;color:var(--navy);cursor:pointer}
+  .disclosure-btn:hover{border-color:var(--navy)}
+  .fin-updated{font-size:12px;color:var(--muted)}
+  h1{font-size:30px;color:var(--navy);margin:8px 0 6px;letter-spacing:-.5px}
+  .lede{color:#374151;font-size:16px;max-width:760px;margin:0 0 4px}
+  .rates-note{font-size:12px;color:var(--muted);margin:0 0 18px}
+  .filter-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:18px 0;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;position:sticky;top:0;z-index:20}
+  .pill{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 14px;font-size:13px;font-weight:600;color:#374151;cursor:pointer}
+  .pill.active{background:var(--navy);border-color:var(--navy);color:#fff}
+  .sort-wrap{margin-left:auto;display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+  .sort-wrap select{border:1px solid var(--line);border-radius:8px;padding:7px 10px;font-size:13px;font-weight:600;color:var(--ink);background:#fff}
+  .result-count{font-size:13px;color:var(--muted);margin:6px 2px 10px}
+  .table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:#fff;margin-bottom:34px}
+  table.cmp{width:100%;border-collapse:collapse;min-width:760px;font-size:14px}
+  table.cmp thead th{background:var(--navy);color:#fff;text-align:left;padding:12px 14px;font-size:12.5px;text-transform:uppercase;letter-spacing:.4px;white-space:nowrap;cursor:pointer;user-select:none}
+  table.cmp thead th .arrow{opacity:.7;font-size:11px}
+  table.cmp tbody td{padding:14px;border-top:1px solid var(--line);vertical-align:middle}
+  table.cmp tbody tr:hover{background:#f1f5f9}
+  .t-name{font-weight:700;color:var(--navy)}
+  .t-name a{color:var(--navy);text-decoration:none}
+  .t-name a:hover{text-decoration:underline}
+  .t-apply{display:flex;flex-direction:column;gap:6px}
+  .btn{display:inline-block;text-align:center;font-weight:700;border-radius:8px;cursor:pointer;text-decoration:none;border:none}
+  .btn-apply{background:var(--green);color:#fff;padding:10px 16px;font-size:13.5px;text-transform:uppercase;letter-spacing:.3px}
+  .btn-apply:hover{background:var(--green-d)}
+  .btn-apply .lock{font-size:12px}
+  .rates-link{font-size:12.5px;color:var(--blue);text-decoration:none}
+  .rates-link:hover{text-decoration:underline}
+  .stars{position:relative;display:inline-block;font-size:15px;line-height:1;letter-spacing:2px;color:#d1d5db;white-space:nowrap}
+  .stars .fill{position:absolute;left:0;top:0;overflow:hidden;color:var(--gold);white-space:nowrap}
+  .rating-num{font-weight:700;font-size:13px;color:var(--ink);margin-left:6px}
+  .aff-tag{font-size:10px;font-weight:700;background:#fef3c7;color:#92400e;border:1px solid #fcd34d;border-radius:4px;padding:1px 5px;margin-left:6px;vertical-align:middle}
+  .apy-big{font-size:20px;font-weight:800;color:var(--green-d)}
+  .mod{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-bottom:22px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+  .mod-top{display:flex;gap:20px;flex-wrap:wrap}
+  .mod-visual{flex:0 0 170px}
+  .bank-art{display:block;width:170px;height:108px;border-radius:10px;background:linear-gradient(135deg,#065f46,#047857);color:#fff;text-decoration:none;position:relative;overflow:hidden;box-shadow:0 4px 10px rgba(6,95,70,.25)}
+  .bank-art::after{content:"";position:absolute;right:-30px;top:-30px;width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.08)}
+  .bank-art .init{position:absolute;left:14px;bottom:10px;font-size:24px;font-weight:800;letter-spacing:1px}
+  .bank-art .pillars{position:absolute;left:14px;top:12px;font-size:22px;letter-spacing:4px}
+  .mod-main{flex:1;min-width:260px}
+  .pick-label{font-size:13px;font-weight:800;color:var(--green-d);text-transform:uppercase;letter-spacing:.5px;margin:0 0 4px}
+  .award{display:inline-block;background:var(--navy);color:#fff;font-size:11px;font-weight:700;border-radius:4px;padding:3px 8px;margin-bottom:8px;letter-spacing:.4px}
+  .mod-name{font-size:21px;font-weight:800;color:var(--navy);margin:0 0 4px}
+  .mod-name a{color:var(--navy);text-decoration:none}
+  .mod-rating{display:flex;align-items:center;gap:8px;margin:6px 0 10px;flex-wrap:wrap}
+  .method-link{font-size:12.5px;color:var(--blue);text-decoration:none}
+  .method-link:hover{text-decoration:underline}
+  .compare-check{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:#374151;margin:8px 0;cursor:pointer}
+  .compare-check input{width:16px;height:16px;accent-color:var(--navy);cursor:pointer}
+  .cta-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0 4px}
+  .btn-big{padding:13px 26px;font-size:15px}
+  .why-like{background:#f0fdf4;border-left:4px solid var(--green);padding:10px 14px;font-size:14px;border-radius:0 8px 8px 0;margin:12px 0;color:#14532d}
+  .why-like strong{color:var(--green-d)}
+  .spec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0}
+  .spec{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+  .spec .k{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--muted)}
+  .spec .v{font-size:14px;font-weight:600;color:var(--ink);margin-top:2px}
+  details.mod-details{border-top:1px solid var(--line);margin-top:12px;padding-top:10px}
+  details.mod-details summary{cursor:pointer;font-weight:700;color:var(--navy);font-size:14px;padding:6px 0}
+  .pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px;font-size:14px}
+  .pros-cons h4{margin:0 0 6px;font-size:13px;text-transform:uppercase;letter-spacing:.4px}
+  .pros h4{color:var(--green-d)} .cons h4{color:#b91c1c}
+  .pros-cons ul{margin:0;padding-left:18px}
+  .pros-cons li{margin-bottom:4px}
+  .take{font-size:14px;color:#374151;margin-top:10px}
+  .methodology{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-top:10px}
+  .methodology h2{color:var(--navy);font-size:20px;margin-top:0}
+  .methodology p,.methodology li{font-size:14px;color:#374151}
+  .compare-tray{position:fixed;left:0;right:0;bottom:0;background:var(--navy);color:#fff;padding:12px 16px;display:none;z-index:50;box-shadow:0 -4px 16px rgba(0,0,0,.2)}
+  .compare-tray.show{display:block}
+  .tray-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .tray-items{display:flex;gap:8px;flex-wrap:wrap;flex:1}
+  .tray-item{background:rgba(255,255,255,.12);border-radius:8px;padding:6px 10px;font-size:13px;font-weight:600;display:flex;gap:8px;align-items:center}
+  .tray-item button{background:none;border:none;color:#fca5a5;font-size:15px;cursor:pointer;line-height:1}
+  .btn-compare-now{background:var(--gold);color:#1f2937;padding:10px 20px;font-size:14px}
+  .btn-compare-now:hover{background:#d97706;color:#fff}
+  .modal-back{position:fixed;inset:0;background:rgba(15,23,42,.6);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+  .modal-back.show{display:flex}
+  .modal{background:#fff;border-radius:14px;max-width:640px;width:100%;max-height:88vh;overflow:auto;padding:28px;position:relative}
+  .modal.wide{max-width:960px}
+  .modal h2{color:var(--navy);margin-top:0;font-size:22px}
+  .modal p{font-size:14.5px;color:#374151}
+  .modal-close{position:absolute;top:12px;right:14px;background:none;border:none;font-size:24px;cursor:pointer;color:var(--muted)}
+  .cmp-side{width:100%;border-collapse:collapse;font-size:13.5px;min-width:560px}
+  .cmp-side th,.cmp-side td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+  .cmp-side th{background:var(--navy);color:#fff;font-size:14px}
+  .cmp-side tr td:first-child{font-weight:700;background:var(--bg);white-space:nowrap}
+  @media(max-width:640px){
+    h1{font-size:24px}
+    .mod{padding:16px}
+    .pros-cons{grid-template-columns:1fr}
+    .sort-wrap{margin-left:0}
+    .bank-art{width:150px;height:96px}
+  }
+</style>
+</head>
+<body>
+<div class="fin-wrap">
+  <div class="fin-topbar">
+    <a class="fin-brand" href="/">Financialist<span>.com</span></a>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <span class="fin-updated">Last updated: October 2026 · Fact checked ✓</span>
+      <button class="disclosure-btn" id="openDisclosure">Advertiser disclosure</button>
+    </div>
+  </div>
+
+  <h1>Best High-Yield Savings Accounts of October 2026</h1>
+  <p class="lede">Your savings should work as hard as you do. These online accounts pay roughly 6–8x the national average — we ranked them on APY, fees, minimums, and ease of use. Filter, sort, and compare before you open an account.</p>
+  <p class="rates-note">APYs are variable and change often — figures below are as of October 2026. Always confirm the current rate on the bank's site before opening an account. All accounts listed are FDIC-insured.</p>
+
+  <div class="filter-bar" id="filterBar">
+    <button class="pill active" data-filter="all">All accounts</button>
+    <button class="pill" data-filter="no-minimum">No minimum balance</button>
+    <button class="pill" data-filter="no-fee">No monthly fee</button>
+    <button class="pill" data-filter="high-apy">APY over 3.5%</button>
+    <div class="sort-wrap">
+      <label for="sortSel">Sort by</label>
+      <select id="sortSel">
+        <option value="featured">Featured</option>
+        <option value="rating">Highest rating</option>
+        <option value="apy">Highest APY</option>
+        <option value="fee">Lowest monthly fee</option>
+      </select>
+    </div>
+  </div>
+  <div class="result-count" id="resultCount"></div>
+
+  <div class="table-scroll">
+    <table class="cmp" id="cmpTable">
+      <thead><tr>
+        <th data-sort="name">Account <span class="arrow">↕</span></th>
+        <th data-sort="rating">Rating <span class="arrow">↕</span></th>
+        <th data-sort="apy">APY <span class="arrow">↕</span></th>
+        <th>Min. to earn APY</th>
+        <th>Monthly fee</th>
+        <th>Open account</th>
+      </tr></thead>
+      <tbody id="cmpBody"></tbody>
+    </table>
+  </div>
+
+  <div id="modules"></div>
+
+<section class="related-guides" style="margin:32px 0">
+<h2>Related Financialist guides</h2>
+<ul style="list-style:none;padding:0;margin:0">
+<li style="margin:10px 0"><a href="/guides/top-10-cds">10 Best CD Rates of 2026</a></li>
+<li style="margin:10px 0"><a href="/articles/bank-accounts-that-pay-you">Bank Accounts That Pay You</a></li>
+<li style="margin:10px 0"><a href="/articles/high-yield-cash-2026">High-Yield Cash in 2026</a></li>
+<li style="margin:10px 0"><a href="/viral/emergency-fund-how-much">Emergency Fund: How Much Do You Need?</a></li>
+</ul>
+</section>
+
+  <section class="methodology" id="methodology">
+    <h2>How Financialist rates savings accounts</h2>
+    <p>Every account gets a score from 0 to 5. Our analysts weigh what matters most to savers:</p>
+    <ul>
+      <li><strong>APY (40%)</strong> — the rate you actually earn, checked against current published rates.</li>
+      <li><strong>Fees &amp; minimums (30%)</strong> — $0 monthly fees and $0 minimums score highest.</li>
+      <li><strong>Access &amp; experience (20%)</strong> — mobile app quality, transfers, ATM access, customer service.</li>
+      <li><strong>Extras (10%)</strong> — sign-up bonuses, buckets/goals tools, paired checking.</li>
+    </ul>
+    <p>Partners who compensate us cannot pay for a higher rating or a better placement. <a href="#" class="method-link" id="openDisclosure2">Read our advertiser disclosure</a>.</p>
+  </section>
+</div>
+
+<div class="compare-tray" id="tray">
+  <div class="tray-inner">
+    <strong>Compare (<span id="trayCount">0</span>/3):</strong>
+    <div class="tray-items" id="trayItems"></div>
+    <button class="btn btn-compare-now" id="compareNow">Compare now</button>
+  </div>
+</div>
+
+<div class="modal-back" id="disclosureBack">
+  <div class="modal">
+    <button class="modal-close" data-close="disclosureBack">×</button>
+    <h2>You're our first priority. Every time.</h2>
+    <p>Many or all of the products featured here are from our partners who compensate us. That may influence which products we write about and where and how they appear on a page.</p>
+    <p><strong>It does not influence our evaluations.</strong> Our ratings are set by our editorial team using the published methodology above. Partners cannot pay for favorable reviews, higher ratings, or better placement.</p>
+    <p>When you click "Open account" you leave Financialist.com and go to the bank's secure site. If you open an account, we may earn a commission — at no cost to you.</p>
+  </div>
+</div>
+
+<div class="modal-back" id="compareBack">
+  <div class="modal wide">
+    <button class="modal-close" data-close="compareBack">×</button>
+    <h2>Side-by-side comparison</h2>
+    <div style="overflow-x:auto"><table class="cmp-side" id="sideTable"></table></div>
+  </div>
+</div>
+
+<script>
+const PRODUCTS = [
+  {
+    id:'everbank', name:'EverBank Performance℠ Savings', issuer:'EverBank',
+    pick:'Highest straightforward APY', badge:'2026 BEST HIGH-YIELD SAVINGS ACCOUNT', rating:4.8,
+    affiliate:'#affiliate-link-everbank-savings', affStatus:'pending',
+    cats:['no-minimum','no-fee','high-apy'], apyNum:4.20, feeNum:0,
+    apy:'4.20%', minEarn:'$0', fee:'$0', minOpen:'$0',
+    why:'The top rate with zero hoops — no minimum, no fee, no games.',
+    pros:['4.20% APY as of Oct 2026 — among the highest available','No minimum balance to earn the top rate','No monthly maintenance fee'],
+    cons:['Fewer products than big online banks','Mobile app is basic'],
+    take:'If you want the highest rate and nothing else to think about, start here. Just confirm the current APY before you move money — rates shift monthly.'
+  },
+  {
+    id:'marcus', name:'Marcus by Goldman Sachs®', issuer:'Goldman Sachs',
+    pick:'Best for beginners', badge:'', rating:4.8,
+    affiliate:'#affiliate-link-marcus-savings', affStatus:'pending',
+    cats:['no-minimum','no-fee'], apyNum:3.50, feeNum:0,
+    apy:'3.50%', minEarn:'$0', fee:'$0', minOpen:'$0',
+    why:'A clean, simple savings account from a name everyone trusts.',
+    pros:['Simple, uncluttered experience','Goldman Sachs backing','$0 minimums and $0 fees'],
+    cons:['No checking account to pair it with','No ATM access'],
+    take:'The "set it and forget it" pick. The rate trails the very top, but the experience is the smoothest of the bunch.'
+  },
+  {
+    id:'sofi', name:'SoFi Checking and Savings', issuer:'SoFi',
+    pick:'Best all-in-one banking', badge:'', rating:4.6,
+    affiliate:'#affiliate-link-sofi-savings', affStatus:'pending',
+    cats:['no-minimum','no-fee','high-apy'], apyNum:3.80, feeNum:0,
+    apy:'Up to 3.80%', minEarn:'$0', fee:'$0', minOpen:'$0',
+    why:'One account for spending and saving, with a rate near the top of the market.',
+    pros:['Up to 3.80% APY as of Oct 2026','Checking + savings in one app','No account fees, no minimums','Early direct deposit'],
+    cons:['Top APY may require direct deposit','Rate tiers can be confusing'],
+    take:'Best if you want to consolidate banking in one place. Check which APY tier you qualify for before comparing.'
+  },
+  {
+    id:'ally', name:'Ally Bank Online Savings', issuer:'Ally',
+    pick:'Best customer experience', badge:'', rating:4.5,
+    affiliate:'#affiliate-link-ally-savings', affStatus:'pending',
+    cats:['no-minimum','no-fee'], apyNum:3.50, feeNum:0,
+    apy:'~3.50%', minEarn:'$0', fee:'$0', minOpen:'$0',
+    why:'Buckets, boosters, and 24/7 humans — the friendliest way to save.',
+    pros:['Excellent savings "buckets" for goals','24/7 customer service','$0 fees and minimums'],
+    cons:['APY trails the rate leaders','No cash deposits'],
+    take:'Pick Ally for the tools and service, not the absolute top rate. The buckets feature genuinely helps people save more.'
+  },
+  {
+    id:'synchrony', name:'Synchrony Bank High Yield Savings', issuer:'Synchrony',
+    pick:'Strong rate, no frills', badge:'', rating:4.4,
+    affiliate:'#affiliate-link-synchrony-savings', affStatus:'pending',
+    cats:['no-minimum','no-fee','high-apy'], apyNum:3.70, feeNum:0,
+    apy:'~3.70%', minEarn:'$0', fee:'$0', minOpen:'$0',
+    why:'A consistently competitive rate with none of the fine print.',
+    pros:['APY near the top as of Oct 2026','No minimums, no monthly fee','ATM card available'],
+    cons:['Basic digital experience','Limited product lineup'],
+    take:'The quiet contender — rarely advertised, frequently near the top of rate tables. Worth a look if you chase yield.'
+  },
+  {
+    id:'capital-one-360', name:'Capital One 360 Performance Savings', issuer:'Capital One',
+    pick:'Best branch + online combo', badge:'', rating:4.4,
+    affiliate:'#affiliate-link-capital-one-360-savings', affStatus:'pending',
+    cats:['no-minimum','no-fee'], apyNum:3.40, feeNum:0,
+    apy:'~3.40%', minEarn:'$0', fee:'$0', minOpen:'$0',
+    why:'Online rate with real branches and cafés if you ever want one.',
+    pros:['No fees or minimums','Physical locations available','Easy transfers between Capital One accounts'],
+    cons:['APY below the online-only leaders','Rate changes with little notice'],
+    take:'Choose this if you like having a branch as backup. Pure rate-chasers will find higher APYs elsewhere on this list.'
+  }
+];
+
+let state = {filter:'all', sort:'featured', compare:[]};
+const $ = id => document.getElementById(id);
+const affTag = p => p.affStatus==='pending' ? '<span class="aff-tag" title="Affiliate link pending — swap with tracking URL before publish">LINK PENDING</span>' : '';
+
+function stars(r){
+  const pct = (r/5*100).toFixed(0);
+  return `<span class="stars" aria-label="${r} out of 5 stars">★★★★★<span class="fill" style="width:${pct}%">★★★★★</span></span><span class="rating-num">${r.toFixed(1)}</span>`;
+}
+function filtered(){
+  let list = PRODUCTS.filter(p => state.filter==='all' || p.cats.includes(state.filter));
+  const by = {
+    featured:(a,b)=>b.rating-a.rating,
+    rating:(a,b)=>b.rating-a.rating,
+    apy:(a,b)=>b.apyNum-a.apyNum,
+    fee:(a,b)=>a.feeNum-b.feeNum
+  }[state.sort] || (()=>0);
+  return list.slice().sort(by);
+}
+function renderTable(){
+  const list = filtered();
+  $('resultCount').textContent = `Showing ${list.length} of ${PRODUCTS.length} accounts`;
+  $('cmpBody').innerHTML = list.map(p=>`
+    <tr>
+      <td><span class="t-name"><a href="${p.affiliate}" data-affiliate="${p.affStatus}">${p.name}</a></span>${affTag(p)}</td>
+      <td>${stars(p.rating)}</td>
+      <td><span class="apy-big">${p.apy}</span></td>
+      <td>${p.minEarn}</td>
+      <td><strong>${p.fee}</strong></td>
+      <td><div class="t-apply">
+        <a class="btn btn-apply" href="${p.affiliate}" data-affiliate="${p.affStatus}"><span class="lock">🔒</span> Open account</a>
+        <a class="rates-link" href="${p.affiliate}" data-affiliate="${p.affStatus}">See details &amp; disclosures</a>
+        <label class="compare-check"><input type="checkbox" data-cmp="${p.id}" ${state.compare.includes(p.id)?'checked':''}> Add to compare</label>
+      </div></td>
+    </tr>`).join('');
+  bindCompareBoxes();
+}
+function renderModules(){
+  $('modules').innerHTML = filtered().map(p=>`
+  <article class="mod" id="mod-${p.id}">
+    <div class="mod-top">
+      <div class="mod-visual">
+        <a class="bank-art" href="${p.affiliate}" data-affiliate="${p.affStatus}" aria-label="Open a ${p.name} account">
+          <span class="pillars">🏛</span><span class="init">${p.issuer.split(' ').map(w=>w[0]).join('').slice(0,3)}</span>
+        </a>
+      </div>
+      <div class="mod-main">
+        <p class="pick-label">Our pick for: ${p.pick}</p>
+        ${p.badge?`<span class="award">🏆 ${p.badge}</span>`:''}
+        <h2 class="mod-name"><a href="${p.affiliate}" data-affiliate="${p.affStatus}">${p.name}</a>${affTag(p)}</h2>
+        <div class="mod-rating">${stars(p.rating)}<a class="method-link" href="#methodology">How are ratings determined?</a></div>
+        <div class="why-like"><strong>Why you'll like this:</strong> ${p.why}</div>
+        <label class="compare-check"><input type="checkbox" data-cmp="${p.id}" ${state.compare.includes(p.id)?'checked':''}> Add to compare</label>
+        <div class="cta-row">
+          <a class="btn btn-apply btn-big" href="${p.affiliate}" data-affiliate="${p.affStatus}">Open account <span class="lock">🔒</span> on ${p.issuer}'s secure site</a>
+          <a class="rates-link" href="${p.affiliate}" data-affiliate="${p.affStatus}">See details &amp; disclosures</a>
+        </div>
+        <div class="spec-grid">
+          <div class="spec"><div class="k">APY (as of Oct 2026)</div><div class="v">${p.apy}</div></div>
+          <div class="spec"><div class="k">Min. to earn APY</div><div class="v">${p.minEarn}</div></div>
+          <div class="spec"><div class="k">Monthly fee</div><div class="v">${p.fee}</div></div>
+          <div class="spec"><div class="k">Min. opening deposit</div><div class="v">${p.minOpen}</div></div>
+          <div class="spec"><div class="k">FDIC insured</div><div class="v">Yes</div></div>
+        </div>
+        <details class="mod-details">
+          <summary>Account details, pros &amp; cons</summary>
+          <div class="pros-cons">
+            <div class="pros"><h4>Pros</h4><ul>${p.pros.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+            <div class="cons"><h4>Cons</h4><ul>${p.cons.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+          </div>
+          <p class="take"><strong>Financialist's take:</strong> ${p.take}</p>
+        </details>
+      </div>
+    </div>
+  </article>`).join('');
+  bindCompareBoxes();
+}
+function bindCompareBoxes(){
+  document.querySelectorAll('[data-cmp]').forEach(box=>{
+    box.onchange = ()=>{
+      const id = box.getAttribute('data-cmp');
+      if(box.checked){
+        if(state.compare.length>=3){ box.checked=false; alert('You can compare up to 3 accounts.'); return; }
+        if(!state.compare.includes(id)) state.compare.push(id);
+      } else state.compare = state.compare.filter(x=>x!==id);
+      syncTray();
+      document.querySelectorAll(`[data-cmp="${id}"]`).forEach(b=>{ if(b!==box) b.checked=box.checked; });
+    };
+  });
+}
+function syncTray(){
+  $('trayCount').textContent = state.compare.length;
+  $('trayItems').innerHTML = state.compare.map(id=>{
+    const p = PRODUCTS.find(x=>x.id===id);
+    return `<span class="tray-item">${p.name}<button data-rm="${id}" aria-label="Remove">×</button></span>`;
+  }).join('');
+  $('tray').classList.toggle('show', state.compare.length>0);
+  document.querySelectorAll('[data-rm]').forEach(b=>b.onclick=()=>{
+    const id=b.getAttribute('data-rm');
+    state.compare=state.compare.filter(x=>x!==id);
+    document.querySelectorAll(`[data-cmp="${id}"]`).forEach(x=>x.checked=false);
+    syncTray();
+  });
+}
+function renderSide(){
+  const ps = state.compare.map(id=>PRODUCTS.find(x=>x.id===id));
+  const rows = [
+    ['Rating', p=>stars(p.rating)],
+    ['APY', p=>`<span class="apy-big">${p.apy}</span>`],
+    ['Min. to earn APY', p=>p.minEarn],
+    ['Monthly fee', p=>`<strong>${p.fee}</strong>`],
+    ['Min. opening deposit', p=>p.minOpen],
+    ['FDIC insured', p=>'Yes'],
+    ['Open account', p=>`<a class="btn btn-apply" href="${p.affiliate}" data-affiliate="${p.affStatus}">Open account</a>`]
+  ];
+  $('sideTable').innerHTML =
+    `<tr><th></th>${ps.map(p=>`<th>${p.name}</th>`).join('')}</tr>` +
+    rows.map(([k,fn])=>`<tr><td>${k}</td>${ps.map(p=>`<td>${fn(p)}</td>`).join('')}</tr>`).join('');
+}
+document.querySelectorAll('#filterBar .pill').forEach(pill=>{
+  pill.onclick=()=>{
+    document.querySelectorAll('#filterBar .pill').forEach(x=>x.classList.remove('active'));
+    pill.classList.add('active');
+    state.filter=pill.getAttribute('data-filter');
+    renderTable(); renderModules();
+  };
+});
+$('sortSel').onchange=e=>{ state.sort=e.target.value; renderTable(); };
+document.querySelectorAll('#cmpTable thead th[data-sort]').forEach(th=>{
+  th.onclick=()=>{
+    const k=th.getAttribute('data-sort');
+    state.sort = k==='rating'?'rating':(k==='apy'?'apy':(k==='fee'?'fee':'featured'));
+    renderTable();
+  };
+});
+$('compareNow').onclick=()=>{ if(!state.compare.length) return; renderSide(); $('compareBack').classList.add('show'); };
+const openD=()=>$('disclosureBack').classList.add('show');
+$('openDisclosure').onclick=openD;
+$('openDisclosure2').onclick=e=>{e.preventDefault();openD();};
+document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>$(b.getAttribute('data-close')).classList.remove('show'));
+document.querySelectorAll('.modal-back').forEach(m=>m.addEventListener('click',e=>{ if(e.target===m) m.classList.remove('show'); }));
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') document.querySelectorAll('.modal-back.show').forEach(m=>m.classList.remove('show')); });
+renderTable(); renderModules(); syncTray();
+</script>
+</body>
+</html>

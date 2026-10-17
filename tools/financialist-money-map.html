@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Should I Do With $X? — Financialist Money Map</title>
+<meta name="description" content="Enter any dollar amount and get an instant visual money map: where every dollar should go.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0a1428; --navy2:#0e1c36; --card:#122341; --card2:#16294a;
+  --gold:#f5b942; --green:#2fd08c; --red:#ff6b6b; --blue:#4da3ff; --purple:#b678ff; --teal:#3fd0c9;
+  --text:#eef3fb; --muted:#93a4c4; --line:rgba(255,255,255,.09);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(1200px 600px at 80% -10%,#16305c 0%,var(--navy) 55%) fixed,var(--navy);color:var(--text);font-family:Inter,system-ui,sans-serif;min-height:100vh}
+h1,h2,h3,.brand{font-family:Sora,Inter,sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px 60px}
+header.top{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
+.brand{font-weight:800;font-size:22px;letter-spacing:.5px}
+.brand span{color:var(--gold)}
+.tag{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:6px 14px}
+.hero{text-align:center;padding:34px 0 10px}
+.hero h1{font-size:clamp(30px,5.5vw,54px);font-weight:800;line-height:1.08}
+.hero h1 .x{color:var(--gold)}
+.hero p{color:var(--muted);margin-top:12px;font-size:16px;max-width:640px;margin-left:auto;margin-right:auto}
+.amount-box{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:22px;padding:28px;margin:26px auto;max-width:640px;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.amount-row{display:flex;align-items:center;gap:10px;justify-content:center}
+.dollar{font-size:34px;color:var(--gold);font-weight:800}
+#amount{font-family:Sora;font-size:44px;font-weight:800;background:#0a1730;border:2px solid var(--line);border-radius:14px;color:#fff;padding:8px 16px;width:280px;text-align:center;outline:none;transition:border .2s}
+#amount:focus{border-color:var(--gold)}
+.quick{display:flex;gap:10px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+.quick button{background:#0a1730;border:1px solid var(--line);color:var(--text);border-radius:999px;padding:8px 18px;font-size:14px;cursor:pointer;transition:.2s;font-family:Inter}
+.quick button:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-1px)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:10px}
+@media(max-width:860px){.grid{grid-template-columns:1fr}}
+.panel{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:0 24px 60px rgba(0,0,0,.3)}
+.panel h2{font-size:20px;margin-bottom:4px}
+.panel .sub{color:var(--muted);font-size:13px;margin-bottom:18px}
+.donut-wrap{display:flex;align-items:center;justify-content:center;gap:8px;flex-direction:column;padding:10px 0}
+.donut-center{font-family:Sora;font-weight:800;font-size:30px}
+.donut-label{color:var(--muted);font-size:12px;margin-top:2px}
+.cat{margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.cat:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.cat-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.cat-name{font-weight:600;font-size:15px;display:flex;align-items:center;gap:9px}
+.dot{width:12px;height:12px;border-radius:50%;flex:none}
+.cat-vals{font-family:Sora;font-weight:700}
+.cat-vals .pct{color:var(--gold);margin-right:10px}
+input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:8px;border-radius:99px;background:#0a1730;outline:none;margin:6px 0 4px}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--c,#f5b942);cursor:pointer;border:3px solid #0a1428;box-shadow:0 0 0 2px var(--c,#f5b942)}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--c,#f5b942);cursor:pointer;border:3px solid #0a1730}
+.cat-tip{font-size:13px;color:var(--muted);line-height:1.5}
+.cat-tip b{color:var(--text)}
+.presets{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.presets button{background:#0a1730;border:1px solid var(--line);color:var(--muted);border-radius:10px;padding:8px 14px;font-size:13px;cursor:pointer;font-family:Inter;transition:.2s}
+.presets button:hover,.presets button.on{color:var(--gold);border-color:var(--gold)}
+.cta-zone{margin-top:26px}
+.cta-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+@media(max-width:700px){.cta-grid{grid-template-columns:1fr}}
+.cta{background:linear-gradient(135deg,#f5b942,#e08e1a);color:#1a1206;border-radius:16px;padding:18px;text-decoration:none;display:block;transition:.2s;box-shadow:0 12px 30px rgba(245,185,66,.25)}
+.cta:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(245,185,66,.35)}
+.cta.green{background:linear-gradient(135deg,#2fd08c,#1a9e63);color:#06130c;box-shadow:0 12px 30px rgba(47,208,140,.25)}
+.cta.blue{background:linear-gradient(135deg,#4da3ff,#2b6fd6);color:#06121f;box-shadow:0 12px 30px rgba(77,163,255,.25)}
+.cta h3{font-size:15px;margin-bottom:6px}
+.cta p{font-size:13px;opacity:.85;line-height:1.45}
+.cta .go{display:inline-block;margin-top:10px;font-weight:700;font-size:13px}
+.note{color:var(--muted);font-size:12px;text-align:center;margin-top:26px;line-height:1.6;max-width:700px;margin-left:auto;margin-right:auto}
+footer{border-top:1px solid var(--line);margin-top:40px;padding-top:22px;text-align:center;color:var(--muted);font-size:13px}
+footer .brand{font-size:18px}
+@keyframes pop{0%{transform:scale(.96);opacity:.4}100%{transform:scale(1);opacity:1}}
+.pop{animation:pop .45s ease}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">💰 Financial<span>ist</span></div>
+    <div class="tag">Interactive Tool</div>
+  </header>
+
+  <div class="hero">
+    <h1>What should I do<br>with <span class="x">$<span id="heroAmt">10,000</span></span>?</h1>
+    <p>Type any amount — windfall, bonus, tax refund, stimulus — and get an instant visual money map. Drag the sliders to make it yours.</p>
+  </div>
+
+  <div class="amount-box">
+    <div class="amount-row">
+      <span class="dollar">$</span>
+      <input id="amount" type="text" inputmode="numeric" value="10,000" aria-label="Dollar amount">
+    </div>
+    <div class="quick">
+      <button data-amt="1000">$1,000</button>
+      <button data-amt="5000">$5,000</button>
+      <button data-amt="10000">$10,000</button>
+      <button data-amt="25000">$25,000</button>
+      <button data-amt="100000">$100,000</button>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="panel">
+      <h2>Your money map</h2>
+      <div class="sub">Recommended allocation — adjust with sliders</div>
+      <div class="donut-wrap">
+        <svg id="donut" width="230" height="230" viewBox="0 0 180 180"></svg>
+        <div class="donut-center" id="donutTotal">$10,000</div>
+        <div class="donut-label">total mapped</div>
+      </div>
+      <div class="presets" style="margin-top:18px">
+        <button data-preset="balanced" class="on">⚖️ Balanced</button>
+        <button data-preset="debt">🔥 Kill debt first</button>
+        <button data-preset="growth">📈 Max growth</button>
+        <button data-preset="safe">🛡️ Safety first</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Allocate every dollar</h2>
+      <div class="sub">Drag a slider — the rest auto-rebalance to 100%</div>
+      <div id="cats"></div>
+    </div>
+  </div>
+
+  <div class="cta-zone panel">
+    <h2>Put this plan into action today</h2>
+    <div class="sub">Hand-picked accounts that match each bucket of your map</div>
+    <div class="cta-grid">
+      <!-- TODO: replace href="#" with real affiliate links -->
+      <a class="cta" href="#" data-affiliate="hysa">
+        <h3>🏦 High-Yield Savings</h3>
+        <p>Park your emergency fund where it earns 4%+ instead of 0.01%.</p>
+        <span class="go">Compare top HYSA rates →</span>
+      </a>
+      <a class="cta green" href="#" data-affiliate="balance-transfer">
+        <h3>💳 0% Balance Transfer Cards</h3>
+        <p>Move high-interest debt to 0% APR for up to 21 months and kill it faster.</p>
+        <span class="go">See 0% APR offers →</span>
+      </a>
+      <a class="cta blue" href="#" data-affiliate="brokerage">
+        <h3>📊 Start Investing</h3>
+        <p>Put your growth bucket to work with $0-commission investing.</p>
+        <span class="go">Compare brokerages →</span>
+      </a>
+    </div>
+  </div>
+
+  <p class="note">This tool gives general educational guidance, not financial advice. Allocations are starting points — adjust for your debts, goals, and risk tolerance. Salary and rate figures shown are illustrative.</p>
+  <footer>
+    <div class="brand">💰 Financial<span style="color:var(--gold)">ist</span></div>
+    <p style="margin-top:8px">Smart money moves, every day.</p>
+  </footer>
+</div>
+
+<script>
+const CATS = [
+  {key:'emergency', name:'Emergency fund', color:'#f5b942', tip:'<b>3–6 months of expenses</b> in a high-yield savings account. This is your financial airbag — fund it before anything fun.'},
+  {key:'debt', name:'Kill high-interest debt', color:'#ff6b6b', tip:'Every dollar against <b>20%+ APR debt</b> is a guaranteed 20% return. Nothing in the market beats that.'},
+  {key:'invest', name:'Invest for growth', color:'#2fd08c', tip:'Low-cost index funds. <b>Time in the market beats timing the market</b> — start now, automate it.'},
+  {key:'retire', name:'Retirement accounts', color:'#4da3ff', tip:'401(k) match first (free money), then IRA. <b>Tax-advantaged beats taxable</b> every time.'},
+  {key:'fun', name:'Guilt-free fun money', color:'#b678ff', tip:'Budgets fail without joy. <b>5–10% for fun</b> keeps the other 90% on track.'},
+];
+const PRESETS = {
+  balanced:{emergency:20,debt:20,invest:30,retire:20,fun:10},
+  debt:{emergency:15,debt:55,invest:10,retire:10,fun:10},
+  growth:{emergency:10,debt:10,invest:45,retire:25,fun:10},
+  safe:{emergency:45,debt:20,invest:10,retire:15,fun:10},
+};
+let vals = {...PRESETS.balanced};
+let amount = 10000;
+
+const catsEl = document.getElementById('cats');
+CATS.forEach(c=>{
+  const d = document.createElement('div');
+  d.className='cat';
+  d.innerHTML = `<div class="cat-head">
+      <div class="cat-name"><span class="dot" style="background:${c.color}"></span>${c.name}</div>
+      <div class="cat-vals"><span class="pct" id="pct-${c.key}">0%</span><span id="val-${c.key}">$0</span></div>
+    </div>
+    <input type="range" min="0" max="100" value="${vals[c.key]}" id="sl-${c.key}" style="--c:${c.color}" aria-label="${c.name} percent">
+    <div class="cat-tip">${c.tip}</div>`;
+  catsEl.appendChild(d);
+  d.querySelector('input').addEventListener('input', e=>{
+    rebalance(c.key, +e.target.value);
+    render(false);
+  });
+});
+
+function rebalance(changedKey, newVal){
+  const keys = CATS.map(c=>c.key);
+  const others = keys.filter(k=>k!==changedKey);
+  const delta = newVal - vals[changedKey];
+  const otherSum = others.reduce((s,k)=>s+vals[k],0);
+  if(otherSum > 0){
+    others.forEach(k=>{ vals[k] = Math.max(0, vals[k] - delta*(vals[k]/otherSum)); });
+  } else if(delta < 0){
+    others.forEach(k=>{ vals[k] = -delta/others.length; });
+  }
+  vals[changedKey] = newVal;
+  // normalize to 100
+  let sum = keys.reduce((s,k)=>s+vals[k],0);
+  if(sum > 0){ keys.forEach(k=>{ vals[k] = vals[k]/sum*100; }); }
+  // snap tiny values
+  keys.forEach(k=>{ if(vals[k] < 0.05) vals[k]=0; });
+  sum = keys.reduce((s,k)=>s+vals[k],0);
+  if(sum>0){ const big = keys.reduce((a,b)=>vals[a]>vals[b]?a:b); vals[big]+=100-sum; }
+}
+
+const svg = document.getElementById('donut');
+const R=70, C=2*Math.PI*R;
+function renderDonut(){
+  let acc=0, html='';
+  CATS.forEach(c=>{
+    const frac = vals[c.key]/100;
+    const len = Math.max(frac*C - 2, 0.5);
+    html += `<circle cx="90" cy="90" r="${R}" fill="none" stroke="${c.color}" stroke-width="26"
+      stroke-dasharray="${len} ${C-len}" stroke-dashoffset="${-acc*C + C/4}"
+      style="transition:stroke-dasharray .6s ease,stroke-dashoffset .6s ease;stroke-linecap:butt"/>`;
+    acc += frac;
+  });
+  svg.innerHTML = html;
+}
+
+let displayed = 0, raf=null;
+function countUp(target, el, fmt){
+  cancelAnimationFrame(raf);
+  const start = displayed, t0 = performance.now(), dur=600;
+  function tick(t){
+    const p = Math.min((t-t0)/dur,1), e = 1-Math.pow(1-p,3);
+    displayed = start + (target-start)*e;
+    el.textContent = fmt(displayed);
+    if(p<1) raf = requestAnimationFrame(tick);
+  }
+  raf = requestAnimationFrame(tick);
+}
+const fmt$ = v=>'$'+Math.round(v).toLocaleString('en-US');
+
+function render(animate=true){
+  renderDonut();
+  document.getElementById('heroAmt').textContent = Math.round(amount).toLocaleString('en-US');
+  const totalEl = document.getElementById('donutTotal');
+  if(animate) countUp(amount, totalEl, fmt$); else { totalEl.textContent = fmt$(amount); displayed=amount; }
+  CATS.forEach(c=>{
+    const p = vals[c.key], v = amount*p/100;
+    document.getElementById('pct-'+c.key).textContent = Math.round(p)+'%';
+    const vel = document.getElementById('val-'+c.key);
+    if(animate) countUp(v, vel, fmt$); else vel.textContent = fmt$(v);
+    const sl = document.getElementById('sl-'+c.key);
+    if(document.activeElement!==sl) sl.value = p;
+  });
+}
+
+const amtInput = document.getElementById('amount');
+amtInput.addEventListener('input', ()=>{
+  const n = parseInt(amtInput.value.replace(/[^0-9]/g,''),10);
+  if(!isNaN(n)){ amount = Math.min(n, 999999999); render(true); }
+});
+amtInput.addEventListener('blur', ()=>{ amtInput.value = Math.round(amount).toLocaleString('en-US'); });
+document.querySelectorAll('.quick button').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    amount = +b.dataset.amt;
+    amtInput.value = amount.toLocaleString('en-US');
+    document.querySelectorAll('.quick button').forEach(x=>x.style.borderColor='');
+    b.style.borderColor='var(--gold)';
+    // smart default preset by size
+    let p = 'balanced';
+    if(amount<=2000) p='safe'; else if(amount>=50000) p='growth';
+    vals = {...PRESETS[p]};
+    document.querySelectorAll('.presets button').forEach(x=>x.classList.toggle('on',x.dataset.preset===p));
+    render(true);
+  });
+});
+document.querySelectorAll('.presets button').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    vals = {...PRESETS[b.dataset.preset]};
+    document.querySelectorAll('.presets button').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    render(true);
+  });
+});
+
+render(false);
+</script>
+</body>
+</html>

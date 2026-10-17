@@ -1,0 +1,380 @@
+<!--
+  ============================================================================
+  FINANCIALIST.COM — Top 10 Credit Monitoring Services (DRAFT)
+STATUS: DO NOT PUBLISH AS-IS. Plan prices/features labeled 'as of Oct 2026' but MUST be verified
+against each provider's current terms before publish.
+AFFILIATE LINKS: all hrefs are '#affiliate-link-*' placeholders with data-affiliate="pending".
+No live affiliate links exist for the credit-monitoring vertical. Swap each with the real tracking URL
+when network approvals land; keep data-affiliate="pending|live" in sync.
+NOTE: Kalshi (live, prediction markets) does not fit this vertical — do not use.
+  Module anatomy modeled on NerdWallet/Bankrate teardown (Oct 2026 research).
+  ============================================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10 Best Credit Monitoring Services of October 2026 — Compare Plans | Financialist</title>
+<meta name="description" content="10 Best Credit Monitoring Services of October 2026: ratings, key specs and side-by-side comparison. Filter, sort and compare before you apply.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1a365d; --navy2:#234876; --ink:#1f2937; --muted:#6b7280;
+    --line:#e5e7eb; --bg:#f8fafc; --card:#ffffff; --green:#16a34a; --green-d:#15803d;
+    --gold:#f59e0b; --blue:#2563eb; --radius:12px;
+  }
+  *{box-sizing:border-box}
+  body{font-family:'Inter',-apple-system,'Segoe UI',Roboto,sans-serif;color:var(--ink);margin:0;background:var(--bg);line-height:1.55}
+  .fin-wrap{max-width:1080px;margin:0 auto;padding:0 16px 120px}
+  .fin-topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0;flex-wrap:wrap}
+  .fin-brand{font-weight:800;font-size:20px;color:var(--navy);text-decoration:none}
+  .fin-brand span{color:var(--green)}
+  .disclosure-btn{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:13px;font-weight:600;color:var(--navy);cursor:pointer}
+  .disclosure-btn:hover{border-color:var(--navy)}
+  .fin-updated{font-size:12px;color:var(--muted)}
+  h1{font-size:30px;color:var(--navy);margin:8px 0 6px;letter-spacing:-.5px}
+  .lede{color:#374151;font-size:16px;max-width:760px;margin:0 0 4px}
+  .rates-note{font-size:12px;color:var(--muted);margin:0 0 18px}
+  .responsible-box{background:#fffbeb;border:1px solid #fcd34d;border-left:4px solid var(--gold);border-radius:0 8px 8px 0;padding:12px 16px;font-size:14px;color:#78350f;margin:14px 0 6px;max-width:900px}
+  .responsible-box strong{color:#92400e}
+  /* Filter bar */
+  .filter-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:18px 0;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;position:sticky;top:0;z-index:20}
+  .pill{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 14px;font-size:13px;font-weight:600;color:#374151;cursor:pointer}
+  .pill.active{background:var(--navy);border-color:var(--navy);color:#fff}
+  .sort-wrap{margin-left:auto;display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+  .sort-wrap select{border:1px solid var(--line);border-radius:8px;padding:7px 10px;font-size:13px;font-weight:600;color:var(--ink);background:#fff}
+  .result-count{font-size:13px;color:var(--muted);margin:6px 2px 10px}
+  .glance-h2{color:var(--navy);font-size:20px;margin:22px 0 10px}
+  /* Table */
+  .table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:#fff;margin-bottom:34px}
+  table.cmp{width:100%;border-collapse:collapse;min-width:760px;font-size:14px}
+  table.cmp thead th{background:var(--navy);color:#fff;text-align:left;padding:12px 14px;font-size:12.5px;text-transform:uppercase;letter-spacing:.4px;white-space:nowrap;cursor:pointer;user-select:none}
+  table.cmp thead th .arrow{opacity:.7;font-size:11px}
+  table.cmp tbody td{padding:14px;border-top:1px solid var(--line);vertical-align:middle}
+  table.cmp tbody tr:hover{background:#f1f5f9}
+  .t-name{font-weight:700;color:var(--navy)}
+  .t-name a{color:var(--navy);text-decoration:none}
+  .t-name a:hover{text-decoration:underline}
+  .t-apply{display:flex;flex-direction:column;gap:6px}
+  .btn{display:inline-block;text-align:center;font-weight:700;border-radius:8px;cursor:pointer;text-decoration:none;border:none}
+  .btn-apply{background:var(--green);color:#fff;padding:10px 16px;font-size:13.5px;text-transform:uppercase;letter-spacing:.3px}
+  .btn-apply:hover{background:var(--green-d)}
+  .btn-apply .lock{font-size:12px}
+  .rates-link{font-size:12.5px;color:var(--blue);text-decoration:none}
+  .rates-link:hover{text-decoration:underline}
+  .stars{position:relative;display:inline-block;font-size:15px;line-height:1;letter-spacing:2px;color:#d1d5db;white-space:nowrap}
+  .stars .fill{position:absolute;left:0;top:0;overflow:hidden;color:var(--gold);white-space:nowrap}
+  .rating-num{font-weight:700;font-size:13px;color:var(--ink);margin-left:6px}
+  .aff-tag{font-size:10px;font-weight:700;background:#fef3c7;color:#92400e;border:1px solid #fcd34d;border-radius:4px;padding:1px 5px;margin-left:6px;vertical-align:middle}
+  .rank-cell{font-weight:800;color:var(--navy);font-size:16px}
+  /* Product modules */
+  .mod{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-bottom:22px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+  .mod-top{display:flex;gap:20px;flex-wrap:wrap}
+  .mod-visual{flex:0 0 170px}
+  .card-art{display:block;width:170px;height:108px;border-radius:10px;background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;text-decoration:none;position:relative;overflow:hidden;box-shadow:0 4px 10px rgba(26,54,93,.25)}
+  .card-art::after{content:"";position:absolute;right:-30px;top:-30px;width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.08)}
+  .card-art .init{position:absolute;left:14px;bottom:10px;font-size:26px;font-weight:800;letter-spacing:1px}
+  .card-art .chip{position:absolute;left:14px;top:12px;width:30px;height:22px;border-radius:4px;background:linear-gradient(135deg,#fbbf24,#f59e0b)}
+  .mod-main{flex:1;min-width:260px}
+  .pick-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+  .rank-badge{display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:32px;padding:0 10px;background:var(--navy);color:#fff;font-weight:800;font-size:16px;border-radius:8px}
+  .pick-label{font-size:13px;font-weight:800;color:var(--green-d);text-transform:uppercase;letter-spacing:.5px;margin:0}
+  .award{display:inline-block;background:var(--navy);color:#fff;font-size:11px;font-weight:700;border-radius:4px;padding:3px 8px;margin-bottom:8px;letter-spacing:.4px}
+  .mod-name{font-size:21px;font-weight:800;color:var(--navy);margin:0 0 4px}
+  .mod-name a{color:var(--navy);text-decoration:none}
+  .mod-rating{display:flex;align-items:center;gap:8px;margin:6px 0 10px;flex-wrap:wrap}
+  .method-link{font-size:12.5px;color:var(--blue);text-decoration:none}
+  .method-link:hover{text-decoration:underline}
+  .compare-check{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:#374151;margin:8px 0;cursor:pointer}
+  .compare-check input{width:16px;height:16px;accent-color:var(--navy);cursor:pointer}
+  .cta-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0 4px}
+  .btn-big{padding:13px 26px;font-size:15px}
+  .why-like{background:#f0fdf4;border-left:4px solid var(--green);padding:10px 14px;font-size:14px;border-radius:0 8px 8px 0;margin:12px 0;color:#14532d}
+  .why-like strong{color:var(--green-d)}
+  .spec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0}
+  .spec{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+  .spec .k{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--muted)}
+  .spec .v{font-size:14px;font-weight:600;color:var(--ink);margin-top:2px}
+  details.mod-details{border-top:1px solid var(--line);margin-top:12px;padding-top:10px}
+  details.mod-details summary{cursor:pointer;font-weight:700;color:var(--navy);font-size:14px;padding:6px 0}
+  .pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px;font-size:14px}
+  .pros-cons h4{margin:0 0 6px;font-size:13px;text-transform:uppercase;letter-spacing:.4px}
+  .pros h4{color:var(--green-d)} .cons h4{color:#b91c1c}
+  .pros-cons ul{margin:0;padding-left:18px}
+  .pros-cons li{margin-bottom:4px}
+  .take{font-size:14px;color:#374151;margin-top:10px}
+  /* Methodology + disclosure */
+  .methodology{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-top:10px}
+  .methodology h2{color:var(--navy);font-size:20px;margin-top:0}
+  .methodology p,.methodology li{font-size:14px;color:#374151}
+  .adv-disclosure{font-size:13px;color:var(--muted);margin:18px 2px 0;max-width:900px}
+  .fin-footer{font-size:12px;color:var(--muted);margin:26px 2px 0;border-top:1px solid var(--line);padding-top:14px}
+  /* Compare tray */
+  .compare-tray{position:fixed;left:0;right:0;bottom:0;background:var(--navy);color:#fff;padding:12px 16px;display:none;z-index:50;box-shadow:0 -4px 16px rgba(0,0,0,.2)}
+  .compare-tray.show{display:block}
+  .tray-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .tray-items{display:flex;gap:8px;flex-wrap:wrap;flex:1}
+  .tray-item{background:rgba(255,255,255,.12);border-radius:8px;padding:6px 10px;font-size:13px;font-weight:600;display:flex;gap:8px;align-items:center}
+  .tray-item button{background:none;border:none;color:#fca5a5;font-size:15px;cursor:pointer;line-height:1}
+  .btn-compare-now{background:var(--gold);color:#1f2937;padding:10px 20px;font-size:14px}
+  .btn-compare-now:hover{background:#d97706;color:#fff}
+  /* Modals */
+  .modal-back{position:fixed;inset:0;background:rgba(15,23,42,.6);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+  .modal-back.show{display:flex}
+  .modal{background:#fff;border-radius:14px;max-width:640px;width:100%;max-height:88vh;overflow:auto;padding:28px;position:relative}
+  .modal.wide{max-width:960px}
+  .modal h2{color:var(--navy);margin-top:0;font-size:22px}
+  .modal p{font-size:14.5px;color:#374151}
+  .modal-close{position:absolute;top:12px;right:14px;background:none;border:none;font-size:24px;cursor:pointer;color:var(--muted)}
+  .cmp-side{width:100%;border-collapse:collapse;font-size:13.5px;min-width:560px}
+  .cmp-side th,.cmp-side td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+  .cmp-side th{background:var(--navy);color:#fff;font-size:14px}
+  .cmp-side tr td:first-child{font-weight:700;background:var(--bg);white-space:nowrap}
+  @media(max-width:640px){
+    h1{font-size:24px}
+    .mod{padding:16px}
+    .pros-cons{grid-template-columns:1fr}
+    .sort-wrap{margin-left:0}
+    .card-art{width:150px;height:96px}
+  }
+</style>
+</head>
+<body>
+<div class="fin-wrap">
+  <div class="fin-topbar">
+    <a class="fin-brand" href="/">Financialist<span>.com</span></a>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <span class="fin-updated">Updated: October 2026 &middot; Fact checked &#10003;</span>
+      <button class="disclosure-btn" id="openDisclosure">Advertiser disclosure</button>
+    </div>
+  </div>
+
+  <h1>10 Best Credit Monitoring Services of October 2026</h1>
+  <p class="lede">Data breaches hit billions of records a year. A good credit monitoring service watches your credit files and the dark web around the clock — and helps you recover if your identity is stolen. We ranked the best free and paid options.</p>
+  <div class="responsible-box"><strong>Free options cover the basics.</strong> You don't need to pay to watch your credit: federal law gives you free weekly credit reports at AnnualCreditReport.com, and several services on this list offer genuinely free monitoring. Paid plans add convenience &mdash; 3-bureau coverage, identity-theft insurance, and restoration help &mdash; but <strong>no service can prevent all identity theft</strong>. Consider a free credit freeze at all three bureaus for the strongest protection.</div>
+  <p class="rates-note">Plan prices and features shown as of October 2026 and change often — always confirm current pricing on the provider's site.</p>
+
+  <div class="filter-bar" id="filterBar">
+    <button class="pill active" data-filter="all">All services</button><button class="pill" data-filter="free">Free plans</button><button class="pill" data-filter="paid">Paid plans</button><button class="pill" data-filter="3bureau">3-bureau monitoring</button><button class="pill" data-filter="insurance">Theft insurance</button>
+    <div class="sort-wrap">
+      <label for="sortSel">Sort by</label>
+      <select id="sortSel">
+        <option value="featured">Featured</option>
+        <option value="rating">Highest rating</option>
+        <option value="custom">Lowest starting price</option>
+      </select>
+    </div>
+  </div>
+  <div class="result-count" id="resultCount"></div>
+
+  <h2 class="glance-h2">Our top picks at a glance</h2>
+  <div class="table-scroll">
+    <table class="cmp" id="cmpTable">
+      <thead><tr><th>Rank</th><th>Service</th><th>Rating</th><th>Monitoring</th><th>Plans from</th><th>Get started</th></tr></thead>
+      <tbody id="cmpBody"></tbody>
+    </table>
+  </div>
+
+  <div id="modules"></div>
+
+<section class="related-guides" style="margin:32px 0">
+<h2>Related Financialist guides</h2>
+<ul style="list-style:none;padding:0;margin:0">
+<li style="margin:10px 0"><a href="/guides/top-10-debt-relief">10 Best Debt Relief Companies of 2026</a></li>
+<li style="margin:10px 0"><a href="/guides/best-balance-transfer-credit-cards">Best Balance Transfer Credit Cards of 2026</a></li>
+<li style="margin:10px 0"><a href="/viral/debt-snowball-vs-avalanche">Debt Snowball vs. Avalanche: Which Is Faster?</a></li>
+<li style="margin:10px 0"><a href="/viral/credit-score-myths">Credit Score Myths Debunked</a></li>
+</ul>
+</section>
+
+  <section class="methodology" id="methodology">
+    <h2>How Financialist rates credit monitoring services</h2>
+    <p>Every service gets a score from 0 to 5. Our analysts weigh what matters most:</p>
+    <ul>
+      <li><strong>Monitoring coverage (35%)</strong> — number of bureaus tracked, dark-web and SSN monitoring, alert speed.</li><li><strong>Identity-theft protection (25%)</strong> — insurance limits, restoration services, fraud-resolution support.</li><li><strong>Value (25%)</strong> — features per dollar; free tiers score well here.</li><li><strong>Extras &amp; usability (15%)</strong> — VPN, antivirus, password managers, and app quality.</li>
+    </ul>
+    <p>Partners who compensate us cannot pay for a higher rating or a better placement. <a href="#" class="method-link" id="openDisclosure2">Read our advertiser disclosure</a>.</p>
+  </section>
+
+  <p class="adv-disclosure"><strong>Advertiser disclosure:</strong> Many or all of the products featured here are from our partners who compensate us. That may influence which products we write about and where and how they appear on a page. <strong>It does not influence our evaluations.</strong> Our ratings are set by our editorial team using the published methodology above. Partners cannot pay for favorable reviews, higher ratings, or better placement.</p>
+
+  <p class="fin-footer">&copy; 2026 Financialist.com — Top 10 listicle draft. All product specs labeled &ldquo;as of Oct 2026&rdquo; must be verified before publication. Affiliate links pending.</p>
+</div>
+
+<div class="compare-tray" id="tray">
+  <div class="tray-inner">
+    <strong>Compare (<span id="trayCount">0</span>/3):</strong>
+    <div class="tray-items" id="trayItems"></div>
+    <button class="btn btn-compare-now" id="compareNow">Compare now</button>
+  </div>
+</div>
+
+<div class="modal-back" id="disclosureBack">
+  <div class="modal">
+    <button class="modal-close" data-close="disclosureBack">&times;</button>
+    <h2>You're our first priority. Every time.</h2>
+    <p>Many or all of the products featured here are from our partners who compensate us. That may influence which products we write about and where and how they appear on a page.</p>
+    <p><strong>It does not influence our evaluations.</strong> Our ratings are set by our editorial team using the published methodology above. Partners cannot pay for favorable reviews, higher ratings, or better placement.</p>
+    <p>When you click &ldquo;Compare plans&rdquo; you leave Financialist.com and go to the provider's site. If you sign up, we may earn a commission &mdash; at no cost to you.</p>
+  </div>
+</div>
+
+<div class="modal-back" id="compareBack">
+  <div class="modal wide">
+    <button class="modal-close" data-close="compareBack">&times;</button>
+    <h2>Side-by-side comparison</h2>
+    <div style="overflow-x:auto"><table class="cmp-side" id="sideTable"></table></div>
+  </div>
+</div>
+
+<script>
+const PRODUCTS = [{"id": "aura", "name": "Aura", "initials": "AU", "pick": "Best overall", "badge": "2026 BEST OVERALL IDENTITY PROTECTION", "rating": 4.9, "cats": ["paid", "3bureau", "insurance"], "sortVal": 9, "table": ["3-bureau", "From ~$9/mo (verify)"], "specs": [["Monitoring", "3-bureau credit + dark web"], ["Identity theft insurance", "Up to $1M (advertised)"], ["Plans from", "~$9/mo (verify current pricing)"], ["Extras", "VPN, antivirus, password manager"]], "why": "The most complete bundle: 3-bureau monitoring, dark-web scans, a VPN, antivirus, and a password manager in one subscription.", "pros": ["True 3-bureau credit monitoring", "Bundled VPN, antivirus, and password manager", "Up to $1M identity theft insurance (advertised)", "Family plans cover kids' SSNs"], "cons": ["Pricier than standalone monitors", "Intro pricing may renew higher", "Feature depth varies by plan tier"], "take": "If you want one subscription covering credit, devices, and identity — not just a score — Aura is the package to beat.", "affiliate": "#affiliate-link-aura"}, {"id": "identity-guard", "name": "Identity Guard", "initials": "IG", "pick": "Best AI-driven monitoring", "badge": "", "rating": 4.7, "cats": ["paid", "3bureau", "insurance"], "sortVal": 8, "table": ["3-bureau", "From ~$8/mo (verify)"], "specs": [["Monitoring", "3-bureau credit + dark web (AI alerts)"], ["Identity theft insurance", "Up to $1M (advertised)"], ["Plans from", "~$8/mo (verify current pricing)"], ["Extras", "Address & SSN tracking"]], "why": "Owned by Aura's parent company and known for IBM Watson-powered risk alerts that flag threats before they become fraud.", "pros": ["AI-powered threat detection (IBM Watson)", "+3-bureau monitoring on higher tiers", "Up to $1M identity theft insurance (advertised)", "Monthly credit score updates"], "cons": ["Cheapest tier is 1-bureau only", "Some features overlap with Aura proper", "Renewal pricing can jump"], "take": "A tech-forward alternative to Aura with the same corporate backing — compare the two before choosing.", "affiliate": "#affiliate-link-identity-guard"}, {"id": "lifelock", "name": "LifeLock by Norton", "initials": "LL", "pick": "Best brand recognition", "badge": "", "rating": 4.6, "cats": ["paid", "insurance"], "sortVal": 9, "table": ["1–3 bureau*", "From ~$9/mo (verify)"], "specs": [["Monitoring", "1–3 bureau depending on plan"], ["Identity theft insurance", "Up to $1M+ (advertised)"], ["Plans from", "~$9/mo (verify current pricing)"], ["Extras", "Norton 360 bundling available"]], "why": "The most famous name in identity theft protection, with the largest resolution-support network and deep Norton security bundling.", "pros": ["Most recognized identity protection brand", "+Huge identity-theft resolution network", "+Up to $1M+ reimbursement coverage (advertised)", "Bundles with Norton 360 antivirus"], "cons": ["Entry tier monitors fewer bureaus", "Premium tiers get expensive", "Past FTC scrutiny of marketing claims (2015 settlement)"], "take": "The safe, recognizable pick — especially if you already use Norton security products.", "affiliate": "#affiliate-link-lifelock"}, {"id": "identityforce", "name": "IdentityForce", "initials": "IF", "pick": "Best for families", "badge": "", "rating": 4.5, "cats": ["paid", "3bureau", "insurance"], "sortVal": 10, "table": ["3-bureau", "From ~$10/mo (verify)"], "specs": [["Monitoring", "3-bureau credit + dark web"], ["Identity theft insurance", "Up to $1M (advertised)"], ["Plans from", "~$10/mo (verify current pricing)"], ["Extras", "Child identity monitoring"]], "why": "A TransUnion company with strong family coverage — child SSN monitoring and 3-bureau tracking as standard on higher tiers.", "pros": ["Backed by TransUnion", "Strong child identity monitoring options", "3-bureau monitoring on UltraSecure+", "Up to $1M insurance (advertised)"], "cons": ["Two tiers with meaningfully different coverage", "Interface feels dated vs. Aura", "Pricing near the top of the market"], "take": "Families should price this against Aura's family plan — both are strong, and coverage details decide it.", "affiliate": "#affiliate-link-identityforce"}, {"id": "myfico", "name": "myFICO", "initials": "FICO", "pick": "Best for FICO score tracking", "badge": "", "rating": 4.4, "cats": ["paid", "3bureau"], "sortVal": 40, "table": ["3-bureau", "From $39.95/mo"], "specs": [["Monitoring", "3-bureau FICO scores & reports"], ["Identity theft insurance", "Up to $1M (advertised)"], ["Plans from", "$39.95/mo (widely published)"], ["Extras", "Score simulator, all FICO versions"]], "why": "The only service showing you the actual FICO scores lenders use — all 28 versions across all three bureaus.", "pros": ["Real FICO scores, not VantageScore estimates", "All 3 bureaus, updated monthly", "Excellent score simulator and version comparison", "$1M identity theft insurance (advertised)"], "cons": ["Expensive for monitoring alone", "Identity-theft extras are thinner than rivals", "Overkill if you just want fraud alerts"], "take": "Essential before a mortgage or auto loan application — but pricey as a year-round monitoring service.", "affiliate": "#affiliate-link-myfico"}, {"id": "experian", "name": "Experian", "initials": "EX", "pick": "Best free tier", "badge": "", "rating": 4.3, "cats": ["free", "paid", "insurance"], "sortVal": 0, "table": ["1-bureau (free)", "Free / $24.99/mo Premium"], "specs": [["Monitoring", "Experian bureau + dark web (free tier)"], ["Identity theft insurance", "Up to $1M on Premium (advertised)"], ["Plans from", "Free; Premium $24.99/mo"], ["Extras", "FICO 8 score, free report"]], "why": "A genuinely useful free tier — Experian FICO score, free report, and dark-web scan — from one of the bureaus themselves.", "pros": ["Free tier includes FICO 8 score and report", "Dark-web monitoring even on free plan", "Premium adds 3-bureau + $1M insurance", "Direct-from-the-bureau data"], "cons": ["Free tier is Experian-only (1 bureau)", "Aggressive upsells to Premium", "Premium is pricey vs. rivals"], "take": "Start with the free tier — it beats most paid 'basic' plans. Upgrade only if you want 3-bureau coverage.", "affiliate": "#affiliate-link-experian"}, {"id": "credit-karma", "name": "Credit Karma", "initials": "CK", "pick": "Best completely free", "badge": "", "rating": 4.2, "cats": ["free"], "sortVal": 0, "table": ["2-bureau (TransUnion/Equifax)", "Free"], "specs": [["Monitoring", "TransUnion + Equifax (VantageScore)"], ["Identity theft insurance", "Not included"], ["Plans from", "Free (ad-supported)"], ["Extras", "Tax filing, checking account"]], "why": "Free forever, from an Intuit company — two-bureau monitoring with instant alerts and no paywall for your scores.", "pros": ["Completely free with no premium tier", "Monitors two of three bureaus", "Instant alerts on changes", "Intuit-backed, huge user base"], "cons": ["VantageScore, not FICO — lenders may see different numbers", "Ad-supported: you'll see financial product offers", "No identity theft insurance"], "take": "The no-brainer free baseline. Pair it with Experian's free tier and you've covered all three bureaus for $0.", "affiliate": "#affiliate-link-credit-karma"}, {"id": "credit-sesame", "name": "Credit Sesame", "initials": "CS", "pick": "Best free + paid mix", "badge": "", "rating": 4.1, "cats": ["free", "paid", "insurance"], "sortVal": 0, "table": ["1-bureau (free)", "Free / paid from ~$17/mo"], "specs": [["Monitoring", "TransUnion (free); 3-bureau on paid"], ["Identity theft insurance", "Up to $1M on paid (advertised)"], ["Plans from", "Free; paid from ~$17/mo (verify)"], ["Extras", "Credit builder tools"]], "why": "A generous free tier with an affordable upgrade path to 3-bureau monitoring and $1M in identity insurance.", "pros": ["Free tier with no credit card required", "Paid tiers add 3-bureau + insurance affordably", "Credit improvement guidance built in", "Sesame Cash account option"], "cons": ["Free tier is single-bureau", "Paid pricing less transparent than rivals", "Smaller brand than the giants"], "take": "A strong free starting point with a sensible upgrade path if you outgrow the basics.", "affiliate": "#affiliate-link-credit-sesame"}, {"id": "privacyguard", "name": "PrivacyGuard", "initials": "PG", "pick": "Best for daily score updates", "badge": "", "rating": 4.0, "cats": ["paid", "3bureau", "insurance"], "sortVal": 10, "table": ["3-bureau", "From ~$10/mo (verify)"], "specs": [["Monitoring", "3-bureau credit, daily refreshes"], ["Identity theft insurance", "Up to $1M (advertised)"], ["Plans from", "~$10/mo (verify current pricing)"], ["Extras", "Public records monitoring"]], "why": "Stands out with daily 3-bureau credit updates — most rivals refresh weekly or monthly.", "pros": ["Daily 3-bureau score and report refreshes", "Up to $1M identity theft insurance (advertised)", "Public records and neighborhood watch alerts", "Simple, no-frills dashboard"], "cons": ["Fewer security extras (no VPN/antivirus)", "Brand less known than competitors", "Trial terms have drawn complaints historically"], "take": "Pick it if daily score movement matters to you — for example, while rebuilding credit.", "affiliate": "#affiliate-link-privacyguard"}, {"id": "zander-insurance", "name": "Zander Insurance Identity Theft Protection", "initials": "ZI", "pick": "Best budget paid option", "badge": "", "rating": 3.9, "cats": ["paid", "insurance"], "sortVal": 7, "table": ["Monitoring varies", "From $6.75/mo"], "specs": [["Monitoring", "Identity monitoring + restoration"], ["Identity theft insurance", "Stolen-funds protection (advertised)"], ["Plans from", "$6.75/mo individual (widely advertised)"], ["Extras", "Full-service restoration team"]], "why": "Famous for its flat, low pricing — under $7 a month for full-service identity restoration without the upsell maze.", "pros": ["One of the cheapest paid options anywhere", "Full-service restoration specialists", "Simple, transparent flat pricing", "Endorsed by major personal-finance personalities"], "cons": ["Monitoring features are thinner than rivals", "No credit scores included", "Fewer digital extras (no VPN/antivirus)"], "take": "The budget pick: you pay for expert restoration help, not a feature buffet. At this price it's easy to justify.", "affiliate": "#affiliate-link-zander-insurance"}];
+const CTA_LABEL = "COMPARE PLANS";
+const SORT_DIR = "asc";
+
+let state = {filter:'all', sort:'featured', compare:[]};
+const $ = id => document.getElementById(id);
+const affTag = p => '<span class="aff-tag" title="Affiliate link pending — swap with tracking URL before publish">LINK PENDING</span>';
+
+function stars(r){
+  const pct = (r/5*100).toFixed(0);
+  return `<span class="stars" aria-label="${r} out of 5 stars">★★★★★<span class="fill" style="width:${pct}%">★★★★★</span></span><span class="rating-num">${r.toFixed(1)}</span>`;
+}
+function customSort(a,b){
+  return SORT_DIR === 'desc' ? b.sortVal - a.sortVal : a.sortVal - b.sortVal;
+}
+function filtered(){
+  let list = PRODUCTS.filter(p => state.filter==='all' || p.cats.includes(state.filter));
+  const by = {
+    featured:(a,b)=>b.rating-a.rating,
+    rating:(a,b)=>b.rating-a.rating,
+    custom:customSort
+  }[state.sort] || (()=>0);
+  return list.slice().sort(by);
+}
+function renderTable(){
+  const list = filtered();
+  $('resultCount').textContent = `Showing ${list.length} of ${PRODUCTS.length} options`;
+  $('cmpBody').innerHTML = list.map((p,i)=>`
+    <tr>
+      <td class="rank-cell">#${PRODUCTS.indexOf(p)+1}</td>
+      <td><span class="t-name"><a href="#mod-${p.id}">${p.name}</a></span> ${affTag(p)}</td>
+      <td>${stars(p.rating)}</td>
+      ${p.table.map(c=>`<td>${c}</td>`).join('')}
+      <td><div class="t-apply">
+        <!-- AFFILIATE PLACEHOLDER: ${p.name} -->
+        <a class="btn btn-apply" href="${p.affiliate}" data-affiliate="pending"><span class="lock">🔒</span> ${CTA_LABEL}</a>
+        <label class="compare-check"><input type="checkbox" data-cmp="${p.id}" ${state.compare.includes(p.id)?'checked':''}> Add to compare</label>
+      </div></td>
+    </tr>`).join('');
+  bindCompareBoxes();
+}
+function renderModules(){
+  $('modules').innerHTML = filtered().map((p,i)=>`
+  <article class="mod" id="mod-${p.id}">
+    <div class="mod-top">
+      <div class="mod-visual">
+        <!-- AFFILIATE PLACEHOLDER: ${p.name} -->
+        <a class="card-art" href="${p.affiliate}" data-affiliate="pending" aria-label="${p.name}">
+          <span class="chip"></span><span class="init">${p.initials}</span>
+        </a>
+      </div>
+      <div class="mod-main">
+        <div class="pick-row">
+          <span class="rank-badge">#${PRODUCTS.indexOf(p)+1}</span>
+          <p class="pick-label">Our pick for: ${p.pick}</p>
+        </div>
+        ${p.badge?`<span class="award">🏆 ${p.badge}</span>`:''}
+        <!-- AFFILIATE PLACEHOLDER: ${p.name} -->
+        <h2 class="mod-name"><a href="${p.affiliate}" data-affiliate="pending">${p.name}</a> ${affTag(p)}</h2>
+        <div class="mod-rating">${stars(p.rating)}<a class="method-link" href="#methodology">How are ratings determined?</a></div>
+        <div class="why-like"><strong>Why you'll like this:</strong> ${p.why}</div>
+        <label class="compare-check"><input type="checkbox" data-cmp="${p.id}" ${state.compare.includes(p.id)?'checked':''}> Add to compare</label>
+        <div class="cta-row">
+          <!-- AFFILIATE PLACEHOLDER: ${p.name} -->
+          <a class="btn btn-apply btn-big" href="${p.affiliate}" data-affiliate="pending">${CTA_LABEL} <span class="lock">🔒</span> on ${p.name}'s secure site</a>
+        </div>
+        <div class="spec-grid">
+          ${p.specs.map(s=>`<div class="spec"><div class="k">${s[0]}</div><div class="v">${s[1]}</div></div>`).join('')}
+        </div>
+        <details class="mod-details">
+          <summary>Details, pros &amp; cons</summary>
+          <div class="pros-cons">
+            <div class="pros"><h4>Pros</h4><ul>${p.pros.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+            <div class="cons"><h4>Cons</h4><ul>${p.cons.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+          </div>
+          <p class="take"><strong>Financialist's take:</strong> ${p.take}</p>
+        </details>
+      </div>
+    </div>
+  </article>`).join('');
+  bindCompareBoxes();
+}
+function bindCompareBoxes(){
+  document.querySelectorAll('[data-cmp]').forEach(box=>{
+    box.onchange = ()=>{
+      const id = box.getAttribute('data-cmp');
+      if(box.checked){
+        if(state.compare.length>=3){ box.checked=false; alert('You can compare up to 3.'); return; }
+        if(!state.compare.includes(id)) state.compare.push(id);
+      } else state.compare = state.compare.filter(x=>x!==id);
+      syncTray();
+      document.querySelectorAll(`[data-cmp="${id}"]`).forEach(b=>{ if(b!==box) b.checked=box.checked; });
+    };
+  });
+}
+function syncTray(){
+  const tray = $('tray');
+  $('trayCount').textContent = state.compare.length;
+  $('trayItems').innerHTML = state.compare.map(id=>{
+    const p = PRODUCTS.find(x=>x.id===id);
+    return `<span class="tray-item">${p.name}<button data-rm="${id}" aria-label="Remove">×</button></span>`;
+  }).join('');
+  tray.classList.toggle('show', state.compare.length>0);
+  document.querySelectorAll('[data-rm]').forEach(b=>b.onclick=()=>{
+    const id=b.getAttribute('data-rm');
+    state.compare=state.compare.filter(x=>x!==id);
+    document.querySelectorAll(`[data-cmp="${id}"]`).forEach(x=>x.checked=false);
+    syncTray();
+  });
+}
+function renderSide(){
+  const ps = state.compare.map(id=>PRODUCTS.find(x=>x.id===id));
+  const specKeys = ps.length ? ps[0].specs.map(s=>s[0]) : [];
+  const rows = [
+    ['Rating', p=>stars(p.rating)],
+    ...specKeys.map(k=>[k, p=>{ const s=p.specs.find(x=>x[0]===k); return s?s[1]:'—'; }]),
+    ['Get started', p=>`<!-- AFFILIATE PLACEHOLDER: ${p.name} --><a class="btn btn-apply" href="${p.affiliate}" data-affiliate="pending">${CTA_LABEL}</a>`]
+  ];
+  $('sideTable').innerHTML =
+    `<tr><th></th>${ps.map(p=>`<th>${p.name}</th>`).join('')}</tr>` +
+    rows.map(([k,fn])=>`<tr><td>${k}</td>${ps.map(p=>`<td>${fn(p)}</td>`).join('')}</tr>`).join('');
+}
+// Filters
+document.querySelectorAll('#filterBar .pill').forEach(pill=>{
+  pill.onclick=()=>{
+    document.querySelectorAll('#filterBar .pill').forEach(x=>x.classList.remove('active'));
+    pill.classList.add('active');
+    state.filter=pill.getAttribute('data-filter');
+    renderTable(); renderModules();
+  };
+});
+// Sort select
+$('sortSel').onchange=e=>{ state.sort=e.target.value; renderTable(); };
+// Disclosure modals
+const openD=()=>$('disclosureBack').classList.add('show');
+$('openDisclosure').onclick=openD;
+$('openDisclosure2').onclick=e=>{e.preventDefault();openD();};
+// Compare modal
+$('compareNow').onclick=()=>{ if(!state.compare.length) return; renderSide(); $('compareBack').classList.add('show'); };
+document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>$(b.getAttribute('data-close')).classList.remove('show'));
+document.querySelectorAll('.modal-back').forEach(m=>m.addEventListener('click',e=>{ if(e.target===m) m.classList.remove('show'); }));
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') document.querySelectorAll('.modal-back.show').forEach(m=>m.classList.remove('show')); });
+// Init
+renderTable(); renderModules(); syncTray();
+</script>
+</body>
+</html>

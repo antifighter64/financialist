@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salary Explorer — How Much Do They Actually Make? | Financialist</title>
+<meta name="description" content="Explore real salary ranges for 60+ jobs. Search, filter, and compare against the national median.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0a1428; --card:#122341; --card2:#16294a;
+  --gold:#f5b942; --green:#2fd08c; --blue:#4da3ff; --red:#ff6b6b;
+  --text:#eef3fb; --muted:#93a4c4; --line:rgba(255,255,255,.09);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(1200px 600px at 80% -10%,#16305c 0%,var(--navy) 55%) fixed,var(--navy);color:var(--text);font-family:Inter,system-ui,sans-serif;min-height:100vh}
+h1,h2,.brand{font-family:Sora,Inter,sans-serif}
+.wrap{max-width:1140px;margin:0 auto;padding:0 18px 60px}
+header.top{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
+.brand{font-weight:800;font-size:22px}.brand span{color:var(--gold)}
+.tag{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:6px 14px}
+.hero{text-align:center;padding:30px 0 6px}
+.hero h1{font-size:clamp(28px,5vw,48px);font-weight:800}
+.hero h1 em{color:var(--gold);font-style:normal}
+.hero p{color:var(--muted);margin-top:10px;font-size:15px}
+.median-pill{display:inline-block;margin-top:14px;background:rgba(245,185,66,.12);border:1px solid rgba(245,185,66,.4);color:var(--gold);border-radius:999px;padding:8px 20px;font-size:14px;font-weight:600}
+.controls{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:20px;padding:20px;margin:22px 0;display:flex;flex-direction:column;gap:14px}
+.search-row{display:flex;gap:12px;flex-wrap:wrap}
+#search{flex:1;min-width:200px;background:#0a1730;border:2px solid var(--line);border-radius:12px;color:#fff;padding:12px 16px;font-size:15px;outline:none;font-family:Inter}
+#search:focus{border-color:var(--gold)}
+select{background:#0a1730;border:2px solid var(--line);border-radius:12px;color:var(--text);padding:12px 14px;font-size:14px;outline:none;font-family:Inter;cursor:pointer}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{background:#0a1730;border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:7px 15px;font-size:13px;cursor:pointer;transition:.2s;font-family:Inter}
+.chip:hover{color:var(--text);border-color:var(--muted)}
+.chip.on{background:var(--gold);border-color:var(--gold);color:#1a1206;font-weight:600}
+.count{color:var(--muted);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+.card{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:18px;padding:20px;transition:.25s;position:relative;overflow:hidden}
+.card:hover{transform:translateY(-4px);border-color:rgba(245,185,66,.45);box-shadow:0 18px 40px rgba(0,0,0,.4)}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:6px}
+.job{font-family:Sora;font-weight:700;font-size:17px}
+.cat-tag{font-size:11px;color:var(--gold);background:rgba(245,185,66,.12);border:1px solid rgba(245,185,66,.3);border-radius:999px;padding:3px 10px;white-space:nowrap}
+.median{font-family:Sora;font-size:30px;font-weight:800;color:var(--green);margin:8px 0 2px}
+.median small{font-size:12px;color:var(--muted);font-weight:500;font-family:Inter}
+.vs{font-size:12px;margin-bottom:12px}
+.vs b.above{color:var(--green)} .vs b.below{color:var(--red)}
+.bar-zone{margin:10px 0 4px;position:relative;height:34px}
+.bar-track{position:absolute;left:0;right:0;top:12px;height:10px;background:#0a1730;border-radius:99px}
+.bar-range{position:absolute;top:12px;height:10px;border-radius:99px;background:linear-gradient(90deg,var(--blue),var(--green))}
+.bar-median{position:absolute;top:6px;width:4px;height:22px;background:#fff;border-radius:2px;box-shadow:0 0 8px rgba(255,255,255,.7)}
+.bar-nat{position:absolute;top:2px;bottom:2px;width:2px;background:var(--gold);opacity:.85}
+.bar-nat::after{content:'US median';position:absolute;top:-16px;left:-24px;font-size:9px;color:var(--gold);white-space:nowrap}
+.range-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:2px}
+.card-foot{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+.share{background:#0a1730;border:1px solid var(--line);color:var(--muted);border-radius:10px;padding:7px 13px;font-size:12px;cursor:pointer;font-family:Inter;transition:.2s}
+.share:hover{color:var(--gold);border-color:var(--gold)}
+.growth{font-size:12px;color:var(--muted)}
+.empty{text-align:center;color:var(--muted);padding:50px 20px;grid-column:1/-1;font-size:15px}
+.cta-strip{margin-top:30px;background:linear-gradient(135deg,#f5b942,#e08e1a);border-radius:20px;padding:26px;color:#1a1206;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+.cta-strip h2{font-size:20px;margin-bottom:6px}
+.cta-strip p{font-size:14px;opacity:.85}
+.cta-strip a{background:#0a1428;color:#fff;text-decoration:none;font-weight:700;padding:13px 26px;border-radius:12px;font-size:14px;white-space:nowrap}
+.note{color:var(--muted);font-size:12px;text-align:center;margin-top:24px;line-height:1.6}
+footer{border-top:1px solid var(--line);margin-top:36px;padding-top:22px;text-align:center;color:var(--muted);font-size:13px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.card{animation:fadeUp .4s ease backwards}
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);background:var(--green);color:#06130c;font-weight:600;font-size:14px;padding:12px 24px;border-radius:999px;opacity:0;pointer-events:none;transition:.3s;z-index:99}
+.toast.show{opacity:1}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">💰 Financial<span>ist</span></div>
+    <div class="tag">Salary Explorer</div>
+  </header>
+  <div class="hero">
+    <h1>How much do they <em>actually</em> make?</h1>
+    <p>Real salary ranges for 60+ jobs. Search, filter, compare — then share the ones that shock you.</p>
+    <div class="median-pill">🇺🇸 National median salary ≈ $59,000/yr</div>
+  </div>
+
+  <div class="controls">
+    <div class="search-row">
+      <input id="search" type="text" placeholder="🔍 Search jobs… (try &quot;nurse&quot;, &quot;developer&quot;, &quot;chef&quot;)" aria-label="Search jobs">
+      <select id="minpay" aria-label="Minimum salary">
+        <option value="0">Any salary</option>
+        <option value="50000">$50K+</option>
+        <option value="75000">$75K+</option>
+        <option value="100000">$100K+</option>
+        <option value="150000">$150K+</option>
+        <option value="200000">$200K+</option>
+      </select>
+      <select id="sort" aria-label="Sort">
+        <option value="high">Highest paid first</option>
+        <option value="low">Lowest paid first</option>
+        <option value="az">A → Z</option>
+      </select>
+    </div>
+    <div class="chips" id="chips"></div>
+    <div class="count" id="count"></div>
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <div class="cta-strip">
+    <div>
+      <h2>Want to earn like the top of this list?</h2>
+      <p>See what a high-yield account and smart investing could do for your paycheck.</p>
+    </div>
+    <!-- TODO: replace href="#" with real affiliate link -->
+    <a href="#" data-affiliate="hysa">Grow my money →</a>
+  </div>
+
+  <p class="note">Figures are median annual salary estimates based on U.S. Bureau of Labor Statistics data, rounded for readability. Ranges show typical 10th–90th percentile spreads. Actual pay varies by location, experience, and employer. For education only — not career advice.</p>
+  <footer><div class="brand">💰 Financial<span style="color:var(--gold)">ist</span></div><p style="margin-top:8px">Smart money moves, every day.</p></footer>
+</div>
+<div class="toast" id="toast">Copied!</div>
+
+<script>
+const NAT_MEDIAN = 59000, SCALE_MAX = 500000;
+const JOBS = [
+ // Tech
+ ["Software Developer","Tech",132000,80000,208000,"High"],["Data Scientist","Tech",145000,95000,212000,"High"],
+ ["AI / ML Engineer","Tech",165000,110000,235000,"High"],["DevOps Engineer","Tech",140000,95000,195000,"High"],
+ ["Cybersecurity Analyst","Tech",120000,75000,170000,"High"],["Product Manager","Tech",150000,100000,215000,"High"],
+ ["UX Designer","Tech",105000,65000,150000,"High"],["IT Support Specialist","Tech",60000,40000,88000,"Medium"],
+ // Healthcare
+ ["Surgeon","Healthcare",290000,200000,450000,"Very High"],["Physician","Healthcare",230000,150000,350000,"Very High"],
+ ["Dentist","Healthcare",175000,110000,250000,"Very High"],["Pharmacist","Healthcare",135000,100000,168000,"High"],
+ ["Nurse Practitioner","Healthcare",128000,95000,165000,"High"],["Registered Nurse","Healthcare",95000,65000,132000,"Medium"],
+ ["Physical Therapist","Healthcare",100000,70000,132000,"Medium"],["Dental Hygienist","Healthcare",90000,65000,118000,"Medium"],
+ ["EMT / Paramedic","Healthcare",40000,30000,58000,"Low"],
+ // Finance
+ ["Investment Banker","Finance",160000,100000,300000,"Very High"],["Actuary","Finance",125000,80000,185000,"High"],
+ ["Financial Advisor","Finance",100000,60000,165000,"Medium"],["Financial Analyst","Finance",100000,65000,145000,"Medium"],
+ ["Accountant","Finance",85000,55000,125000,"Medium"],["Loan Officer","Finance",70000,40000,115000,"Medium"],
+ // Legal
+ ["Lawyer","Legal",145000,70000,250000,"High"],["Judge","Legal",155000,110000,200000,"High"],
+ ["Paralegal","Legal",60000,40000,88000,"Medium"],
+ // Trades
+ ["Electrician","Trades",65000,42000,102000,"Medium"],["Plumber","Trades",65000,40000,105000,"Medium"],
+ ["HVAC Technician","Trades",60000,40000,92000,"Medium"],["Carpenter","Trades",60000,38000,96000,"Medium"],
+ ["Welder","Trades",55000,36000,88000,"Low"],["Truck Driver","Trades",55000,38000,82000,"Low"],
+ // Creative
+ ["Architect","Creative",95000,60000,145000,"Medium"],["Writer / Author","Creative",75000,40000,135000,"Medium"],
+ ["Video Editor","Creative",65000,40000,105000,"Medium"],["Graphic Designer","Creative",60000,40000,92000,"Medium"],
+ ["Photographer","Creative",45000,28000,85000,"Low"],
+ // Business
+ ["Chief Executive","Business",200000,100000,500000,"Very High"],["Management Consultant","Business",110000,70000,185000,"High"],
+ ["Marketing Manager","Business",115000,70000,168000,"High"],["Project Manager","Business",100000,65000,148000,"Medium"],
+ ["HR Manager","Business",90000,60000,135000,"Medium"],["Sales Representative","Business",70000,40000,135000,"Medium"],
+ // Education
+ ["School Principal","Education",110000,75000,155000,"Medium"],["Professor","Education",85000,55000,145000,"Medium"],
+ ["Teacher (K-12)","Education",65000,42000,102000,"Medium"],
+ // Service & Hospitality
+ ["Airline Pilot","Service",180000,100000,280000,"Very High"],["Real Estate Agent","Service",60000,30000,155000,"Medium"],
+ ["Chef","Service",60000,35000,105000,"Medium"],["Firefighter","Service",60000,38000,98000,"Medium"],
+ ["Police Officer","Service",70000,42000,108000,"Medium"],["Flight Attendant","Service",65000,40000,105000,"Medium"],
+ ["Electrician Apprentice","Trades",45000,30000,65000,"Low"],
+ ["Bartender","Service",35000,22000,62000,"Low"],["Barista","Service",32000,22000,46000,"Low"],
+ ["Retail Cashier","Service",32000,22000,42000,"Low"],["Fast Food Worker","Service",30000,21000,40000,"Low"],
+ // More tech/business
+ ["Data Analyst","Tech",85000,55000,125000,"Medium"],["QA Engineer","Tech",95000,60000,140000,"Medium"],
+ ["Technical Writer","Tech",80000,50000,120000,"Medium"],["Web Designer","Tech",70000,42000,110000,"Medium"],
+ ["Business Analyst","Business",95000,60000,140000,"Medium"],["Operations Manager","Business",95000,60000,145000,"Medium"],
+ ["Recruiter","Business",65000,38000,110000,"Medium"],["Customer Success Manager","Business",85000,55000,130000,"Medium"],
+ // More healthcare/service
+ ["Medical Assistant","Healthcare",42000,30000,58000,"Low"],["Home Health Aide","Healthcare",33000,24000,45000,"Low"],
+ ["Veterinarian","Healthcare",115000,75000,170000,"High"],["Optometrist","Healthcare",130000,90000,180000,"High"],
+ ["Librarian","Education",65000,42000,98000,"Medium"],["Counselor","Education",60000,38000,95000,"Medium"],
+];
+const CATS = ["All","Tech","Healthcare","Finance","Legal","Business","Trades","Creative","Education","Service"];
+let activeCat = "All";
+const chipsEl = document.getElementById('chips');
+CATS.forEach(c=>{
+  const b=document.createElement('button');
+  b.className='chip'+(c==="All"?' on':''); b.textContent=c;
+  b.onclick=()=>{activeCat=c;document.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));b.classList.add('on');draw();};
+  chipsEl.appendChild(b);
+});
+const fmtK = v=>'$'+Math.round(v/1000)+'K';
+function vsText(m){
+  const d=Math.round((m-NAT_MEDIAN)/NAT_MEDIAN*100);
+  return d>=0?`<b class="above">▲ ${d}% above</b> national median`:`<b class="below">▼ ${Math.abs(d)}% below</b> national median`;
+}
+function card(j,i){
+  const [name,cat,med,lo,hi]=j;
+  const l=lo/SCALE_MAX*100, w=(hi-lo)/SCALE_MAX*100, m=med/SCALE_MAX*100, n=NAT_MEDIAN/SCALE_MAX*100;
+  return `<div class="card" style="animation-delay:${Math.min(i*30,400)}ms">
+    <div class="card-top"><div class="job">${name}</div><div class="cat-tag">${cat}</div></div>
+    <div class="median">${fmtK(med)}<small> /yr median</small></div>
+    <div class="vs">${vsText(med)}</div>
+    <div class="bar-zone">
+      <div class="bar-track"></div>
+      <div class="bar-range" style="left:${l}%;width:${w}%"></div>
+      <div class="bar-median" style="left:calc(${m}% - 2px)"></div>
+      <div class="bar-nat" style="left:${n}%"></div>
+    </div>
+    <div class="range-labels"><span>${fmtK(lo)}</span><span>typical range</span><span>${fmtK(hi)}</span></div>
+    <div class="card-foot">
+      <span class="growth">Demand: ${j[5]}</span>
+      <button class="share" data-name="${name}" data-med="${fmtK(med)}">📤 Share</button>
+    </div>
+  </div>`;
+}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800);}
+function draw(){
+  const q=document.getElementById('search').value.toLowerCase().trim();
+  const min=+document.getElementById('minpay').value;
+  const sort=document.getElementById('sort').value;
+  let list=JOBS.filter(j=>(activeCat==="All"||j[1]===activeCat)&&j[0].toLowerCase().includes(q)&&j[2]>=min);
+  if(sort==="high")list.sort((a,b)=>b[2]-a[2]);else if(sort==="low")list.sort((a,b)=>a[2]-b[2]);else list.sort((a,b)=>a[0].localeCompare(b[0]));
+  const g=document.getElementById('grid');
+  g.innerHTML=list.length?list.map(card).join(''):`<div class="empty">No jobs match — try a different search or filter.</div>`;
+  document.getElementById('count').textContent=`Showing ${list.length} of ${JOBS.length} jobs · estimates based on BLS data`;
+  g.querySelectorAll('.share').forEach(b=>b.onclick=async()=>{
+    const txt=`A ${b.dataset.name} makes ~${b.dataset.med}/yr — see how your job compares: Financialist Salary Explorer`;
+    try{
+      if(navigator.share){await navigator.share({title:'Financialist Salary Explorer',text:txt});}
+      else{await navigator.clipboard.writeText(txt);toast('Copied to clipboard!');}
+    }catch(e){try{await navigator.clipboard.writeText(txt);toast('Copied to clipboard!');}catch(_){toast('Copy not available');}}
+  });
+}
+['search','minpay','sort'].forEach(id=>document.getElementById(id).addEventListener('input',draw));
+draw();
+</script>
+</body>
+</html>
